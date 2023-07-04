@@ -21,6 +21,11 @@ if settings.DEBUG == True:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+# if not DEBUG:
+#     REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = (
+#         "rest_framework.renderers.JSONRenderer",
+#     )
+
 
 admin.site.site_header = _('Control Panel')
 admin.site.site_title = _('Control Panel')

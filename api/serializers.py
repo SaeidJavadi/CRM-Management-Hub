@@ -14,8 +14,7 @@ class UserSerializerReg(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'fullname', 'phone', 'brithday', 'idcode', 'contery',
-                  'sickness', 'reagent', 'password', 'password2')
+        fields = ('username', 'phone', 'email', 'password', 'password2')
         extra_kwargs = {
             'password': {
                 'write_only': True
@@ -23,17 +22,20 @@ class UserSerializerReg(serializers.ModelSerializer):
         }
 
     def save(self, request):
+        try:
+            Phone = self.validated_data['phone']
+        except:
+            Phone = None
+        try:
+            Email = self.validated_data['email']
+        except:
+            Email = None
+
         user = User(
             username=self.validated_data['username'],
-            fullname=self.validated_data['fullname'],
-            phone=self.validated_data['phone'],
-            brithday=self.validated_data['brithday'],
-            idcode=self.validated_data['idcode'],
-            contery=self.validated_data['contery'],
-            sickness=self.validated_data['sickness'],
-            reagent=self.validated_data['reagent'],
+            phone=Phone,
+            email=Email
         )
-
         password = self.validated_data['password']
         password2 = self.validated_data['password2']
 
