@@ -36,17 +36,17 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('username', 'is_active', 'is_staff', 'is_superuser')
+        fields = ('username', 'phone', 'email', 'is_active', 'is_staff', 'is_superuser')
 
 
 class UserAdmin(BaseUserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
-    list_display = ('username', 'is_active', 'is_staff', 'is_superuser')
+    list_display = ('username', 'phone', 'email', 'is_active', 'is_staff', 'is_superuser')
     # list_editable = ('is_staff', 'is_active')
     list_filter = ('is_staff', 'groups')
     fieldsets = (
-        (None, {'fields': ('username', 'password')}),
+        (None, {'fields': ('username', 'phone', 'email', 'password')}),
         ('Permissions', {'fields': ('is_active',)}),
         ('Group Permissions', {
             'fields': ('is_staff', 'is_superuser', 'groups', 'user_permissions'),
@@ -55,13 +55,13 @@ class UserAdmin(BaseUserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('username', 'password1', 'password2'),
+            'fields': ('username', 'phone', 'email', 'password1', 'password2'),
         }),
         ('Group Permissions', {
             'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions'),
         })
     )
-    search_fields = ('username', 'phone')
+    search_fields = ('username', 'phone', 'email', 'phone')
     ordering = ('username', 'phone')
     filter_horizontal = ('groups', 'user_permissions',)
 

@@ -25,8 +25,8 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(verbose_name=_('Username'), max_length=120, unique=True)
-    phone = models.BigIntegerField(verbose_name=_('Phone Number'), unique=True, blank=True, null=True)
-    email = models.EmailField(verbose_name=_('Email'), blank=True, null=True)
+    phone = models.BigIntegerField(verbose_name=_('Phone Number'), unique=False, blank=True, null=True)
+    email = models.EmailField(verbose_name=_('Email'), unique=False, blank=True, null=True)
     regdate = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
     updated = models.DateTimeField(auto_now=True, verbose_name=_('Updated'))
     is_active = models.BooleanField(default=True, verbose_name=_('is_active'))
