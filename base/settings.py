@@ -160,9 +160,9 @@ REST_FRAMEWORK = {
         'rest_framework.filters.SearchFilter',
         'rest_framework.filters.OrderingFilter',
     ],
-    'DEFAULT_RENDERER_CLASSES': [       # Hide Django rest framework Routers Api View Page
-        'rest_framework.renderers.JSONRenderer',
-    ]
+    # 'DEFAULT_RENDERER_CLASSES': [       # Hide Django rest framework Routers Api View Page Or config in urls.py
+    #     'rest_framework.renderers.JSONRenderer',
+    # ]
 }
 
 REST_AUTH = {

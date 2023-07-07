@@ -6,6 +6,7 @@ app_name = "api"
 urlpatterns = [
     path("users/", views.UserList.as_view(), name="userlist"),
     path("users/<int:pk>", views.UsereDetail.as_view(), name="userdetail"),
+    path("user/revoke/", views.RevokeToken.as_view(), name="revoketoken"),
     path("c60/", views.Common60View.as_view(), name="common60"),
     path("c60/<int:pk>", views.Common60ViewDetail.as_view(), name="common60Detail"),
     path("c61/", views.Common61View.as_view(), name="common61"),
@@ -22,5 +23,3 @@ urlpatterns = [
     path("pa/<int:pk>", views.PublicAssistanceViewDetail.as_view(), name="PublicAssistanceViewDetail"),
 
 ]
-
-

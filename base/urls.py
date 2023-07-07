@@ -21,6 +21,7 @@ if settings.DEBUG == True:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+# Hide Django rest framework Routers Api View Page Or config in settings.py
 # if not DEBUG:
 #     REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = (
 #         "rest_framework.renderers.JSONRenderer",

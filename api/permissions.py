@@ -1,5 +1,6 @@
 from rest_framework.permissions import BasePermission, SAFE_METHODS
 
+
 class IsSuperUser(BasePermission):
     def has_permission(self, request, view):
         return bool(request.user and request.user.is_superuser)
@@ -18,20 +19,22 @@ class IsCommonOrReadOnly(BasePermission):
     def has_object_permission(self, request, view, obj):
         # if request.method in SAFE_METHODS:
         #     return True
+        # if request.method == "POST" and request.user.is_authenticated:
+        #     return True
 
         return bool(
-        	# get access to superuser
-        	request.user.is_authenticated and
-        	request.user.is_superuser or
-        	# get access to author of objet
-			obj.usersubmit == request.user
+            # get access to superuser
+            request.user.is_authenticated and
+            request.user.is_superuser or
+            # get access to author of objet
+            obj.usersubmit == request.user
         )
 
 
 class IsSuperUserOrStaffReadOnly(BasePermission):
     def has_permission(self, request, view):
         return bool(
-        	# get access to authors readonly
+            # get access to authors readonly
             request.method in SAFE_METHODS and
             request.user and
             request.user.is_staff or
