@@ -17,11 +17,8 @@ class IsStaffOrReadOnly(BasePermission):
 
 class IsCommonOrReadOnly(BasePermission):
     def has_object_permission(self, request, view, obj):
-        # if request.method in SAFE_METHODS:
-        #     return True
-        # if request.method == "POST" and request.user.is_authenticated:
-        #     return True
-
+        if request.method in SAFE_METHODS:
+            return True
         return bool(
             # get access to superuser
             request.user.is_authenticated and
@@ -34,11 +31,7 @@ class IsCommonOrReadOnly(BasePermission):
 class IsSuperUserOrStaffReadOnly(BasePermission):
     def has_permission(self, request, view):
         return bool(
-            # get access to authors readonly
             request.method in SAFE_METHODS and
-            request.user and
             request.user.is_staff or
-            # get access to superuser full
-            request.user and
             request.user.is_superuser
         )
