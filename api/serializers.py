@@ -1,12 +1,13 @@
 from rest_framework import serializers
-from accounts.models import User
+
+from django.contrib.auth import get_user_model    # from accounts.models import User
 from crm.models import Common60, Common61, Common70, CommonDead, DoingDead, JudiciaryDead, PublicAssistance
 from drf_dynamic_fields import DynamicFieldsMixin  # GET api/articels/?fields=id,title : show just fields => id,title
 
 
 class UserSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
     class Meta:
-        model = User
+        model = get_user_model()
         fields = "__all__"
 
 
@@ -14,7 +15,7 @@ class UserSerializerReg(serializers.ModelSerializer):
     # password2 = serializers.CharField(style={'input_type': 'password'}, write_only=True)
 
     class Meta:
-        model = User
+        model = get_user_model()
         fields = ('username', 'phone', 'email', 'password')
         extra_kwargs = {
             'password': {
@@ -32,7 +33,7 @@ class UserSerializerReg(serializers.ModelSerializer):
         except:
             Email = None
 
-        user = User(
+        user = get_user_model()(
             username=self.validated_data['username'],
             phone=Phone,
             email=Email
