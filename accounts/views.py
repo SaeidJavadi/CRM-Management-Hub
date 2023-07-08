@@ -49,7 +49,7 @@ def userLogin(request):
                     if user is not None:
                         login(request, user)
                         messages.success(request, _("logged in successfully"), extra_tags="success")
-                        return redirect('crm:home')
+                        return redirect('crm:dashboard')
                     else:
                         messages.error(request, _("your username Or Password is wrong"), extra_tags="warning")
                 else:
@@ -62,11 +62,11 @@ def userLogin(request):
             formAR = LoginFormAR()
         return render(request, 'accounts/signinup.html', {'form': form, 'formar': formAR})
     else:
-        return redirect('crm:home')
+        return redirect('crm:dashboard')
 
 
 @login_required()
 def LogoutPage(request):
     logout(request)
     messages.success(request, _("You Logged Out successfully"), extra_tags="success")
-    return redirect('crm:home')
+    return redirect('accounts:login')

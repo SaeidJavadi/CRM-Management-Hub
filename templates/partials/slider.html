@@ -15,7 +15,7 @@
   <div class="sidebar-links">
     <ul style="padding-left: 0;">
       <li>
-        <a href="#dashboard" class="active" title="Portfolio link">
+        <a href="{% url 'crm:dashboard' %}" class="active" title="Portfolio link">
           <div class="icon">
             <img src="{% static 'root/assets/portfolio.svg' %}" title="Portfolio Icon">
           </div>
@@ -53,6 +53,14 @@
             <img src="{% static 'root/assets/reports.svg' %}" title="Reports Icon">
           </div>
           <span class="link hide">Reports</span>
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'accounts:logout' %}" title="Logout Link">
+          <div class="icon">
+            <img src="{% static 'root/assets/logout.svg' %}" title="Logout Icon">
+          </div>
+          <span class="link hide">Logout</span>
         </a>
       </li>
     </ul>

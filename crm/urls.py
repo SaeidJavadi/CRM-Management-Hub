@@ -4,4 +4,5 @@ from crm import views
 app_name = 'crm'
 urlpatterns = [
     path('', views.home, name='home'),
+    path('dashboard/', views.dashboard, name='dashboard'),
 ]

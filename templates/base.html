@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -7,6 +8,7 @@
         {% block head %}
         {% endblock head %}
         <title>
+            {% trans "Admin Panel" %} |
             {% block title %}
             {% endblock title %}
         </title>
@@ -15,9 +17,9 @@
               integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
               crossorigin="anonymous">
         <link rel="stylesheet" href="{% static 'root/css/slider_style.css' %}">
+        {% include "partials/slider.html" %}
     </head>
     <body>
-        {% include "partials/slider.html" %}
         {% block body %}
         {% endblock body %}
         {% include "partials/footer.html" %}
