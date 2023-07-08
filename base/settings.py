@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'dj_rest_auth.registration',
     'django_filters',
-    'drf_yasg', 
+    # 'drf_yasg',
     # apps
     'accounts.apps.AccountsConfig',
     'crm.apps.CrmConfig',
@@ -167,7 +167,8 @@ REST_FRAMEWORK = {
 }
 
 REST_AUTH = {
-    "REGISTER_SERIALIZER": "api.serializers.UserSerializerReg"
+    "REGISTER_SERIALIZER": "api.serializers.UserSerializerReg",
+    'USER_DETAILS_SERIALIZER': "api.serializers.UserSerializer"
 }
 
 SITE_ID = 1

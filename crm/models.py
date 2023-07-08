@@ -15,6 +15,7 @@ class Common60(models.Model):   # Eshterak afrad 60 saal va kamtar
     phone = models.IntegerField(verbose_name=_('Phone Number'))
     phoneagent = models.IntegerField(verbose_name=_('Phone Number Agent'))
     amount = models.FloatField(verbose_name=_('Amount'), blank=True, null=True)
+    link = models.TextField(verbose_name=_('Payment Link'), blank=True, null=True)
     status = models.BooleanField(verbose_name=_('Status'), default=False)
 
     class Meta:
@@ -40,6 +41,7 @@ class Common61(models.Model):  # Eshterak afrad az 61 ta 69
     phone = models.IntegerField(verbose_name=_('Phone Number'))
     phoneagent = models.IntegerField(verbose_name=_('Phone Number Agent'))
     amount = models.FloatField(verbose_name=_('Amount'), blank=True, null=True)
+    link = models.TextField(verbose_name=_('Payment Link'), blank=True, null=True)
     status = models.BooleanField(verbose_name=_('Status'), default=False)
 
     class Meta:
@@ -65,6 +67,7 @@ class Common70(models.Model):   # Eshterak afrad az 70 salegi va afrad mobtala b
     phone = models.IntegerField(verbose_name=_('Phone Number'))
     phoneagent = models.IntegerField(verbose_name=_('Phone Number Agent'))
     amount = models.FloatField(verbose_name=_('Amount'), blank=True, null=True)
+    link = models.TextField(verbose_name=_('Payment Link'), blank=True, null=True)
     status = models.BooleanField(verbose_name=_('Status'), default=False)
 
     class Meta:
@@ -88,6 +91,7 @@ class CommonDead(models.Model):  # Eshterak FotShodegan
     phone = models.IntegerField(verbose_name=_('Phone Number'))
     phoneagent = models.IntegerField(verbose_name=_('Phone Number Agent'))
     amount = models.FloatField(verbose_name=_('Amount'), blank=True, null=True)
+    link = models.TextField(verbose_name=_('Payment Link'), blank=True, null=True)
     status = models.BooleanField(verbose_name=_('Status'), default=False)
 
     class Meta:
@@ -111,6 +115,7 @@ class JudiciaryDead(models.Model):  # Goveh Ghazaie Mordegan
     phone = models.IntegerField(verbose_name=_('Phone Number'))
     phoneagent = models.IntegerField(verbose_name=_('Phone Number Agent'))
     amount = models.FloatField(verbose_name=_('Amount'), blank=True, null=True)
+    link = models.TextField(verbose_name=_('Payment Link'), blank=True, null=True)
     status = models.BooleanField(verbose_name=_('Status'), default=False)
 
     class Meta:
@@ -134,6 +139,7 @@ class DoingDead(models.Model):  # Anjam Amale Ebadie Marhom
     phone = models.IntegerField(verbose_name=_('Phone Number'))
     phoneagent = models.IntegerField(verbose_name=_('Phone Number Agent'))
     amount = models.FloatField(verbose_name=_('Amount'), blank=True, null=True)
+    link = models.TextField(verbose_name=_('Payment Link'), blank=True, null=True)
     status = models.BooleanField(verbose_name=_('Status'), default=False)
 
     class Meta:
@@ -152,6 +158,7 @@ class PublicAssistance(models.Model):  # komak be khirieh
                                    verbose_name=_("Registrant"), related_name='user_pa')
     help_name = models.CharField(max_length=120, verbose_name=_('help name'))
     amount = models.FloatField(verbose_name=_('amount'))
+    link = models.TextField(verbose_name=_('Payment Link'), blank=True, null=True)
 
     class Meta:
         verbose_name = _('PublicAssistance')
@@ -162,3 +169,4 @@ class PublicAssistance(models.Model):  # komak be khirieh
 
     def get_absolute_url(self):
         return reverse('PublicAssistance_detail', kwargs={'pk': self.pk})
+
