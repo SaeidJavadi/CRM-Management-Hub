@@ -133,12 +133,15 @@ class DoingDead(models.Model):  # Anjam Amale Ebadie Marhom
     usersubmit = models.ForeignKey(User,  on_delete=models.CASCADE,
                                    verbose_name=_("Registrant"), related_name='user_dd')
     name = models.CharField(max_length=120, verbose_name=_('Deceased name'))
-    idcode = models.IntegerField(verbose_name=_('Id Code'))
-    contery = models.CharField(verbose_name=_('Contery/State'), max_length=120)
-    create = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
-    phone = models.IntegerField(verbose_name=_('Phone Number'))
-    phoneagent = models.IntegerField(verbose_name=_('Phone Number Agent'))
     amount = models.FloatField(verbose_name=_('Amount'), blank=True, null=True)
+    yearprayer = models.IntegerField(verbose_name=_('Years Passed prayer'))
+    yearfasting = models.IntegerField(verbose_name=_('Years Passed fasting'))
+    pilgrimage = models.CharField(max_length=200, verbose_name=_("Pilgrimage"))
+    agent = models.CharField(max_length=200, verbose_name=_("Agent"))
+    phone = models.IntegerField(verbose_name=_('Phone Number'))
+    contery = models.CharField(verbose_name=_('Contery/State'), max_length=120)
+    deposit = models.FloatField(verbose_name=_('Deposit'))
+    create = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
     link = models.TextField(verbose_name=_('Payment Link'), blank=True, null=True)
     status = models.BooleanField(verbose_name=_('Status'), default=False)
 
@@ -169,4 +172,3 @@ class PublicAssistance(models.Model):  # komak be khirieh
 
     def get_absolute_url(self):
         return reverse('PublicAssistance_detail', kwargs={'pk': self.pk})
-
