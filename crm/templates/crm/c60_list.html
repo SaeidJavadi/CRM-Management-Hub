@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+    {% trans "Dashboard" %}
+{% endblock title %}
+{% block content %}
+    <div class="row">
+        <div class="col-3 d-flex justify-content-center"></div>
+        <div class="col-6 d-flex justify-content-center">
+            <ul class="list-group">
+                {% for common in commons %}<li class="list-group-item">{{ common }}</li>{% endfor %}
+            </ul>
+        </div>
+        <div class="col-3 d-flex justify-content-center"></div>
+    </div>
+{% endblock content %}
