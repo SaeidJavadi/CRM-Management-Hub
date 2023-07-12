@@ -47,11 +47,14 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'dj_rest_auth.registration',
     'django_filters',
+    'bootstrap_modal_forms',
+    'widget_tweaks',
     # 'drf_yasg',
     # apps
     'accounts.apps.AccountsConfig',
     'crm.apps.CrmConfig',
     'api.apps.ApiConfig',
+    'examples'
 
 ]
 

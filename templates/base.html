@@ -12,10 +12,35 @@
             {% block title %}
             {% endblock title %}
         </title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        {% block stylesheets %}
+            <!-- Bootstrap CSS -->
+            <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+            <!-- Font awesome CSS -->
+            <link rel="stylesheet"
+                  href="{% static 'assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+            <!-- Custom CSS -->
+            <style media="screen">
+                .invalid {
+                    color: #dc3545;
+                    font-size: 80%;
+                }
+
+                body {
+                    display: flex;
+                    flex-direction: column;
+                    min-height: 100vh;
+                }
+
+                .footer {
+                    margin: auto 0 0;
+                    height: 56px;
+                }
+            </style>
+        {% endblock stylesheets %}
+        {% comment %} <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
               rel="stylesheet"
               integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-              crossorigin="anonymous">
+              crossorigin="anonymous"> {% endcomment %}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
@@ -66,7 +91,18 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
                 crossorigin="anonymous"></script>
+        <script src="{% static 'js/bootstrap5.modal.forms.js' %}"></script>
         <script src='https://unpkg.com/@popperjs/core@2'></script>
         <script src="{% static 'root/js/sidebar_script.js' %}"></script>
+        <!-- JavaScript -->
+        {% block scripts %}
+            <script src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
+            <script src="{% static 'assets/js/popper.min.js' %}"></script>
+            <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+            <!-- You can alternatively load the minified version -->
+            <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
+        {% endblock scripts %}
+        {% block extrascripts %}
+        {% endblock extrascripts %}
     </body>
 </html>
