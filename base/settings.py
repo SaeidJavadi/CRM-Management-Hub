@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'crm.apps.CrmConfig',
     'api.apps.ApiConfig',
-    'examples'
 
 ]
 

@@ -2,7 +2,7 @@
 {% block content %}
     <div class="container mt-3">
         <div class="row">
-            {% include "_modal.html" %}
+            {% include "curd/_modal.html" %}
             <div class="row">
                 <div class="col-12 mb-3">
                     <button id="create-obj-async"
@@ -102,7 +102,7 @@
                 $(".delete-obj").each(function() {
                     $(this).modalForm({
                         formURL: $(this).data("form-url"),
-                        isDeleteForm: true
+                        isDeleteForm: true,
                     });
                 });
             }
