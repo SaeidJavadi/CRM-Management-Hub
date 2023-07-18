@@ -17,6 +17,7 @@
           <li class="menu-header">
             <span>{% trans "GENERAL" %}</span>
           </li>
+          {# Dashboard #}
           <li class="menu-item sub-menu">
             <a href="#">
               <span class="menu-icon">
@@ -96,6 +97,7 @@
               </ul>
             </div>
           </li>
+          {# Subscriptions #}
           <li class="menu-item sub-menu">
             <a href="#">
               <span class="menu-icon">
@@ -162,10 +164,43 @@
                     </ul>
                   </div>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item sub-menu">
+                  <a href="#">
+                    <span class="menu-title">{% trans "Subscription Dead" %}</span>
+                  </a>
+                  <div class="sub-menu-list">
+                    <ul>
+                      <li class="menu-item">
+                        <a href="{% url 'crm:cd_list' %}">
+                          <span class="menu-title">{% trans "List" %}</span>
+                        </a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="{% url 'crm:cd_create' %}">
+                          <span class="menu-title">{% trans "create" %}</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="menu-item sub-menu">
                   <a href="#">
                     <span class="menu-title">{% trans "Subscription Judiciary of the Dead" %}</span>
                   </a>
+                  <div class="sub-menu-list">
+                    <ul>
+                      <li class="menu-item">
+                        <a href="{% url 'crm:jd_list' %}">
+                          <span class="menu-title">{% trans "List" %}</span>
+                        </a>
+                      </li>
+                      <li class="menu-item">
+                        <a href="{% url 'crm:jd_create' %}">
+                          <span class="menu-title">{% trans "create" %}</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                 </li>
                 <li class="menu-item">
                   <a href="#">
@@ -180,6 +215,7 @@
               </ul>
             </div>
           </li>
+          {# Subscription Purchases #}
           <li class="menu-item sub-menu">
             <a href="#">
               <span class="menu-icon">
@@ -207,6 +243,7 @@
               </ul>
             </div>
           </li>
+          {# User Manager #}
           <li class="menu-item sub-menu">
             <a href="#">
               <span class="menu-icon">

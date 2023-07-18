@@ -21,5 +21,15 @@ urlpatterns = [
     path('c70/read/<int:pk>', login_required(views.C70ReadView.as_view()), name='c70_read'),
     path('c70/update/<int:pk>', login_required(views.C70EUpdateView.as_view()), name='c70_update'),
     path('c70/delete/<int:pk>', login_required(views.C70DeleteView.as_view()), name='c70_delete'),
+    path('cd/', login_required(views.CdList.as_view()), name='cd_list'),
+    path('cd/create/', login_required(views.CdCreateView.as_view()), name='cd_create'),
+    path('cd/read/<int:pk>', login_required(views.CdReadView.as_view()), name='cd_read'),
+    path('cd/update/<int:pk>', login_required(views.CdUpdateView.as_view()), name='cd_update'),
+    path('cd/delete/<int:pk>', login_required(views.CdDeleteView.as_view()), name='cd_delete'),
+    path('jd/', login_required(views.JdList.as_view()), name='jd_list'),
+    path('jd/create/', login_required(views.JdCreateView.as_view()), name='jd_create'),
+    path('jd/read/<int:pk>', login_required(views.JdReadView.as_view()), name='jd_read'),
+    path('jd/update/<int:pk>', login_required(views.JdUpdateView.as_view()), name='jd_update'),
+    path('jd/delete/<int:pk>', login_required(views.JdDeleteView.as_view()), name='jd_delete'),
 
 ]
