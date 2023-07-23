@@ -4,18 +4,14 @@
     <table id="objs-table" class="table">
         <thead>
             <tr>
+                <th class="text-center" scope="col">ID</th>
+                <th class="text-center" scope="col">Name</th>
+                <th class="text-center" scope="col">Age</th>
                 <th class="text-center" scope="col">IdCode</th>
-                <th class="text-center" scope="col">name</th>
-                <th class="text-center" scope="col">age</th>
-                <th class="text-center" scope="col">idcode</th>
-                <th class="text-center" scope="col">sickness</th>
-                <th class="text-center" scope="col">contery</th>
-                <th class="text-center" scope="col">create</th>
-                <th class="text-center" scope="col">phone</th>
-                <th class="text-center" scope="col">phoneagent</th>
-                <th class="text-center" scope="col">amount</th>
-                <th class="text-center" scope="col">link</th>
-                <th class="text-center" scope="col">status</th>
+                <th class="text-center" scope="col">Contery</th>
+                <th class="text-center" scope="col">Create Date</th>
+                <th class="text-center" scope="col">Phone</th>
+                <th class="text-center" scope="col">Status</th>
             </tr>
         </thead>
         <tbody>
@@ -26,13 +22,9 @@
                     <td class="text-center">{{ obj.name }}</td>
                     <td class="text-center">{{ obj.age }}</td>
                     <td class="text-center">{{ obj.idcode }}</td>
-                    <td class="text-center">{{ obj.sickness }}</td>
                     <td class="text-center">{{ obj.contery }}</td>
-                    <td class="text-center">{{ obj.create }}</td>
+                    <td class="text-center">{{ obj.create|date:"Y-m-d (H:i)" }}</td>
                     <td class="text-center">{{ obj.phone }}</td>
-                    <td class="text-center">{{ obj.phoneagent }}</td>
-                    <td class="text-center">{{ obj.amount }}</td>
-                    <td class="text-center">{{ obj.link }}</td>
                     <td class="text-center">{{ obj.status }}</td>
                     <td class="text-center">
                         <!-- Read buttons -->

@@ -100,3 +100,8 @@ class LoginFormAR(forms.Form):
 #             raise ValidationError('Passwords don\'t match')
 #         else:
 #             return password2
+
+class ObjectModelFormUser(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = '__all__'

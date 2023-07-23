@@ -11,32 +11,36 @@
                 <th>{{ obj.id }}</th>
             </tr>
             <tr>
-                <th>User Submit:</th>
-                <th>{{ obj.usersubmit }}</th>
+                <th>Username:</th>
+                <th>{{ obj.username }}</th>
             </tr>
             <tr>
-                <th>Name:</th>
-                <th>{{ obj.name }}</th>
+                <th>Phone:</th>
+                <th>{{ obj.phone }}</th>
             </tr>
             <tr>
-                <th>Help Name:</th>
-                <th>{{ obj.help_name }}</th>
+                <th>Email:</th>
+                <th>{{ obj.email }}</th>
             </tr>
             <tr>
-                <th>Create Time:</th>
-                <th>{{ obj.create|date:"Y-m-d (H:i)" }}</th>
+                <th>Register Date:</th>
+                <th>{{ obj.regdate|date:"Y-m-d (H:i)" }}</th>
             </tr>
             <tr>
-                <th>Amount:</th>
-                <th>{{ obj.amount }}</th>
+                <th>Updated:</th>
+                <th>{{ obj.updated|date:"Y-m-d (H:i)" }}</th>
             </tr>
             <tr>
-                <th>Link:</th>
-                <th>{{ obj.link }}</th>
+                <th>Active:</th>
+                <th>{{ obj.is_active }}</th>
             </tr>
             <tr>
-                <th>Status:</th>
-                <th>{{ obj.status }}</th>
+                <th>Staff:</th>
+                <th>{{ obj.is_staff }}</th>
+            </tr>
+            <tr>
+                <th>Superuser:</th>
+                <th>{{ obj.is_superuser }}</th>
             </tr>
         </thead>
     </table>

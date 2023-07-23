@@ -2,10 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import gettext_lazy as _
-from accounts.forms import LoginForm, LoginFormAR
+from accounts.forms import LoginForm, LoginFormAR, ObjectModelFormUser
 # from accounts.forms import RegisterForm
 from django.contrib import messages
 from accounts.models import User
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 
 
 def userRegister(request):
@@ -75,3 +77,39 @@ def LogoutPage(request):
     logout(request)
     messages.success(request, _("You Logged Out successfully"), extra_tags="success")
     return redirect('accounts:login')
+
+
+class UsersListView(ListView):
+    model = User
+    context_object_name = 'objects'
+    template_name = 'accounts/users_list.html'
+    paginate_by = 30
+
+
+class UserDetailView(DetailView):
+    model = User
+    context_object_name = 'obj'
+    template_name = 'accounts/users_detail.html'
+
+
+class UserCreateView(CreateView):
+    model = User
+    form_class = ObjectModelFormUser
+    template_name = 'crm/obj_create.html'
+    success_message = 'Success: Subscription was created.'
+    success_url = reverse_lazy('accounts:user_list')
+
+
+class UsersUpdateView(UpdateView):
+    model = User
+    form_class = ObjectModelFormUser
+    template_name = 'crm/obj_update.html'
+    success_url = reverse_lazy('accounts:user_list')
+
+
+class UsersDeleteView(DeleteView):
+    model = User
+    context_object_name = 'obj'
+    template_name = 'crm/obj_delete.html'
+    success_message = 'Success: Subscription was deleted.'
+    success_url = reverse_lazy('accounts:user_list')

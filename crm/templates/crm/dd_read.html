@@ -1,63 +1,72 @@
 {% extends "base.html" %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'crm/css/printstyle.css' %}">
+{% endblock head %}
 {% block content %}
     <table id="objs-table" class="table">
         <thead>
             <tr>
-                <th>IdCode:</th>
+                <th>ID:</th>
                 <th>{{ obj.id }}</th>
             </tr>
             <tr>
-                <th>usersubmit:</th>
+                <th>User Submit:</th>
                 <th>{{ obj.usersubmit }}</th>
             </tr>
             <tr>
-                <th>name:</th>
+                <th>Name:</th>
                 <th>{{ obj.name }}</th>
             </tr>
             <tr>
-                <th>amount:</th>
+                <th>Amount:</th>
                 <th>{{ obj.amount }}</th>
             </tr>
             <tr>
-                <th>yearprayer:</th>
+                <th>Year Prayer:</th>
                 <th>{{ obj.yearprayer }}</th>
             </tr>
             <tr>
-                <th>yearfasting:</th>
+                <th>Year Fasting:</th>
                 <th>{{ obj.yearfasting }}</th>
             </tr>
             <tr>
-                <th>pilgrimage:</th>
+                <th>Pilgrimage:</th>
                 <th>{{ obj.pilgrimage }}</th>
             </tr>
             <tr>
-                <th>agent:</th>
+                <th>Agent:</th>
                 <th>{{ obj.agent }}</th>
             </tr>
             <tr>
-                <th>phone:</th>
+                <th>Phone:</th>
                 <th>{{ obj.phone }}</th>
             </tr>
             <tr>
-                <th>contery:</th>
+                <th>Contery:</th>
                 <th>{{ obj.contery }}</th>
             </tr>
             <tr>
-                <th>deposit:</th>
+                <th>Deposit:</th>
                 <th>{{ obj.deposit }}</th>
             </tr>
             <tr>
-                <th>create:</th>
-                <th>{{ obj.create }}</th>
+                <th>Create Date:</th>
+                <th>{{ obj.create|date:"Y-m-d (H:i)" }}</th>
             </tr>
             <tr>
-                <th>link:</th>
+                <th>Link:</th>
                 <th>{{ obj.link }}</th>
             </tr>
             <tr>
-                <th>status:</th>
+                <th>Status:</th>
                 <th>{{ obj.status }}</th>
             </tr>
         </thead>
     </table>
+    <center>
+        <button onclick="window.print();" class="print-button noPrint">
+            <span class="print-icon"></span>
+        </button>
+    </center>
 {% endblock content %}

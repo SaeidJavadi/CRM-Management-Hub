@@ -1,9 +1,13 @@
 {% extends "base.html" %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'crm/css/printstyle.css' %}">
+{% endblock head %}
 {% block content %}
     <table id="objs-table" class="table">
         <thead>
             <tr>
-                <th>IdCode:</th>
+                <th>ID:</th>
                 <th>{{ obj.id }}</th>
             </tr>
             <tr>
@@ -11,45 +15,54 @@
                 <th>{{ obj.name }}</th>
             </tr>
             <tr>
+                <th>User Submit:</th>
+                <th>{{ obj.usersubmit }}</th>
+            </tr>
+            <tr>
                 <th>age:</th>
                 <th>{{ obj.age }}</th>
             </tr>
-                        <tr>
+            <tr>
                 <th>idcode:</th>
                 <th>{{ obj.idcode }}</th>
             </tr>
-                        <tr>
+            <tr>
                 <th>sickness:</th>
                 <th>{{ obj.sickness }}</th>
             </tr>
-                        <tr>
+            <tr>
                 <th>contery:</th>
                 <th>{{ obj.contery }}</th>
             </tr>
-                        <tr>
+            <tr>
                 <th>create:</th>
-                <th>{{ obj.create }}</th>
+                <th>{{ obj.create|date:"Y-m-d (H:i)" }}</th>
             </tr>
-                        <tr>
+            <tr>
                 <th>phone:</th>
                 <th>{{ obj.phone }}</th>
             </tr>
-                        <tr>
+            <tr>
                 <th>phoneagent:</th>
                 <th>{{ obj.phoneagent }}</th>
             </tr>
-                        <tr>
+            <tr>
                 <th>amount:</th>
                 <th>{{ obj.amount }}</th>
             </tr>
-                        <tr>
+            <tr>
                 <th>link:</th>
                 <th>{{ obj.link }}</th>
             </tr>
-                        <tr>
+            <tr>
                 <th>status:</th>
                 <th>{{ obj.status }}</th>
             </tr>
         </thead>
     </table>
+    <center>
+        <button onclick="window.print();" class="print-button noPrint">
+            <span class="print-icon"></span>
+        </button>
+    </center>
 {% endblock content %}

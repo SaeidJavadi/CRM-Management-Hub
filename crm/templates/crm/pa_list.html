@@ -4,13 +4,14 @@
     <table id="objs-table" class="table">
         <thead>
             <tr>
-                <th class="text-center" scope="col">IdCode</th>
-                <th class="text-center" scope="col">usersubmit</th>
-                <th class="text-center" scope="col">name</th>
-                <th class="text-center" scope="col">help_name</th>
-                <th class="text-center" scope="col">amount</th>
-                <th class="text-center" scope="col">link</th>
-                <th class="text-center" scope="col">status</th>
+                <th class="text-center" scope="col">ID</th>
+                <th class="text-center" scope="col">User Submit</th>
+                <th class="text-center" scope="col">Name</th>
+                <th class="text-center" scope="col">Help_name</th>
+                <th class="text-center" scope="col">Create Date</th>
+                <th class="text-center" scope="col">Amount</th>
+                <th class="text-center" scope="col">Link</th>
+                <th class="text-center" scope="col">Status</th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +22,7 @@
                     <td class="text-center">{{ obj.usersubmit }}</td>
                     <td class="text-center">{{ obj.name }}</td>
                     <td class="text-center">{{ obj.help_name }}</td>
+                    <td class="text-center">{{ obj.create|date:"Y-m-d (H:i)" }}</td>
                     <td class="text-center">{{ obj.amount }}</td>
                     <td class="text-center">{{ obj.link }}</td>
                     <td class="text-center">{{ obj.status }}</td>
