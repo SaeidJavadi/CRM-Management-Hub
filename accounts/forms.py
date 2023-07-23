@@ -88,7 +88,7 @@ class LoginFormAR(forms.Form):
 #                                 widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
 #     class Meta:
-#         model = User
+#         model = get_user_model()
 #         fields = ('username', 'fullname', 'phone', 'brithday', 'idcode', 'contery', 'sickness', 'reagent', 'is_active', 'is_staff', 'is_superuser')
 
 #         widgets = {  # Optional

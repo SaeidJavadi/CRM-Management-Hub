@@ -17,9 +17,9 @@ def userRegister(request):
     #     form = RegisterForm(request.POST)
     #     if form.is_valid():
     #         cd = form.cleaned_data
-    #         if not User.objects.filter(email=cd['username']).exists():
-    #             if not User.objects.filter(email=cd['email']).exists():
-    #                 user = User.objects.create_user(
+    #         if not get_user_model()objects.filter(email=cd['username']).exists():
+    #             if not get_user_model()objects.filter(email=cd['email']).exists():
+    #                 user = get_user_model()objects.create_user(
     #                     username=cd['username'], phone=cd['phone'], email=cd['email'], password=cd['password1'])
     #                 user.save()
     #                 login(request, user)
@@ -46,7 +46,7 @@ def userLogin(request):
                 form = formAR
             if form.is_valid():
                 cd = form.cleaned_data
-                if User.objects.filter(username=cd['username']).exists():
+                if get_user_model().objects.filter(username=cd['username']).exists():
                     user = authenticate(request, username=cd['username'], password=cd['password'])
                     if user is not None:
                         if user.is_superuser or user.is_staff:
