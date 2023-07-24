@@ -7,6 +7,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('c60/', login_required(views.c60List.as_view()), name='c60_list'),
+    path('subscribe/overview/<str:model>', views.overview, name='subscribe_overview'),
     path('c60/create/', login_required(views.C60CreateView.as_view()), name='c60_create'),
     path('c60/read/<int:pk>', login_required(views.C60ReadView.as_view()), name='c60_read'),
     path('c60/update/<int:pk>', login_required(views.C60EUpdateView.as_view()), name='c60_update'),

@@ -16,6 +16,58 @@ def dashboard(request):
     return render(request, 'crm/dashboard.html')
 
 
+@login_required
+def overview(request, model):
+    if model == 'c60':
+        MODEL = Common60
+        TiTle = "0-60"
+    elif model == 'c61':
+        MODEL = Common61
+        TiTle = "61-69"
+    elif model == 'c70':
+        MODEL = Common70
+        TiTle = "70-up"
+    spay = MODEL.objects.filter(status=True).count()
+    unspay = MODEL.objects.filter(status=False).count()
+    Iraq = MODEL.objects.filter(contery='Iraq').count()
+    Iran = MODEL.objects.filter(contery='Iran').count()
+    Syria = MODEL.objects.filter(contery='Syria').count()
+    Sweden = MODEL.objects.filter(contery='Sweden').count()
+    Australia = MODEL.objects.filter(contery='Australia').count()
+    Denmark = MODEL.objects.filter(contery='Denmark').count()
+    Lebanon = MODEL.objects.filter(contery='Lebanon').count()
+    SaudiArabia = MODEL.objects.filter(contery='SaudiArabia').count()
+    Bahrain = MODEL.objects.filter(contery='Bahrain').count()
+    Kuwait = MODEL.objects.filter(contery='Kuwait').count()
+    Emirates = MODEL.objects.filter(contery='Emirates').count()
+    America = MODEL.objects.filter(contery='America').count()
+    India = MODEL.objects.filter(contery='India').count()
+    Pakistan = MODEL.objects.filter(contery='Pakistan').count()
+    Turkiye = MODEL.objects.filter(contery='Turkiye').count()
+
+    labelspay = ['Successful Payments', 'Unsuccessful Payments']
+    datapay = [spay, unspay]
+
+    labelscontery = ['Iraq', 'Iran', 'Syria', 'Sweden', 'Australia', 'Denmark', 'Lebanon',
+                     'SaudiArabia', 'Bahrain', 'Kuwait', 'Emirates', 'America', 'India', 'Pakistan', 'Turkiye']
+    datacontery = [Iraq, Iran, Syria, Sweden, Australia, Denmark, Lebanon,
+                   SaudiArabia, Bahrain, Kuwait, Emirates, America, India, Pakistan, Turkiye]
+    total = 0
+    for item in datacontery:
+        if str(item).isdigit():
+            total += item
+
+    return render(request, 'crm/overview.html', {
+        'headerTitle': f'Subscription {TiTle} Overview',
+        'labelspay': labelspay,
+        'datapay': datapay,
+        'totalcount': spay+unspay,
+        'totalcountery': total,
+        'datacontery': datacontery,
+        'labelscontery': labelscontery
+    })
+
+
 class c60List(ListView):        # Common60
     model = Common60
     context_object_name = 'objects'
