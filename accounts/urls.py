@@ -11,6 +11,7 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('profile/change/password', views.profilepass, name='profilepass'),
     path('users/', login_required(views.UsersListView.as_view()), name='user_list'),
+    path('users/overview', views.overview, name='users_overview'),
     path('users/create', login_required(views.UserCreateView.as_view()), name='user_create'),
     path('users/detail/<int:pk>', login_required(views.UserDetailView.as_view()), name='user_detail'),
     path('users/update/<int:pk>', login_required(views.UsersUpdateView.as_view()), name='user_update'),

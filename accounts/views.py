@@ -115,6 +115,22 @@ def profilepass(request):
         return redirect('crm:home')
 
 
+@login_required
+def overview(request):
+    active = get_user_model().objects.filter(is_active=True).count()
+    staff = get_user_model().objects.filter(is_staff=True).count()
+    superuser = get_user_model().objects.filter(is_superuser=True).count()
+    labelsusers = ['Active User', 'Staff User', 'Super User']
+    datausers = [active, staff, superuser]
+
+    return render(request, 'accounts/overview.html', {
+        'headerTitle': f'User Management Overview',
+        'labelsusers': labelsusers,
+        'datausers': datausers,
+        'totalcount': active+staff+superuser,
+    })
+
+
 class UsersListView(ListView):
     model = get_user_model()
     context_object_name = 'objects'

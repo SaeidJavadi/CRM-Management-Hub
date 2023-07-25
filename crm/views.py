@@ -27,35 +27,52 @@ def overview(request, model):
     elif model == 'c70':
         MODEL = Common70
         TiTle = "70-up"
+    elif model == 'cd':
+        MODEL = CommonDead
+        TiTle = "Subscription Dead"
+    elif model == 'jd':
+        MODEL = JudiciaryDead
+        TiTle = "Judiciary Dead"
+    elif model == 'dd':
+        MODEL = DoingDead
+        TiTle = "Doing Dead"
+    elif model == 'pa':
+        MODEL = PublicAssistance
+        TiTle = "Public Assistance"
     spay = MODEL.objects.filter(status=True).count()
     unspay = MODEL.objects.filter(status=False).count()
-    Iraq = MODEL.objects.filter(contery='Iraq').count()
-    Iran = MODEL.objects.filter(contery='Iran').count()
-    Syria = MODEL.objects.filter(contery='Syria').count()
-    Sweden = MODEL.objects.filter(contery='Sweden').count()
-    Australia = MODEL.objects.filter(contery='Australia').count()
-    Denmark = MODEL.objects.filter(contery='Denmark').count()
-    Lebanon = MODEL.objects.filter(contery='Lebanon').count()
-    SaudiArabia = MODEL.objects.filter(contery='SaudiArabia').count()
-    Bahrain = MODEL.objects.filter(contery='Bahrain').count()
-    Kuwait = MODEL.objects.filter(contery='Kuwait').count()
-    Emirates = MODEL.objects.filter(contery='Emirates').count()
-    America = MODEL.objects.filter(contery='America').count()
-    India = MODEL.objects.filter(contery='India').count()
-    Pakistan = MODEL.objects.filter(contery='Pakistan').count()
-    Turkiye = MODEL.objects.filter(contery='Turkiye').count()
+    if model != 'pa':
+        Iraq = MODEL.objects.filter(contery='Iraq').count()
+        Iran = MODEL.objects.filter(contery='Iran').count()
+        Syria = MODEL.objects.filter(contery='Syria').count()
+        Sweden = MODEL.objects.filter(contery='Sweden').count()
+        Australia = MODEL.objects.filter(contery='Australia').count()
+        Denmark = MODEL.objects.filter(contery='Denmark').count()
+        Lebanon = MODEL.objects.filter(contery='Lebanon').count()
+        SaudiArabia = MODEL.objects.filter(contery='SaudiArabia').count()
+        Bahrain = MODEL.objects.filter(contery='Bahrain').count()
+        Kuwait = MODEL.objects.filter(contery='Kuwait').count()
+        Emirates = MODEL.objects.filter(contery='Emirates').count()
+        America = MODEL.objects.filter(contery='America').count()
+        India = MODEL.objects.filter(contery='India').count()
+        Pakistan = MODEL.objects.filter(contery='Pakistan').count()
+        Turkiye = MODEL.objects.filter(contery='Turkiye').count()
 
     labelspay = ['Successful Payments', 'Unsuccessful Payments']
     datapay = [spay, unspay]
-
-    labelscontery = ['Iraq', 'Iran', 'Syria', 'Sweden', 'Australia', 'Denmark', 'Lebanon',
-                     'SaudiArabia', 'Bahrain', 'Kuwait', 'Emirates', 'America', 'India', 'Pakistan', 'Turkiye']
-    datacontery = [Iraq, Iran, Syria, Sweden, Australia, Denmark, Lebanon,
-                   SaudiArabia, Bahrain, Kuwait, Emirates, America, India, Pakistan, Turkiye]
-    total = 0
-    for item in datacontery:
-        if str(item).isdigit():
-            total += item
+    if model != 'pa':
+        labelscontery = ['Iraq', 'Iran', 'Syria', 'Sweden', 'Australia', 'Denmark', 'Lebanon',
+                         'SaudiArabia', 'Bahrain', 'Kuwait', 'Emirates', 'America', 'India', 'Pakistan', 'Turkiye']
+        datacontery = [Iraq, Iran, Syria, Sweden, Australia, Denmark, Lebanon,
+                       SaudiArabia, Bahrain, Kuwait, Emirates, America, India, Pakistan, Turkiye]
+        total = 0
+        for item in datacontery:
+            if str(item).isdigit():
+                total += item
+    else:
+        datacontery = None
+        labelscontery = None
+        total = None
 
     return render(request, 'crm/overview.html', {
         'headerTitle': f'Subscription {TiTle} Overview',

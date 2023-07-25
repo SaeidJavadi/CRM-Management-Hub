@@ -19,7 +19,7 @@
                      style="background-color:#c1f6e375;
                             border-radius: 15px">
                     <div id="container" style="width: 75%;">
-                        <canvas id="pay_chart"></canvas>
+                        <canvas id="users_chart"></canvas>
                     </div>
                 </div>
             </div>
@@ -36,12 +36,16 @@
                         <div class="col-4">{{ totalcount }}</div>
                     </div>
                     <div class="row">
-                        <div class="col-8">Successful Payments:</div>
-                        <div class="col-4">{{ datapay.0 }}</div>
+                        <div class="col-8">Active Users:</div>
+                        <div class="col-4">{{ datausers.0 }}</div>
                     </div>
                     <div class="row">
-                        <div class="col-8">Unsuccessful Payments:</div>
-                        <div class="col-4">{{ datapay.1 }}</div>
+                        <div class="col-8">Staff Users:</div>
+                        <div class="col-4">{{ datausers.1 }}</div>
+                    </div>
+                       <div class="row">
+                        <div class="col-8">Super Users:</div>
+                        <div class="col-4">{{ datausers.2 }}</div>
                     </div>
                 </div>
             </div>
@@ -49,8 +53,7 @@
         </div>
         <br>
         {# Contery Chart #}
-        {% if totalcountery != None %}
-        <div class="row">
+        {% comment %} <div class="row">
             <div class="col-2"></div>
             <div class="col-8">
                 <div class="p-2 border d-flex justify-content-center"
@@ -76,30 +79,30 @@
                 </div>
             </div>
             <div class="col-2"></div>
-        </div>
-        {% endif %}
+        </div> {% endcomment %}
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script>
-    var ctxpay = document.getElementById('pay_chart').getContext('2d');
-    var configpay = {
+    var ctxusers = document.getElementById('users_chart').getContext('2d');
+    var configusers = {
         type: 'pie',
         data: {
             datasets: [{
-                data: {{ datapay|safe }},
+                data: {{ datausers|safe }},
                 backgroundColor: [
-                    '#00FF0C', '#E0EA87'
+                    '#00FF0C', '#B0BA87','#E6EB09'
                 ],
-                label: 'Payment'
+                label: 'Users'
             }],
-            labels: {{ labelspay|safe }}
+            labels: {{ labelsusers|safe }}
         },
         options: {
             responsive: true
         }
     };
-{% if totalcountery != None %}
-    var ctxcontery = document.getElementById('contery_chart').getContext('2d');
+
+    {% comment %} var ctxcontery = document.getElementById('contery_chart').getContext('2d');
     var configcontery = {
         type: 'bar',
         data: {
@@ -115,13 +118,12 @@
         options: {
             responsive: true
         }
-    }; 
-    {% endif %}
+    };  {% endcomment %}
+
     window.onload = function() {
-        window.payPie = new Chart(ctxpay, configpay);
-        {% if totalcountery != None %}
-        window.conteryPie = new Chart(ctxcontery, configcontery);
-        {% endif %}
+        window.usersPie = new Chart(ctxusers, configusers);
+       // window.conteryPie = new Chart(ctxcontery, configcontery);
+
     };
 </script>
 {% endblock content %}
