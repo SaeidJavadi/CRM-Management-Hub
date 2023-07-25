@@ -102,28 +102,8 @@
         }
     };
 
-    {% comment %} var ctxcontery = document.getElementById('contery_chart').getContext('2d');
-    var configcontery = {
-        type: 'bar',
-        data: {
-            datasets: [{
-                data: {{ datacontery|safe }},
-                backgroundColor: [
-                    '#00FF0C', '#80b5fb', '#f79edc', '#E0EA87', '#ee7fa8', '#fdd172', '#fba337', '#024066', '#fb4557', '#ea9987', '#ff12a0', '#ba2634', '#036d0a', '#4e5602', '#626c03'
-                ],
-                label: 'Count Common'
-            }],
-            labels: {{ labelscontery|safe }}
-        },
-        options: {
-            responsive: true
-        }
-    };  {% endcomment %}
-
     window.onload = function() {
         window.usersPie = new Chart(ctxusers, configusers);
-       // window.conteryPie = new Chart(ctxcontery, configcontery);
-
     };
 </script>
 {% endblock content %}
