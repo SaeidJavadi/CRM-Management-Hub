@@ -7,7 +7,7 @@ class Common60(models.Model):   # Eshterak afrad 60 saal va kamtar
     usersubmit = models.ForeignKey(User, on_delete=models.CASCADE,
                                    verbose_name=_('Registrant'), related_name='user_c60')
     lottery = models.ForeignKey("lottery", verbose_name=_(
-        "lottery"), on_delete=models.SET_NULL, default=None, null=True, blank=True)
+        "lottery"), on_delete=models.SET_NULL, default=None, null=True, blank=True, related_name='lottery_c60')
     name = models.CharField(max_length=120, verbose_name=_('Quadruple common name'))
     age = models.DateField(verbose_name=_('Age'))
     idcode = models.IntegerField(verbose_name=_('Id Code'))

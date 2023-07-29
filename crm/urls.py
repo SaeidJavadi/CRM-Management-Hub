@@ -12,6 +12,7 @@ urlpatterns = [
     path('c60/read/<int:pk>', login_required(views.C60ReadView.as_view()), name='c60_read'),
     path('c60/update/<int:pk>', login_required(views.C60EUpdateView.as_view()), name='c60_update'),
     path('c60/delete/<int:pk>', login_required(views.C60DeleteView.as_view()), name='c60_delete'),
+    path('c60/lottery/<str:title>', login_required(views.LotteryListView.as_view()), name='c60_lottery'),
     path('c61/', login_required(views.c61List.as_view()), name='c61_list'),
     path('c61/create/', login_required(views.C61CreateView.as_view()), name='c61_create'),
     path('c61/read/<int:pk>', login_required(views.C61ReadView.as_view()), name='c61_read'),
@@ -43,4 +44,5 @@ urlpatterns = [
     path('pa/update/<int:pk>', login_required(views.PaUpdateView.as_view()), name='pa_update'),
     path('pa/delete/<int:pk>', login_required(views.PaDeleteView.as_view()), name='pa_delete'),
     path('active/subscripe', login_required(views.ActiveSubscripe.as_view()), name='active_subscripe'),
+
 ]

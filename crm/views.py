@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from crm.models import Common60, Common61, Common70, CommonDead, JudiciaryDead, DoingDead, PublicAssistance
+from crm.models import Common60, Common61, Common70, CommonDead, JudiciaryDead, DoingDead, PublicAssistance, Lottery
 from django.contrib.auth.decorators import login_required
 from crm.forms import ObjectModelForm60, ObjectModelForm61, ObjectModelForm70, ObjectModelFormCd, ObjectModelFormJd, ObjectModelFormDd, ObjectModelFormPa
 from django.urls import reverse_lazy
@@ -125,6 +125,7 @@ class c60List(ListView):        # Common60
     context_object_name = 'objects'
     template_name = 'crm/obj_list.html'
     paginate_by = 30
+    ordering = ('-create',)
 
 
 class C60ReadView(DetailView):
@@ -156,11 +157,26 @@ class C60DeleteView(DeleteView):
     success_url = reverse_lazy('crm:c60_list')
 
 
+class LotteryListView(ListView):
+    model = Common60
+    context_object_name = 'objects'
+    template_name = 'crm/obj_list.html'
+    paginate_by = 30
+    ordering = ('-create',)
+
+    def get_queryset(self):
+        title = self.kwargs.get('title')
+        lot = Lottery.objects.get(title=title)
+        queryset = super().get_queryset().filter(lottery=lot)
+        return queryset
+
+
 class c61List(ListView):        # Common61
     model = Common61
     context_object_name = 'objects'
     template_name = 'crm/obj_list.html'
     paginate_by = 30
+    ordering = ('-create',)
 
 
 class C61ReadView(DetailView):
@@ -198,6 +214,7 @@ class c70List(ListView):        # Common61
     context_object_name = 'objects'
     template_name = 'crm/obj_list.html'
     paginate_by = 30
+    ordering = ('-create',)
 
 
 class C70ReadView(DetailView):
@@ -235,6 +252,7 @@ class CdList(ListView):        # CommonDead
     context_object_name = 'objects'
     template_name = 'crm/cdjd_list.html'
     paginate_by = 30
+    ordering = ('-create',)
 
 
 class CdReadView(DetailView):
@@ -272,6 +290,7 @@ class JdList(ListView):        # JudiciaryDead
     context_object_name = 'objects'
     template_name = 'crm/cdjd_list.html'
     paginate_by = 30
+    ordering = ('-create',)
 
 
 class JdReadView(DetailView):
@@ -309,6 +328,7 @@ class DdList(ListView):        # DoingDead
     context_object_name = 'objects'
     template_name = 'crm/dd_list.html'
     paginate_by = 30
+    ordering = ('-create',)
 
 
 class DdReadView(DetailView):
@@ -346,6 +366,7 @@ class PaList(ListView):        # PublicAssistance
     context_object_name = 'objects'
     template_name = 'crm/pa_list.html'
     paginate_by = 30
+    ordering = ('-create',)
 
 
 class PaReadView(DetailView):
