@@ -224,3 +224,28 @@ class PublicAssistanceViewSet(ModelViewSet):
             return crmmod.PublicAssistance.objects.all()
         else:
             return crmmod.PublicAssistance.objects.filter(usersubmit=user)
+
+
+class NotificationViewSet(ModelViewSet):
+    serializer_class = serializers.NotificationSerializer
+    filterset_fields = ["see", "user"]
+    ordering_fields = ["createdate", "see"]
+    ordering = ["-createdate"]
+    search_fields = [
+        "user",
+        "subject",
+    ]
+
+    def get_permissions(self):
+        if self.action in ['creare', ]:
+            permission_classes = (IsAuthenticated,)
+        else:
+            permission_classes = (IsCommonOrReadOnly,)
+        return [permission() for permission in permission_classes]
+
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_superuser or user.is_staff:
+            return crmmod.Notification.objects.all()
+        else:
+            return crmmod.Notification.objects.filter(usersubmit=user)
