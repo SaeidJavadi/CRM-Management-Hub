@@ -32,6 +32,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True, verbose_name=_('is_active'))
     is_staff = models.BooleanField(default=False, verbose_name=_('is_staff'))
     is_superuser = models.BooleanField(default=False, verbose_name=_('is_superuser'))
+    fcmtoken = models.CharField(max_length=300, verbose_name=_('FCM Token'), default=None, blank=True, null=True)
 
     objects = UserManager()
 

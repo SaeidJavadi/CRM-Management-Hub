@@ -7,7 +7,8 @@ from drf_dynamic_fields import DynamicFieldsMixin  # GET api/articels/?fields=id
 class UserSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = "__all__"
+        fields = ('id', 'username', 'phone', 'email',
+                  'regdate', 'updated', 'last_login', 'is_active', 'is_staff', 'fcmtoken')
 
 
 class UserSerializerReg(serializers.ModelSerializer):

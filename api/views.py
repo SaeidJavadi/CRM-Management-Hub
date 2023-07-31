@@ -3,7 +3,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
-from api.permissions import IsCommonOrReadOnly, IsSuperUser, IsSuperUserOrStaffReadOnly, IsOwnerOrReadOnlyMSG
+from api.permissions import IsCommonOrReadOnly, IsSuperUser, IsSuperUserOrStaffReadOnly, IsOwnerOrReadOnlyMSG, IsUserOwenerOrReadOnly
 from django.contrib.auth import get_user_model
 from crm import models as crmmod
 from api import serializers
@@ -17,8 +17,10 @@ class UserViewSet(ModelViewSet):
     def get_permissions(self):
         if self.action in ['get', ]:
             permission_classes = (IsAuthenticated,)
+        elif self.action in ['create', 'destroy']:
+            permission_classes = (IsSuperUser,)
         else:
-            permission_classes = (IsCommonOrReadOnly,)
+            permission_classes = (IsUserOwenerOrReadOnly,)
         return [permission() for permission in permission_classes]
 
     def get_queryset(self):
@@ -27,6 +29,23 @@ class UserViewSet(ModelViewSet):
             return get_user_model().objects.all()
         elif user.is_authenticated:
             return get_user_model().objects.filter(id=user.id)
+
+    def update(self, request, *args, **kwargs):
+        userInstanse = self.get_object()
+        updateData = request.data.copy()
+        # fcm_token = True if 'fcmtoken' in updateData.keys() else False
+        key_to_keep = 'fcmtoken'
+        keys_to_remove = []
+        for key in updateData.keys():
+            if key != key_to_keep:
+                keys_to_remove.append(key)
+        for key in keys_to_remove:
+            updateData.pop(key)
+        serializer = serializers.UserSerializer(userInstanse, data=updateData,  partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializers.UserSerializer(userInstanse).data)
+        return Response({'message': 'Error to Update.', 'error': serializer.errors}, 400)
 
 
 class RevokeToken(APIView):
@@ -234,7 +253,7 @@ class NotificationViewSet(ModelViewSet):
     search_fields = ['subject', 'text', 'user__username', 'user__email', 'user__phone']
 
     def get_permissions(self):
-        if self.action in ['create', 'delete', 'destroy']:
+        if self.action in ['create', 'destroy']:
             permission_classes = (IsSuperUser,)
         else:
             permission_classes = (IsOwnerOrReadOnlyMSG,)
@@ -249,8 +268,15 @@ class NotificationViewSet(ModelViewSet):
 
     def update(self, request, *args, **kwargs):
         notificationInstanse = self.get_object()
-        instance = request.data
-        serializer = serializers.NotificationSerializer(notificationInstanse, data=instance,  partial=True)
+        updateData = request.data.copy()
+        key_to_keep = 'see'
+        keys_to_remove = []
+        for key in updateData.keys():
+            if key != key_to_keep:
+                keys_to_remove.append(key)
+        for key in keys_to_remove:
+            updateData.pop(key)
+        serializer = serializers.NotificationSerializer(notificationInstanse, data=updateData,  partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializers.NotificationSerializer(notificationInstanse).data)
