@@ -34,6 +34,19 @@ def assetlinks(request):
 
 
 @login_required
+def sendemailtest(request):
+    from django.core.mail import send_mail
+    a = send_mail(
+        'Subject',  # email subject
+        'Message body',  # email body
+        'social.solidarity2023@gmail.com',  # sender's email address
+        ['7saeid2@gmail.com'],  # list of recipient email addresses
+        fail_silently=False,  # set to True to suppress exceptions
+    )
+    return HttpResponse(a)
+
+
+@login_required
 def dashboard(request):
     return render(request, 'crm/dashboard.html')
 
