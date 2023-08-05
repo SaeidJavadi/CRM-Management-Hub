@@ -60,7 +60,8 @@ class LotteryAdmin(admin.ModelAdmin):
 
 @admin.register(Notification)
 class NotificationAdmin(admin.ModelAdmin):
-    list_display = ('user', 'createdate', 'seedate', 'subject', 'see')
+    list_display = ('createdate', 'seedate', 'subject', 'see')
+    pass
 
     class Meta:
         model = Notification

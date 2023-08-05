@@ -7,8 +7,10 @@
     <table id="objs-table" class="table">
         <thead>
             <tr>
-                <th>User:</th>
-                <th>{{ obj.user }}</th>
+                <th>Users:</th>
+                <th>[
+                    {% for user in obj.user.all %}{{ user }}, {% endfor %}
+                ]</th>
             </tr>
             <tr>
                 <th>Create Date:</th>

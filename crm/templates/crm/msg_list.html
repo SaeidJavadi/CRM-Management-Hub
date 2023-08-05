@@ -3,7 +3,7 @@
     <table id="objs-table" class="table">
         <thead>
             <tr>
-                <th class="text-center" scope="col">User</th>
+                <th class="text-center" scope="col">User Count send</th>
                 <th class="text-center" scope="col">Create Date</th>
                 <th class="text-center" scope="col">See Date</th>
                 <th class="text-center" scope="col">Subject</th>
@@ -14,7 +14,7 @@
             {% for obj in objects %}
                 <tr>
                     {% comment %} <th class="text-center" scope="row">{{ forloop.counter }}</th> {% endcomment %}
-                    <td class="text-center">{{ obj.user }}</td>
+                    <td class="text-center">{{ obj.user.count }}</td>
                     <td class="text-center">{{ obj.createdate|date:"Y-m-d (H:i)" }}</td>
                     <td class="text-center">{{ obj.seedate|date:"Y-m-d (H:i)" }}</td>
                     <td class="text-center">{{ obj.subject }}</td>

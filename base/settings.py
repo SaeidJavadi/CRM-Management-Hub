@@ -187,4 +187,4 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'social.solidarity2023@gmail.com'
 
 # FireBase Notification Configure credentials file
-FIREBASE_GOOGLE_APPLICATION_CREDENTIALS=""
+FIREBASE_GOOGLE_APPLICATION_CREDENTIALS= "static/root/assert/social-solidarity-bb4ac-firebase-adminsdk-imhzd-48ba474d40.json"

@@ -9,6 +9,7 @@ from django.utils import timezone
 from datetime import datetime
 from django.db.models import Sum
 from django.http import HttpResponse
+from crm.tasks import send_notification
 
 
 @login_required
@@ -449,6 +450,17 @@ class MessagesCreateView(CreateView):
     template_name = 'crm/obj_create.html'
     success_message = 'Success: Messege Send.'
     success_url = reverse_lazy('crm:msg_list')
+
+    def form_valid(self, form):
+        userselected = form.cleaned_data['user']
+        subject = form.cleaned_data['subject']
+        text = form.cleaned_data['text']
+        for user in userselected:
+            print(user)
+            fcmtoken = User.objects.get(username=user).fcmtoken
+            if fcmtoken != None:
+                send_notification(user_token=fcmtoken, title=subject, body=text)
+        return super().form_valid(form)
 
 
 class MessagesDetailView(DetailView):

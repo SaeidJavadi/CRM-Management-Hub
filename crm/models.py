@@ -203,7 +203,7 @@ class Lottery(models.Model):
 
 
 class Notification(models.Model):
-    user = models.ForeignKey(User, verbose_name=_("User"), on_delete=models.CASCADE, related_name="user_msg")
+    user = models.ManyToManyField(User, verbose_name=_("User"), related_name="user_msg")
     createdate = models.DateTimeField(auto_now_add=True, verbose_name=_('Create Date'))
     seedate = models.DateTimeField(auto_now=True, verbose_name=_('See Date'))
     subject = models.CharField(verbose_name=_("Subject"), max_length=120)
