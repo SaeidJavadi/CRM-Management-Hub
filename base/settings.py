@@ -177,6 +177,7 @@ SITE_ID = 1
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000000
 
+# Email Configure
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
@@ -184,3 +185,6 @@ EMAIL_HOST_USER = 'social.solidarity2023@gmail.com'
 EMAIL_HOST_PASSWORD = 'zvqbftklnwuswtje'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'social.solidarity2023@gmail.com'
+
+# FireBase Notification Configure credentials file
+FIREBASE_GOOGLE_APPLICATION_CREDENTIALS=""
