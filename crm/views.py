@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from crm.models import Common60, Common61, Common70, CommonDead, JudiciaryDead, DoingDead, PublicAssistance, Lottery, Notification
+from crm.models import Common60, Common61, Common70, CommonDead, JudiciaryDead, DoingDead, PublicAssistance, Lottery, Notification, WinnerLottery60
 from django.contrib.auth.decorators import login_required
-from crm.forms import ObjectModelForm60, ObjectModelForm61, ObjectModelForm70, ObjectModelFormCd, ObjectModelFormJd, ObjectModelFormDd, ObjectModelFormPa, ObjectModelFormMSG
+from crm.forms import ObjectModelForm60, ObjectModelForm61, ObjectModelForm70, ObjectModelFormCd, ObjectModelFormJd, ObjectModelFormDd, ObjectModelFormPa, ObjectModelFormMSG, HodlingLotteryForm
 from accounts.models import User
 from django.urls import reverse_lazy
 from django.utils import timezone
@@ -217,10 +217,46 @@ class LotteryListView(ListView):
     ordering = ('-create',)
 
     def get_queryset(self):
+        queryset = super().get_queryset()
         title = self.kwargs.get('title')
-        lot = Lottery.objects.get(title=title)
-        queryset = super().get_queryset().filter(lottery=lot)
+        query_search = self.request.GET.get('q')
+        query_filter = self.request.GET.get('f')
+        if title:
+            lot = Lottery.objects.get(title=title)
+            queryset = super().get_queryset().filter(lottery=lot)
+        if query_search:
+            queryset = queryset.filter(
+                Q(name__contains=query_search) |
+                Q(idcode__contains=query_search) |
+                Q(phone__contains=query_search) |
+                Q(usersubmit__username__contains=query_search) |
+                Q(contery__contains=query_search) |
+                Q(city__contains=query_search)
+            )
+        if query_filter:
+            if query_filter != 'All':
+                queryset = queryset.filter(status=query_filter)
         return queryset
+
+
+@login_required
+def HoldingLottery(request, title):
+    form = HodlingLotteryForm()
+    if request.method == 'POST':
+        form = HodlingLotteryForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            winner_count = form.cleaned_data['countwinner']
+            lot = Lottery.objects.get(title=title)
+            commons = Common60.objects.filter(lottery=lot)
+            print('='*30)
+            for i in commons:
+                print(i.name)
+            print('='*30)
+            comons_count = commons.count()
+            return HttpResponse(f" {title} - {comons_count} - {commons}")
+    else:
+        return render(request, 'crm/obj_create.html', {'form': form})
 
 
 class c61List(ListView):        # Common61

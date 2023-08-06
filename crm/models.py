@@ -203,6 +203,24 @@ class Lottery(models.Model):
         return reverse("Lottery_detail", kwargs={"pk": self.pk})
 
 
+class WinnerLottery60(models.Model):
+    name = models.CharField(max_length=150, verbose_name=_("Name"))
+    common = models.ForeignKey("Common60", on_delete=models.CASCADE, related_name='winquran')
+    lottery = models.ForeignKey("lottery",  on_delete=models.CASCADE, related_name='winlottery')
+    status = models.BooleanField(verbose_name=_("Status"), default=False)
+    addtime = models.DateField(verbose_name=_("Add Time"), auto_now=True)
+
+    class Meta:
+        verbose_name = _("WinnerLottery60")
+        verbose_name_plural = _("WinnerLottery60s")
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("LotteryQuran_detail", kwargs={"pk": self.pk})
+
+
 class Notification(models.Model):
     user = models.ManyToManyField(User, verbose_name=_("User"), related_name="user_msg")
     createdate = models.DateTimeField(auto_now_add=True, verbose_name=_('Create Date'))

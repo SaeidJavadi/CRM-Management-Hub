@@ -95,3 +95,10 @@ class ObjectModelFormMSG(forms.ModelForm):
         super(ObjectModelFormMSG, self).__init__(*args, **kwargs)
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control'
+
+
+class HodlingLotteryForm(forms.Form):
+    name = forms.CharField(max_length=150, required=True, label="Lottery Title",
+                           widget=forms.TextInput(attrs={'class': 'form-control'}))
+    countwinner = forms.IntegerField(label="Count Winner", widget=forms.NumberInput(
+        attrs={'class': 'form-control', type: 'number'}))
