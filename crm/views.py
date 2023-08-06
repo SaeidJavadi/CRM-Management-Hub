@@ -10,6 +10,7 @@ from datetime import datetime
 from django.db.models import Sum
 from django.http import HttpResponse
 from crm.tasks import send_notification
+from django.db.models import Q
 
 
 @login_required
@@ -160,6 +161,24 @@ class c60List(ListView):        # Common60
     paginate_by = 30
     ordering = ('-create',)
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query_search = self.request.GET.get('q')
+        query_filter = self.request.GET.get('f')
+        if query_search:
+            queryset = queryset.filter(
+                Q(name__contains=query_search) |
+                Q(idcode__contains=query_search) |
+                Q(phone__contains=query_search) |
+                Q(usersubmit__username__contains=query_search) |
+                Q(contery__contains=query_search) |
+                Q(city__contains=query_search)
+            )
+        if query_filter:
+            if query_filter != 'All':
+                queryset = queryset.filter(status=query_filter)
+        return queryset
+
 
 class C60ReadView(DetailView):
     model = Common60
@@ -211,6 +230,24 @@ class c61List(ListView):        # Common61
     paginate_by = 30
     ordering = ('-create',)
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query_search = self.request.GET.get('q')
+        query_filter = self.request.GET.get('f')
+        if query_search:
+            queryset = queryset.filter(
+                Q(name__contains=query_search) |
+                Q(idcode__contains=query_search) |
+                Q(phone__contains=query_search) |
+                Q(usersubmit__username__contains=query_search) |
+                Q(contery__contains=query_search) |
+                Q(city__contains=query_search)
+            )
+        if query_filter:
+            if query_filter != 'All':
+                queryset = queryset.filter(status=query_filter)
+        return queryset
+
 
 class C61ReadView(DetailView):
     model = Common61
@@ -248,6 +285,24 @@ class c70List(ListView):        # Common61
     template_name = 'crm/obj_list.html'
     paginate_by = 30
     ordering = ('-create',)
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query_search = self.request.GET.get('q')
+        query_filter = self.request.GET.get('f')
+        if query_search:
+            queryset = queryset.filter(
+                Q(name__contains=query_search) |
+                Q(idcode__contains=query_search) |
+                Q(phone__contains=query_search) |
+                Q(usersubmit__username__contains=query_search) |
+                Q(contery__contains=query_search) |
+                Q(city__contains=query_search)
+            )
+        if query_filter:
+            if query_filter != 'All':
+                queryset = queryset.filter(status=query_filter)
+        return queryset
 
 
 class C70ReadView(DetailView):
@@ -287,6 +342,24 @@ class CdList(ListView):        # CommonDead
     paginate_by = 30
     ordering = ('-create',)
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query_search = self.request.GET.get('q')
+        query_filter = self.request.GET.get('f')
+        if query_search:
+            queryset = queryset.filter(
+                Q(name__contains=query_search) |
+                Q(idcode__contains=query_search) |
+                Q(phone__contains=query_search) |
+                Q(usersubmit__username__contains=query_search) |
+                Q(contery__contains=query_search) |
+                Q(city__contains=query_search)
+            )
+        if query_filter:
+            if query_filter != 'All':
+                queryset = queryset.filter(status=query_filter)
+        return queryset
+
 
 class CdReadView(DetailView):
     model = CommonDead
@@ -324,6 +397,24 @@ class JdList(ListView):        # JudiciaryDead
     template_name = 'crm/cdjd_list.html'
     paginate_by = 30
     ordering = ('-create',)
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query_search = self.request.GET.get('q')
+        query_filter = self.request.GET.get('f')
+        if query_search:
+            queryset = queryset.filter(
+                Q(name__contains=query_search) |
+                Q(idcode__contains=query_search) |
+                Q(phone__contains=query_search) |
+                Q(contery__contains=query_search) |
+                Q(city__contains=query_search) |
+                Q(usersubmit__username__contains=query_search)
+            )
+        if query_filter:
+            if query_filter != 'All':
+                queryset = queryset.filter(status=query_filter)
+        return queryset
 
 
 class JdReadView(DetailView):
@@ -363,6 +454,24 @@ class DdList(ListView):        # DoingDead
     paginate_by = 30
     ordering = ('-create',)
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query_search = self.request.GET.get('q')
+        query_filter = self.request.GET.get('f')
+        if query_search:
+            queryset = queryset.filter(
+                Q(name__contains=query_search) |
+                Q(phone__contains=query_search) |
+                Q(agent__contains=query_search) |
+                Q(contery__contains=query_search) |
+                Q(city__contains=query_search) |
+                Q(usersubmit__username__contains=query_search)
+            )
+        if query_filter:
+            if query_filter != 'All':
+                queryset = queryset.filter(status=query_filter)
+        return queryset
+
 
 class DdReadView(DetailView):
     model = DoingDead
@@ -400,6 +509,20 @@ class PaList(ListView):        # PublicAssistance
     template_name = 'crm/pa_list.html'
     paginate_by = 30
     ordering = ('-create',)
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query_search = self.request.GET.get('q')
+        query_filter = self.request.GET.get('f')
+        if query_search:
+            queryset = queryset.filter(
+                Q(name__contains=query_search) |
+                Q(usersubmit__username__contains=query_search)
+            )
+        if query_filter:
+            if query_filter != 'All':
+                queryset = queryset.filter(status=query_filter)
+        return queryset
 
 
 class PaReadView(DetailView):
@@ -442,6 +565,21 @@ class MessagesListView(ListView):   # Notification Messages
     template_name = 'crm/msg_list.html'
     paginate_by = 30
     ordering = ('-createdate',)
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query_search = self.request.GET.get('q')
+        query_filter = self.request.GET.get('f')
+        if query_search:
+            queryset = queryset.filter(
+                Q(name__contains=query_search) |
+                Q(idcode__contains=query_search) |
+                Q(phone__contains=query_search)
+            )
+        if query_filter:
+            if query_filter != 'All':
+                queryset = queryset.filter(status=query_filter)
+        return queryset
 
 
 class MessagesCreateView(CreateView):

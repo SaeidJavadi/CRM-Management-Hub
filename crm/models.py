@@ -1,6 +1,7 @@
 from django.db import models
 from accounts.models import User
 from django.utils.translation import gettext_lazy as _
+from django.urls import reverse
 
 
 class Common60(models.Model):   # Eshterak afrad 60 saal va kamtar

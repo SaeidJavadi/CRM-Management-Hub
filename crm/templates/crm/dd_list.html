@@ -1,6 +1,53 @@
 {% extends "base.html" %}
 {% load basetags %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'crm/css/style_searchbar.css' %}">
+{% endblock head %}
 {% block content %}
+    <div class="row mb-1"
+         style="border:1px dashed;
+                border-radius:15px;
+                padding: 8px;background:#d7dcd84f;">
+        <div class="col-3"></div>
+        <div class="col-3 d-flex justify-content-center">
+            {# Search Box #}
+            <form action="" method="get">
+                <div class="search-box ml-2">
+                    <input type="text" name="q" placeholder="Search..." />
+                    <button type="submit">
+                        <i class="ri-search-line"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="col-3 d-flex justify-content-center">
+            {# Filter Box #}
+            <div class="btn-group dropend">
+                <button type="button"
+                        class="btn btn-secondary dropdown-toggle"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false">Filter By</button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li>
+                        <a class="dropdown-item" href="?f=All">All</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="?f=True">Paid</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="?f=False">UnPaid</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {% comment %} </div> {% endcomment %}
+        <div class="col-3"></div>
+    </div>
+    <div class="row"
+         style="border:1px dashed;
+                border-radius:15px;
+                padding: 8px;background:#d7dcd84f;">
     <table id="objs-table" class="table">
         <thead>
             <tr>
@@ -16,6 +63,7 @@
                 <th class="text-center" scope="col">Contery</th>
                 <th class="text-center" scope="col">Create Date</th>
                 <th class="text-center" scope="col">Status</th>
+                <th class="text-center" scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -59,6 +107,7 @@
             {% endfor %}
         </tbody>
     </table>
+</div>
     {# ---- Paginator ---- #}
     {% if page_obj.has_other_pages %}
         <nav aria-label="Page navigation bootstrap">

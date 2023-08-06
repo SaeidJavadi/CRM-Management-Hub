@@ -1,56 +1,105 @@
 {% extends "base.html" %}
 {% load basetags %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'crm/css/style_searchbar.css' %}">
+{% endblock head %}
 {% block content %}
-    <table id="objs-table" class="table">
-        <thead>
-            <tr>
-                <th class="text-center" scope="col">ID</th>
-                <th class="text-center" scope="col">User Submit</th>
-                <th class="text-center" scope="col">Name</th>
-                <th class="text-center" scope="col">IdCode</th>
-                <th class="text-center" scope="col">Contery</th>
-                <th class="text-center" scope="col">Create Date</th>
-                <th class="text-center" scope="col">Phone</th>
-                <th class="text-center" scope="col">status</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for obj in objects %}
+    <div class="row mb-1"
+         style="border:1px dashed;
+                border-radius:15px;
+                padding: 8px;background:#d7dcd84f;">
+        <div class="col-3"></div>
+        <div class="col-3 d-flex justify-content-center">
+            {# Search Box #}
+            <form action="" method="get">
+                <div class="search-box ml-2">
+                    <input type="text" name="q" placeholder="Search..." />
+                    <button type="submit">
+                        <i class="ri-search-line"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="col-3 d-flex justify-content-center">
+            {# Filter Box #}
+            <div class="btn-group dropend">
+                <button type="button"
+                        class="btn btn-secondary dropdown-toggle"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false">Filter By</button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li>
+                        <a class="dropdown-item" href="?f=All">All</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="?f=True">Paid</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="?f=False">UnPaid</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {% comment %} </div> {% endcomment %}
+        <div class="col-3"></div>
+    </div>
+    <div class="row"
+         style="border:1px dashed;
+                border-radius:15px;
+                padding: 8px;background:#d7dcd84f;">
+        <table id="objs-table" class="table">
+            <thead>
                 <tr>
-                    {% comment %} <th class="text-center" scope="row">{{ forloop.counter }}</th> {% endcomment %}
-                    <td class="text-center">{{ obj.id }}</td>
-                    <td class="text-center">{{ obj.usersubmit }}</td>
-                    <td class="text-center">{{ obj.name }}</td>
-                    <td class="text-center">{{ obj.idcode }}</td>
-                    <td class="text-center">{{ obj.contery }}</td>
-                    <td class="text-center">{{ obj.create|date:"Y-m-d (H:i)" }}</td>
-                    <td class="text-center">{{ obj.phone }}</td>
-                    <td class="text-center">{{ obj.status }}</td>
-                    <td class="text-center">
-                        <!-- Read buttons -->
-                        {% to_class_name obj as objctname %}
-                        <a type="button"
-                           class="btn btn-sm btn-success"
-                           href="{% if objctname == "CommonDead" %} {% url 'crm:cd_read' obj.id %} {% else %} {% url 'crm:jd_read' obj.id %} {% endif %}">
-                            <span class="ri-eye-line"></span>
-                        </a>
-                        <!-- Update buttons -->
-                        <a type="button"
-                           class="btn btn-sm btn-primary"
-                           href="{% if objctname == "Common60" %} {% url 'crm:cd_update' obj.id %} {% else %} {% url 'crm:jd_update' obj.id %}  {% endif %}">
-                            <span class="ri-edit-2-line"></span>
-                        </a>
-                        <!-- Delete buttons -->
-                        <a type="button"
-                           class="btn btn-sm btn-danger"
-                           href="{% if objctname == "CommonDead" %} {% url 'crm:cd_delete' obj.id %} {% else %} {% url 'crm:jd_delete' obj.id %} {% endif %}">
-                            <span class="ri-delete-bin-line"></span>
-                        </a>
-                    </td>
+                    <th class="text-center" scope="col">ID</th>
+                    <th class="text-center" scope="col">User Submit</th>
+                    <th class="text-center" scope="col">Name</th>
+                    <th class="text-center" scope="col">IdCode</th>
+                    <th class="text-center" scope="col">Contery</th>
+                    <th class="text-center" scope="col">Create Date</th>
+                    <th class="text-center" scope="col">Phone</th>
+                    <th class="text-center" scope="col">status</th>
+                    <th class="text-center" scope="col"></th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for obj in objects %}
+                    <tr>
+                        {% comment %} <th class="text-center" scope="row">{{ forloop.counter }}</th> {% endcomment %}
+                        <td class="text-center">{{ obj.id }}</td>
+                        <td class="text-center">{{ obj.usersubmit }}</td>
+                        <td class="text-center">{{ obj.name }}</td>
+                        <td class="text-center">{{ obj.idcode }}</td>
+                        <td class="text-center">{{ obj.contery }}</td>
+                        <td class="text-center">{{ obj.create|date:"Y-m-d (H:i)" }}</td>
+                        <td class="text-center">{{ obj.phone }}</td>
+                        <td class="text-center">{{ obj.status }}</td>
+                        <td class="text-center">
+                            <!-- Read buttons -->
+                            {% to_class_name obj as objctname %}
+                            <a type="button"
+                               class="btn btn-sm btn-success"
+                               href="{% if objctname == "CommonDead" %} {% url 'crm:cd_read' obj.id %} {% else %} {% url 'crm:jd_read' obj.id %} {% endif %}">
+                                <span class="ri-eye-line"></span>
+                            </a>
+                            <!-- Update buttons -->
+                            <a type="button"
+                               class="btn btn-sm btn-primary"
+                               href="{% if objctname == "Common60" %} {% url 'crm:cd_update' obj.id %} {% else %} {% url 'crm:jd_update' obj.id %}  {% endif %}">
+                                <span class="ri-edit-2-line"></span>
+                            </a>
+                            <!-- Delete buttons -->
+                            <a type="button"
+                               class="btn btn-sm btn-danger"
+                               href="{% if objctname == "CommonDead" %} {% url 'crm:cd_delete' obj.id %} {% else %} {% url 'crm:jd_delete' obj.id %} {% endif %}">
+                                <span class="ri-delete-bin-line"></span>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
     {# ---- Paginator ---- #}
     {% if page_obj.has_other_pages %}
         <nav aria-label="Page navigation bootstrap">
