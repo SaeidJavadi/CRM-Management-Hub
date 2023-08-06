@@ -151,6 +151,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.User'
 
 REST_FRAMEWORK = {
+    'DATETIME_FORMAT': '%s',
     'DEFAULT_PERMISSION_CLASSES': [
         'api.permissions.IsStaffOrReadOnly',
     ],
@@ -187,4 +188,4 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'social.solidarity2023@gmail.com'
 
 # FireBase Notification Configure credentials file
-FIREBASE_GOOGLE_APPLICATION_CREDENTIALS= "static/root/assert/social-solidarity-bb4ac-firebase-adminsdk-imhzd-48ba474d40.json"
+FIREBASE_GOOGLE_APPLICATION_CREDENTIALS = "static/root/assert/social-solidarity-bb4ac-firebase-adminsdk-imhzd-48ba474d40.json"
