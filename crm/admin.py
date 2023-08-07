@@ -1,5 +1,6 @@
 from django.contrib import admin
-from crm.models import Common60, Common61, Common70, CommonDead, JudiciaryDead, DoingDead, PublicAssistance, Lottery, Notification
+from crm.models import Common60, Common61, Common70, CommonDead, JudiciaryDead, DoingDead, PublicAssistance, Lottery,\
+    Notification, WinnerLottery60
 
 
 @admin.register(Common60)
@@ -66,3 +67,9 @@ class NotificationAdmin(admin.ModelAdmin):
     class Meta:
         model = Notification
         fields = '__all__'
+
+
+@admin.register(WinnerLottery60)
+class WinnerLottery60Admin(admin.ModelAdmin):
+    # list_display = ("name",)
+    pass

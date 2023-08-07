@@ -5,3 +5,4 @@ logs/
 staticfiles/
 .VSCodeCounter/
 settings.json
+launch.json

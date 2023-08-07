@@ -11,6 +11,7 @@ from django.db.models import Sum
 from django.http import HttpResponse
 from crm.tasks import send_notification
 from django.db.models import Q
+import random
 
 
 @login_required
@@ -245,18 +246,56 @@ def HoldingLottery(request, title):
     if request.method == 'POST':
         form = HodlingLotteryForm(request.POST)
         if form.is_valid():
-            name = form.cleaned_data['name']
+            nameform = form.cleaned_data['name']
             winner_count = form.cleaned_data['countwinner']
+            winstatus = form.cleaned_data['winstatus']
             lot = Lottery.objects.get(title=title)
-            commons = Common60.objects.filter(lottery=lot)
-            print('='*30)
-            for i in commons:
-                print(i.name)
-            print('='*30)
-            comons_count = commons.count()
-            return HttpResponse(f" {title} - {comons_count} - {commons}")
+            try:
+                commons = Common60.objects.filter(lottery=lot).values_list('id')
+                commons_count = commons.count()
+            except:
+                commons_count = 0
+            if commons_count > 0:
+                list_lot = tuple([i[0] for i in commons])
+                user_winner = random.sample(list_lot, winner_count)
+                for id in user_winner:
+                    cw = Common60.objects.get(id=id)
+                    w = WinnerLottery60.objects.create(name=nameform, lottery=lot, common=cw)
+                    send_notification(user_token=cw.usersubmit.fcmtoken,
+                                      title="Lottery Win", body="You have won the lottery")
+                    # print("="*30)
+                    # print(f"{nameform} {winner_count} {winstatus}")
+                    # print("="*30)
+                    if winstatus:
+                        cw.lottery = None
+                        cw.save()
+                return reverse_lazy('crm:c60_drawdetail', kwargs={'name': str(nameform)})
+            else:
+                return HttpResponse("None List")
     else:
         return render(request, 'crm/obj_create.html', {'form': form})
+
+
+@login_required
+def DrawsLottery(request, title):
+    if title == "quran" or title == "ziarat":
+        lot = Lottery.objects.get(title=title)
+        winner_list = WinnerLottery60.objects.all().values_list('name', 'windate').filter(lottery=lot).distinct()
+        return render(request, 'crm/lottery_draws.html', {'draws': winner_list})
+    else:
+        return HttpResponse("404")
+
+
+@login_required()
+def DrawsDetailLottery(request, name):
+    if name:
+        winner_list = WinnerLottery60.objects.filter(name=name)
+        objs = []
+        for winners in winner_list:
+            objs.append(winners.common)
+        return render(request, 'crm/lottery_drawsdetail.html', {'objects': objs})
+    else:
+        return HttpResponse("404")
 
 
 class c61List(ListView):        # Common61

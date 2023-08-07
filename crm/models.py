@@ -204,21 +204,20 @@ class Lottery(models.Model):
 
 
 class WinnerLottery60(models.Model):
-    name = models.CharField(max_length=150, verbose_name=_("Name"))
+    name = models.CharField(max_length=150, verbose_name=_("Name"), unique=True)
     common = models.ForeignKey("Common60", on_delete=models.CASCADE, related_name='winquran')
     lottery = models.ForeignKey("lottery",  on_delete=models.CASCADE, related_name='winlottery')
-    status = models.BooleanField(verbose_name=_("Status"), default=False)
-    addtime = models.DateField(verbose_name=_("Add Time"), auto_now=True)
+    windate = models.DateField(verbose_name=_("Add Time"), auto_now=True)
 
     class Meta:
         verbose_name = _("WinnerLottery60")
         verbose_name_plural = _("WinnerLottery60s")
 
     def __str__(self):
-        return self.name
+        return str(self.name)+"_"+str(self.windate)
 
     def get_absolute_url(self):
-        return reverse("LotteryQuran_detail", kwargs={"pk": self.pk})
+        return reverse("WinnerLottery60_detail", kwargs={"pk": self.pk})
 
 
 class Notification(models.Model):
