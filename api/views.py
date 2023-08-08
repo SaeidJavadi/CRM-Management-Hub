@@ -268,7 +268,11 @@ class NotificationViewSet(ModelViewSet):
 
     def update(self, request, *args, **kwargs):
         notificationInstanse = self.get_object()
+        seeList = notificationInstanse.see
         updateData = request.data.copy()
+        print("="*30)
+        print(updateData)
+        print("="*30)
         key_to_keep = 'see'
         keys_to_remove = []
         for key in updateData.keys():
