@@ -97,4 +97,4 @@ class NotificationSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
     class Meta:
         model = Notification
         # fields = '__all__'
-        exclude  = ('user', 'see', 'seedate')
+        exclude = ('user', 'see', 'seedate')

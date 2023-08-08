@@ -7,6 +7,7 @@ from api.permissions import IsCommonOrReadOnly, IsSuperUser, IsSuperUserOrStaffR
 from django.contrib.auth import get_user_model
 from crm import models as crmmod
 from api import serializers
+import json
 
 
 class UserViewSet(ModelViewSet):
@@ -247,8 +248,8 @@ class PublicAssistanceViewSet(ModelViewSet):
 
 class NotificationViewSet(ModelViewSet):
     serializer_class = serializers.NotificationSerializer
-    filterset_fields = ['see', 'user']
-    ordering_fields = ['createdate', 'see']
+    filterset_fields = ['user',]
+    ordering_fields = ['createdate',]
     ordering = ['-createdate']
     search_fields = ['subject', 'text', 'user__username', 'user__email', 'user__phone']
 
@@ -270,36 +271,26 @@ class NotificationViewSet(ModelViewSet):
         notificationInstanse = self.get_object()
         seeList = notificationInstanse.see
         updateData = request.data.copy()
-        print("="*30)
-        print(updateData)
-        print("="*30)
-        key_to_keep = 'see'
-        keys_to_remove = []
-        for key in updateData.keys():
-            if key != key_to_keep:
-                keys_to_remove.append(key)
-        for key in keys_to_remove:
-            updateData.pop(key)
-        serializer = serializers.NotificationSerializer(notificationInstanse, data=updateData,  partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializers.NotificationSerializer(notificationInstanse).data)
-        return Response({'message': 'Error to Update.', 'error': serializer.errors}, 400)
-
-######## FireBase ########
-# import firebase_admin
-# from firebase_admin import credentials
-# from firebase_admin import messaging
-
-# cred = credentials.Certificate("<path-to-your-firebase-credentials-json>")
-# firebase_admin.initialize_app(cred)
-
-# def send_notification(user_token, title, body):
-#     message = messaging.Message( notification=messaging.Notification(title=title, body=body),token=user_token)
-#     response = messaging.send(message)
-#     print('Successfully sent message:', response)
-
-# user_token = "<user-fcm-token>"
-# title = "New Notification"
-# body = "You have a new notification!"
-# send_notification(user_token, title, body)
+        try:
+            if not type(seeList) is dict:
+                seeList = {}
+            updateSee = json.loads(updateData['see'])
+            if not type(updateSee) is dict:
+                raise ValueError("Type Note Allowed for update see")
+            for k, v in updateSee.items():
+                seeList[k] = v
+            updateData['see'] = seeList
+            key_to_keep = 'see'
+            keys_to_remove = []
+            for key in updateData.keys():
+                if key != key_to_keep:
+                    keys_to_remove.append(key)
+            for key in keys_to_remove:
+                updateData.pop(key)
+            serializer = serializers.NotificationSerializer(notificationInstanse, data=updateSee,  partial=True)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializers.NotificationSerializer(notificationInstanse).data)
+            return Response({'message': 'Error to Update.', 'error': serializer.errors}, 400)
+        except:
+            return Response({'message': 'Error to Update.', 'error': serializer.errors}, 400)

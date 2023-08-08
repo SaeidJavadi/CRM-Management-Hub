@@ -45,12 +45,13 @@ class IsOwnerOrReadOnlyMSG(BasePermission):
     def has_object_permission(self, request, view, obj):
         if request.method in SAFE_METHODS:
             return True
+        ownerstatus = True if request.user in obj.user.all() else False
         return bool(
             # get access to superuser
             request.user.is_authenticated and
             request.user.is_superuser or
-            # get access to author of objet
-            obj.user == request.user
+            # get access to owner of objet
+            ownerstatus
         )
 
 
