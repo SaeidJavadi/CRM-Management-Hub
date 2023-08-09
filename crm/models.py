@@ -240,20 +240,10 @@ class Notification(models.Model):
         return reverse("Notification_detail", kwargs={"pk": self.pk})
 
 
-class AmountGift(models.Model):
-
-    class Meta:
-        verbose_name = _("AmountGift")
-        verbose_name_plural = _("AmountGifts")
-
-    def __str__(self):
-        return self.name
-
-    def get_absolute_url(self):
-        return reverse("AmountGift_detail", kwargs={"pk": self.pk})
-
-
 class GiftTable24(models.Model):
+    amounttab1 = models.FloatField(verbose_name=_('Amount Tabale 1'), blank=True, null=True)
+    amounttab2 = models.FloatField(verbose_name=_('Amount Tabale 2'), blank=True, null=True)
+    amounttab3 = models.FloatField(verbose_name=_('Amount Tabale 3'), blank=True, null=True)
 
     class Meta:
         verbose_name = _("GiftTable24")
@@ -264,3 +254,19 @@ class GiftTable24(models.Model):
 
     def get_absolute_url(self):
         return reverse("GiftTable24_detail", kwargs={"pk": self.pk})
+
+
+class AmountGift(models.Model):
+    gifttable = models.OneToOneField('GiftTable24', on_delete=models.CASCADE,
+                                     verbose_name=_('gifttable'), related_name=('giftpay'))
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_('created'))
+
+    class Meta:
+        verbose_name = _("AmountGift")
+        verbose_name_plural = _("AmountGifts")
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("AmountGift_detail", kwargs={"pk": self.pk})

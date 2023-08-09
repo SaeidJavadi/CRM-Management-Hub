@@ -139,3 +139,4 @@ class WinnerLottery60Serializer(DynamicFieldsMixin, serializers.ModelSerializer)
     class Meta:
         model = WinnerLottery60
         fields = '__all__'
+        # depth = 1
