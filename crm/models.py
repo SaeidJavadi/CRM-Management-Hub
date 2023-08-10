@@ -240,7 +240,7 @@ class Notification(models.Model):
         return reverse('Notification_detail', kwargs={'pk': self.pk})
 
 
-class GiftTable24(models.Model):
+class TableGift24(models.Model):
     name = models.CharField(verbose_name=_('Table Name'), max_length=200)
     monthnumber = models.IntegerField(verbose_name=_('Month Number'))
     amounttab1 = models.FloatField(verbose_name=_('Amount Tabale 1'), blank=True, null=True)
@@ -258,18 +258,18 @@ class GiftTable24(models.Model):
     notes = models.TextField(verbose_name=_('Notes'))
 
     class Meta:
-        verbose_name = _('GiftTable24')
-        verbose_name_plural = _('GiftTable24s')
+        verbose_name = _('TableGift24')
+        verbose_name_plural = _('TableGift24s')
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('GiftTable24_detail', kwargs={'pk': self.pk})
+        return reverse('TableGift24_detail', kwargs={'pk': self.pk})
 
 
 class TableGift(models.Model):
-    gifttable24 = models.ForeignKey(GiftTable24, verbose_name=_("Gift Tables"),
+    tablegift24 = models.ForeignKey(TableGift24, verbose_name=_("Gift Tables"),
                                     on_delete=models.CASCADE, related_name='tab1')
     user = models.ForeignKey(User, verbose_name=_('User'), on_delete=models.CASCADE)
 
@@ -285,8 +285,8 @@ class TableGift(models.Model):
 
 
 class AmountGiftPay(models.Model):
-    gifttable = models.OneToOneField('GiftTable24', on_delete=models.CASCADE,
-                                     verbose_name=_('gifttable'), related_name=('giftpay'))
+    tablegift = models.OneToOneField('TableGift24', on_delete=models.CASCADE,
+                                     verbose_name=_('Table Gift'), related_name=('giftpay'))
     created = models.DateTimeField(auto_now_add=True, verbose_name=_('created'))
 
     class Meta:
