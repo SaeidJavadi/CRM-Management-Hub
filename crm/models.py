@@ -268,20 +268,20 @@ class GiftTable24(models.Model):
         return reverse('GiftTable24_detail', kwargs={'pk': self.pk})
 
 
-class TableGift1(models.Model):
+class TableGift(models.Model):
     gifttable24 = models.ForeignKey(GiftTable24, verbose_name=_("Gift Tables"),
                                     on_delete=models.CASCADE, related_name='tab1')
     user = models.ForeignKey(User, verbose_name=_('User'), on_delete=models.CASCADE)
 
     class Meta:
-        verbose_name = _("TableGift1")
-        verbose_name_plural = _("TableGift1s")
+        verbose_name = _("TableGift")
+        verbose_name_plural = _("TableGifts")
 
     def __str__(self):
         return str(self.id)
 
     def get_absolute_url(self):
-        return reverse("TableGift1_detail", kwargs={"pk": self.pk})
+        return reverse("TableGift_detail", kwargs={"pk": self.pk})
 
 
 class AmountGiftPay(models.Model):
