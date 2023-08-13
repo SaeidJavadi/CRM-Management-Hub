@@ -274,7 +274,10 @@ class NotificationViewSet(ModelViewSet):
         try:
             if not type(seeList) is dict:
                 seeList = {}
-            updateSee = json.loads(updateData['see'])
+            if type(updateData['see']) is str:
+                updateSee = json.loads(updateData['see'])
+            else:
+                updateSee = updateData['see']
             if not type(updateSee) is dict:
                 raise ValueError("Type Note Allowed for update see")
             for k, v in updateSee.items():
@@ -287,13 +290,13 @@ class NotificationViewSet(ModelViewSet):
                     keys_to_remove.append(key)
             for key in keys_to_remove:
                 updateData.pop(key)
-            serializer = serializers.NotificationSerializer(notificationInstanse, data=updateSee,  partial=True)
+            serializer = self.get_serializer(notificationInstanse, data=updateData,  partial=True)
             if serializer.is_valid():
                 serializer.save()
-                return Response(serializers.NotificationSerializer(notificationInstanse).data)
+                return Response(self.get_serializer(notificationInstanse).data)
             return Response({'message': 'Error to Update.', 'error': serializer.errors}, 400)
-        except:
-            return Response({'message': 'Error to Update.', 'error': serializer.errors}, 400)
+        except Exception as e:
+            return Response({'message': 'Error to Update.', 'error': 'serializer data'}, 400)
 
 
 class LotteryListView(ModelViewSet):
