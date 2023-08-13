@@ -298,33 +298,33 @@ class TableGiftUser(models.Model):
         return reverse("TableGift_detail", kwargs={"pk": self.pk})
 
 
-# class TableAmount(models.Model):
-#     tablegiftuser = models.OneToOneField(TableGiftUser, on_delete=models.CASCADE,
-#                                          verbose_name=_('Table Gift'), related_name=('amountgift'))
-#     created = models.DateTimeField(auto_now_add=True, verbose_name=_('created'))
+class TableAmount(models.Model):
+    tablegiftuser = models.OneToOneField(TableGiftUser, on_delete=models.CASCADE,
+                                         verbose_name=_('Table Gift'), related_name=('amountgift'))
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_('created'))
 
-#     class Meta:
-#         verbose_name = _('TableAmount')
-#         verbose_name_plural = _('TableAmounts')
+    class Meta:
+        verbose_name = _('TableAmount')
+        verbose_name_plural = _('TableAmounts')
 
-#     def __str__(self):
-#         return self.created
+    def __str__(self):
+        return self.created
 
-#     def get_absolute_url(self):
-#         return reverse('TableAmount_detail', kwargs={'pk': self.pk})
+    def get_absolute_url(self):
+        return reverse('TableAmount_detail', kwargs={'pk': self.pk})
 
 
-# class Installment(models.Model):
-#     tableamount = models.OneToOneField(TableAmount, verbose_name=_(
-#         'TableAmount'), on_delete=models.CASCADE, related_name='qst')
-#     created = models.DateTimeField(auto_now_add=True)
+class Installment(models.Model):
+    tableamount = models.OneToOneField(TableAmount, verbose_name=_(
+        'TableAmount'), on_delete=models.CASCADE, related_name='qst')
+    created = models.DateTimeField(auto_now_add=True)
 
-#     class Meta:
-#         verbose_name = _("Installment")
-#         verbose_name_plural = _("Installments")
+    class Meta:
+        verbose_name = _("Installment")
+        verbose_name_plural = _("Installments")
 
-#     def __str__(self):
-#         return self.name
+    def __str__(self):
+        return self.name
 
-#     def get_absolute_url(self):
-#         return reverse("Installment_detail", kwargs={"pk": self.pk})
+    def get_absolute_url(self):
+        return reverse("Installment_detail", kwargs={"pk": self.pk})

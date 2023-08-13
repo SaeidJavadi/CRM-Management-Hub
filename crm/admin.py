@@ -1,6 +1,6 @@
 from django.contrib import admin
 from crm.models import Common60, Common61, Common70, CommonDead, JudiciaryDead, DoingDead, PublicAssistance, Lottery,\
-    Notification, WinnerLottery60, TableName, TableGift, TableGiftUser
+    Notification, WinnerLottery60, TableName, TableGift, TableGiftUser, TableAmount, Installment
 
 
 @admin.register(Common60)
@@ -94,14 +94,15 @@ class TableGiftUserAdmin(admin.ModelAdmin):
         list_display = '__all__'
 
 
-# @admin.register(TableAmount)
-# class TableAmountAdmin(admin.ModelAdmin):
-#     class Meta:
-#         model = TableAmount
-#         fields = '__all__'
+@admin.register(TableAmount)
+class TableAmountAdmin(admin.ModelAdmin):
+    class Meta:
+        model = TableAmount
+        fields = '__all__'
 
-# @admin.register(Installment)
-# class InstallmentAdmin(admin.ModelAdmin):
-#     class Meta:
-#         model = Installment
-#         fields = '__all__'
+
+@admin.register(Installment)
+class InstallmentAdmin(admin.ModelAdmin):
+    class Meta:
+        model = Installment
+        fields = '__all__'
