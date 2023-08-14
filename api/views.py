@@ -2,8 +2,8 @@ from rest_framework.generics import ListAPIView, ListCreateAPIView, RetrieveUpda
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
-from api.permissions import IsCommonOrReadOnly, IsSuperUser, IsSuperUserOrStaffReadOnly, IsOwnerOrReadOnlyMSG, IsUserOwenerOrReadOnly
+from rest_framework.permissions import IsAuthenticated
+from api.permissions import IsCommonOrReadOnly, IsSuperUser, IsOwnerOrReadOnlyMSG, IsUserOwenerOrReadOnly, NotAllowAction
 from django.contrib.auth import get_user_model
 from crm import models as crmmod
 from api import serializers
@@ -320,12 +320,16 @@ class LotteryListView(ModelViewSet):
             return Response([])
 
 
-class TableListView(ModelViewSet):
-    serilizer_class = serializers
-    
+class TableGiftViewSet(ModelViewSet):
+    serializer_class = serializers.TableGiftSerializer
+    queryset = crmmod.TableGift.objects.all()
+    filterset_fields = ['tablename__name', 'tablename__id']
+    search_fields = ["gifts", 'tablename__name']
+    ordering_fields = ["id",]
+
     def get_permissions(self):
-    if self.action in ['create', 'destroy', 'update']:
-        permission_classes = (IsSuperUser,)
-    else:
-        permission_classes = (IsAu,)
-    return [permission() for permission in permission_classes]
+        if self.action != 'list':
+            permission_classes = (NotAllowAction,)
+        else:
+            permission_classes = (IsAuthenticated,)
+        return [permission() for permission in permission_classes]

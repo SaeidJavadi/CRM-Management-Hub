@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from crm.models import Common60, Common61, Common70, CommonDead, JudiciaryDead, DoingDead, PublicAssistance, Lottery, Notification, WinnerLottery60
+from crm.models import Common60, Common61, Common70, CommonDead, JudiciaryDead, DoingDead, PublicAssistance,\
+    Lottery, Notification, WinnerLottery60, TableGift
 from django.contrib.auth.decorators import login_required
-from crm.forms import ObjectModelForm60, ObjectModelForm61, ObjectModelForm70, ObjectModelFormCd, ObjectModelFormJd, ObjectModelFormDd, ObjectModelFormPa, ObjectModelFormMSG, HodlingLotteryForm, AddtoLotteryForm
+from crm.forms import ObjectModelForm60, ObjectModelForm61, ObjectModelForm70, ObjectModelFormCd, ObjectModelFormJd,\
+    ObjectModelFormDd, ObjectModelFormPa, ObjectModelFormMSG, HodlingLotteryForm, AddtoLotteryForm
 from accounts.models import User
 from django.urls import reverse_lazy
 from django.utils import timezone
@@ -91,19 +93,11 @@ def overview(request, model):
         for obj in objmonth:
             amountCount += obj.amount
         dataamount.append(amountCount)
-        print('='*30)
-        print(f'{year}-{month}', f'= {amountCount} -> len={objmonth.count()}')
-        print('='*30)
+
         if month == 1:
             year -= 1
             month = 12
         month -= 1
-        print("="*30)
-    print(dataamount, len(dataamount))
-    print("="*30)
-    print(labelsamount, len(labelsamount))
-    print("="*30)
-    print(totalamount)
 
     spay = MODEL.objects.filter(status=True).count()
     unspay = MODEL.objects.filter(status=False).count()
@@ -693,7 +687,7 @@ class MessagesCreateView(CreateView):
         subject = form.cleaned_data['subject']
         text = form.cleaned_data['text']
         for user in userselected:
-            print(user)
+
             fcmtoken = User.objects.get(username=user).fcmtoken
             if fcmtoken != None:
                 send_notification(user_token=fcmtoken, title=subject, body=text)
@@ -733,3 +727,35 @@ class MessagesUserCreateView(CreateView):
         initial = super().get_initial()
         initial['user'] = User.objects.get(pk=self.kwargs.get('pk'))
         return initial
+
+
+class TableGiftListView(ListView):
+    model = TableGift
+    context_object_name = 'objects'
+    template_name = 'crm/obj_tablist.html'
+    paginate_by = 30
+    # ordering = ('-id',)
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        tabname = self.kwargs.get('tabname')
+        query_search = self.request.GET.get('q')
+        query_filter = self.request.GET.get('f')
+        queryset = super().get_queryset().filter(tablename__name=tabname)
+        print('='*30)
+        for qq in queryset:
+            print(qq.id)
+        print('='*30)
+        if query_search:
+            queryset = queryset.filter(
+                Q(name__contains=query_search) |
+                Q(idcode__contains=query_search) |
+                Q(phone__contains=query_search) |
+                Q(usersubmit__username__contains=query_search) |
+                Q(contery__contains=query_search) |
+                Q(city__contains=query_search)
+            )
+        if query_filter:
+            if query_filter != 'All':
+                queryset = queryset.filter(status=query_filter)
+        return queryset

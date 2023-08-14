@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 from accounts.models import User
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
@@ -269,6 +270,8 @@ class TableGift(models.Model):
     totalfriendships = models.FloatField(verbose_name=_('Total Friendships'))
     gifts = models.CharField(verbose_name=_('Gifts'), max_length=200)
     monthsequence = models.FloatField(verbose_name=_('Month Sequence'))
+    paytype = models.IntegerField(verbose_name=_('Pay Type'), default=1, validators=[
+                                  MaxValueValidator(12), MinValueValidator(1)])
     notes = models.TextField(verbose_name=_('Notes'), blank=True, null=True)
 
     class Meta:

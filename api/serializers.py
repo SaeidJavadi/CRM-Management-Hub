@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model    # from accounts.models import User
-from crm.models import Common60, Common61, Common70, CommonDead, DoingDead, JudiciaryDead, PublicAssistance, Notification, WinnerLottery60
+from crm.models import Common60, Common61, Common70, CommonDead, DoingDead, JudiciaryDead, PublicAssistance,\
+    Notification, WinnerLottery60, TableGift, TableName
 from drf_dynamic_fields import DynamicFieldsMixin  # GET api/articels/?fields=id,title : show just fields => id,title
 
 
@@ -140,3 +141,19 @@ class WinnerLottery60Serializer(DynamicFieldsMixin, serializers.ModelSerializer)
         model = WinnerLottery60
         fields = '__all__'
         # depth = 1
+
+
+# class TabaleNameSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
+
+#     class Meta:
+#         model = TableName
+#         fields = ('name', 'footer')
+
+
+class TableGiftSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
+    # tablename = TabaleNameSerializer()
+
+    class Meta:
+        model = TableGift
+        fields = '__all__'
+        depth = 1
