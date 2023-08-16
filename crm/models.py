@@ -295,7 +295,7 @@ class TableGiftUser(models.Model):
         verbose_name_plural = _("TableGiftUsers")
 
     def __str__(self):
-        return str(self.id) + ' - ' + self.tablegift.tablename.name
+        return 'Buy_'+str(self.id) + '-' + self.tablegift.tablename.name
 
     def get_absolute_url(self):
         return reverse("TableGift_detail", kwargs={"pk": self.pk})
@@ -303,16 +303,18 @@ class TableGiftUser(models.Model):
 
 class TableAmount(models.Model):
     tabgiftusr = models.OneToOneField(TableGiftUser, on_delete=models.CASCADE,
-                                         verbose_name=_('Table Gift'), related_name=('pay'))
-    created = models.DateTimeField(auto_now_add=True, verbose_name=_('created'))
+                                      verbose_name=_('Table Gift'), related_name=('pay'))
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
     payment = models.FloatField(verbose_name='Payment')
 
     class Meta:
         verbose_name = _('TableAmount')
         verbose_name_plural = _('TableAmounts')
+        
+        
 
     def __str__(self):
-        return str(self.id)+' - '+str(self.tablegiftuser.user.username)
+        return 'Pay_' + str(self.id) + '-' + str(self.tabgiftusr.user.username)
 
     def get_absolute_url(self):
         return reverse('tableamount_detail', kwargs={'pk': self.pk})
