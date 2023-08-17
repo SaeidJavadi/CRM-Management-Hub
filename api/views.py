@@ -3,7 +3,8 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from api.permissions import IsCommonOrReadOnly, IsSuperUser, IsOwnerOrReadOnlyMSG, IsUserOwenerOrReadOnly, NotAllowAction
+from api.permissions import IsCommonOrReadOnly, IsSuperUser, IsOwnerOrReadOnlyMSG, IsUserOwenerOrReadOnly,\
+NotAllowAction, IsOwnerOrReadOnlyTable
 from django.contrib.auth import get_user_model
 from crm import models as crmmod
 from api import serializers
@@ -279,7 +280,7 @@ class NotificationViewSet(ModelViewSet):
             else:
                 updateSee = updateData['see']
             if not type(updateSee) is dict:
-                raise ValueError("Type Note Allowed for update see")
+                raise ValueError('Type Note Allowed for update see')
             for k, v in updateSee.items():
                 seeList[k] = v
             updateData['see'] = seeList
@@ -323,13 +324,39 @@ class LotteryListView(ModelViewSet):
 class TableGiftViewSet(ModelViewSet):
     serializer_class = serializers.TableGiftSerializer
     queryset = crmmod.TableGift.objects.all()
-    filterset_fields = ['tablename__name', 'tablename__id']
-    search_fields = ["gifts", 'tablename__name']
-    ordering_fields = ["id",]
+    filterset_fields = ['tabletype__name', 'tabletype__id']
+    search_fields = ['gifts', 'tabletype__name']
+    ordering_fields = ['id',]
 
     def get_permissions(self):
         if self.action != 'list':
             permission_classes = (NotAllowAction,)
+        else:
+            permission_classes = (IsAuthenticated,)
+        return [permission() for permission in permission_classes]
+
+
+class TabGiftUsrViewSet(ModelViewSet):
+    serializer_class = serializers.TableGiftUsrSerializer
+    queryset = crmmod.TableGiftUser.objects.all()
+    ordering_fields = ['id',]
+
+    def get_permissions(self):
+        if self.action in ['update', 'destroy']:
+            permission_classes = (NotAllowAction,)
+        else:
+            permission_classes = (IsAuthenticated,)
+        return [permission() for permission in permission_classes]
+
+
+class TabPayViewSet(ModelViewSet):
+    serializer_class = serializers.TablePaySerilizer
+    queryset = crmmod.TablePayment.objects.all()
+    ordering_fields = ['id',]
+
+    def get_permissions(self):
+        if self.action in ['list', 'create']:
+            permission_classes = (IsOwnerOrReadOnlyTable,)
         else:
             permission_classes = (IsAuthenticated,)
         return [permission() for permission in permission_classes]

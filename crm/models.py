@@ -257,7 +257,7 @@ class TableType(models.Model):
 
 
 class TableGift(models.Model):
-    tablename = models.ForeignKey(TableType, verbose_name=_("Table Type"),
+    tabletype = models.ForeignKey(TableType, verbose_name=_("Table Type"),
                                   on_delete=models.CASCADE, related_name='tabgift')
     monthnumber = models.FloatField(verbose_name=_('Month Number'))
     amount = models.FloatField(verbose_name=_('Amount'), blank=True, null=True)
@@ -279,7 +279,7 @@ class TableGift(models.Model):
         verbose_name_plural = _('TableGifts')
 
     def __str__(self):
-        return self.tablename.name
+        return f'row.{self.id} - {self.tabletype.name}'
 
     def get_absolute_url(self):
         return reverse('TableGift_detail', kwargs={'pk': self.pk})
@@ -296,7 +296,7 @@ class TableGiftUser(models.Model):
         verbose_name_plural = _("TableGiftUsers")
 
     def __str__(self):
-        return 'Buy_'+str(self.id) + '-' + self.tablegift.tablename.name
+        return 'Buy.'+str(self.id) + '-' + self.tablegift.tabletype.name
 
     def get_absolute_url(self):
         return reverse("TableGift_detail", kwargs={"pk": self.pk})
@@ -313,7 +313,7 @@ class TablePayment(models.Model):
         verbose_name_plural = _('TablePayments')
 
     def __str__(self):
-        return 'Pay_' + str(self.id) + '-' + str(self.tabgiftusr.user.username)
+        return 'Pay.' + str(self.id) + '-' + str(self.tabgiftusr.user.username)
 
     def get_absolute_url(self):
         return reverse('TablePayment_detail', kwargs={'pk': self.pk})

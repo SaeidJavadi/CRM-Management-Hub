@@ -17,8 +17,6 @@ class IsStaffOrReadOnly(BasePermission):
 
 class NotAllowAction(BasePermission):
     def has_object_permission(self, request, view, obj):
-        if request.method in SAFE_METHODS:
-            return True
         return False
 
 
@@ -58,7 +56,17 @@ class IsOwnerOrReadOnlyMSG(BasePermission):
             request.user.is_authenticated and
             request.user.is_superuser or
             # get access to owner of objet
-            ownerstatus
+            ownerstatus)
+
+
+class IsOwnerOrReadOnlyTable(BasePermission):
+    def has_object_permission(self, request, view, obj):
+        if request.method in SAFE_METHODS:
+            return True
+        return bool(
+            request.user.is_authenticated and
+            request.user.is_superuser or
+            obj.user.id == request.user.id
         )
 
 
