@@ -1,6 +1,6 @@
 from django.contrib import admin
 from crm.models import Common60, Common61, Common70, CommonDead, JudiciaryDead, DoingDead, PublicAssistance, Lottery,\
-    Notification, WinnerLottery60, TableName, TableGift, TableGiftUser, TablePayment
+    Notification, WinnerLottery60, TableType, TableGift, TableGiftUser, TablePayment
 
 
 @admin.register(Common60)
@@ -75,8 +75,8 @@ class WinnerLottery60Admin(admin.ModelAdmin):
     pass
 
 
-@admin.register(TableName)
-class TableNameAdmin(admin.ModelAdmin):
+@admin.register(TableType)
+class TableTypeAdmin(admin.ModelAdmin):
     list_display = ("footer", "name")
 
 

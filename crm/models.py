@@ -241,23 +241,23 @@ class Notification(models.Model):
         return reverse('Notification_detail', kwargs={'pk': self.pk})
 
 
-class TableName(models.Model):
-    name = models.CharField(verbose_name=_('Table Name'), max_length=150)
+class TableType(models.Model):
+    name = models.CharField(verbose_name=_('Table Type'), max_length=150)
     footer = models.CharField(verbose_name=_('Footer'), max_length=150, blank=True, null=True)
 
     class Meta:
-        verbose_name = _("TableName")
-        verbose_name_plural = _("TableNames")
+        verbose_name = _("TableType")
+        verbose_name_plural = _("TableTypes")
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("TableName_detail", kwargs={"pk": self.pk})
+        return reverse("tabletype_detail", kwargs={"pk": self.pk})
 
 
 class TableGift(models.Model):
-    tablename = models.ForeignKey(TableName(), verbose_name=_("Table Name"),
+    tablename = models.ForeignKey(TableType, verbose_name=_("Table Type"),
                                   on_delete=models.CASCADE, related_name='tabgift')
     monthnumber = models.FloatField(verbose_name=_('Month Number'))
     amount = models.FloatField(verbose_name=_('Amount'), blank=True, null=True)
@@ -289,6 +289,7 @@ class TableGiftUser(models.Model):
     tablegift = models.ForeignKey(TableGift, verbose_name=_("Gift Tables"),
                                   on_delete=models.CASCADE, related_name='tabgiftusr')
     user = models.ForeignKey(User, verbose_name=_('User'), on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
 
     class Meta:
         verbose_name = _("TableGiftUser")
@@ -310,8 +311,6 @@ class TablePayment(models.Model):
     class Meta:
         verbose_name = _('TablePayment')
         verbose_name_plural = _('TablePayments')
-        
-        
 
     def __str__(self):
         return 'Pay_' + str(self.id) + '-' + str(self.tabgiftusr.user.username)
