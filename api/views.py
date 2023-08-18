@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from api.permissions import IsCommonOrReadOnly, IsSuperUser, IsOwnerOrReadOnlyMSG, IsUserOwenerOrReadOnly,\
-NotAllowAction, IsOwnerOrReadOnlyTable
+    NotAllowAction, IsOwnerOrReadOnlyTable
 from django.contrib.auth import get_user_model
 from crm import models as crmmod
 from api import serializers
@@ -341,12 +341,22 @@ class TabGiftUsrViewSet(ModelViewSet):
     queryset = crmmod.TableGiftUser.objects.all()
     ordering_fields = ['id',]
 
+    def perform_create(self, serializer):
+        return serializer.save(user=self.request.user)
+
     def get_permissions(self):
         if self.action in ['update', 'destroy']:
             permission_classes = (NotAllowAction,)
         else:
             permission_classes = (IsAuthenticated,)
         return [permission() for permission in permission_classes]
+
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_superuser or user.is_staff:
+            return crmmod.TableGiftUser.objects.all()
+        else:
+            return crmmod.TableGiftUser.objects.filter(user=user)
 
 
 class TabPayViewSet(ModelViewSet):
@@ -360,3 +370,10 @@ class TabPayViewSet(ModelViewSet):
         else:
             permission_classes = (IsAuthenticated,)
         return [permission() for permission in permission_classes]
+
+    # def get_queryset(self):
+    #     user = self.request.user
+    #     if user.is_superuser or user.is_staff:
+    #         return crmmod.TablePayment.objects.all()
+    #     else:
+    #         return crmmod.Notification.objects.filter(user=user)

@@ -162,7 +162,8 @@ class TableGiftSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
 class TableGiftUsrSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
     class Meta:
         model = TableGiftUser
-        fields = '__all__'
+        # fields = '__all__'
+        exclude = ('paystatus',)
 
 
 class TablePaySerilizer(DynamicFieldsMixin, serializers.ModelSerializer):

@@ -290,6 +290,8 @@ class TableGiftUser(models.Model):
                                   on_delete=models.CASCADE, related_name='tabgiftusr')
     user = models.ForeignKey(User, verbose_name=_('User'), on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
+    countchances = models.IntegerField(verbose_name=_('Count of Chances'), default=1)
+    paystatus = models.BooleanField(verbose_name=_('Pay Status'), default=False)
 
     class Meta:
         verbose_name = _("TableGiftUser")
@@ -307,6 +309,7 @@ class TablePayment(models.Model):
                                       verbose_name=_('Table Gift'), related_name=('pay'))
     created = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
     payment = models.FloatField(verbose_name='Payment')
+    status = models.BooleanField(verbose_name=_('Status'), default=False)
 
     class Meta:
         verbose_name = _('TablePayment')
