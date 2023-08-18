@@ -291,6 +291,7 @@ class TableGiftUser(models.Model):
     user = models.ForeignKey(User, verbose_name=_('User'), on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
     countchances = models.IntegerField(verbose_name=_('Count of Chances'), default=1)
+    amount = models.IntegerField(verbose_name=_('Amount'))
     paystatus = models.BooleanField(verbose_name=_('Pay Status'), default=False)
 
     class Meta:
