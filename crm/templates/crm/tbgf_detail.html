@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'crm/css/printstyle.css' %}">
+{% endblock head %}
+{% block content %}
+    <table id="objs-table" class="table">
+        <thead>
+            <tr>
+                <th>Table Gift:</th>
+                <th>{{ obj.tablegift.gifts }}</th>
+            </tr>
+            <tr>
+                <th>User:</th>
+                <th>{{ obj.user }}</th>
+            </tr>
+            <tr>
+                <th>Created:</th>
+                <th>{{ obj.created|date:"Y-m-d (H:i)" }}</th>
+            </tr>
+            <tr>
+                <th>Updated:</th>
+                <th>{{ obj.updated|date:"Y-m-d (H:i)" }}</th>
+            </tr>
+            <tr>
+                <th>Active:</th>
+                <th>{{ obj.active }}</th>
+            </tr>
+            <tr>
+                <th>Count Chances:</th>
+                <th>{{ obj.countchances }}</th>
+            </tr>
+            <tr>
+                <th>Amount:</th>
+                <th>{{ obj.amount }}</th>
+            </tr>
+            <tr>
+                <th>Count Pay:</th>
+                <th>{{ obj.countpay }}</th>
+            </tr>
+            {% comment %} <tr>
+                <tr>
+                <th>Installment:</th>
+                </tr>
+                <tr>
+                    <th>Paid</th>
+                <th>{{ obj.pay.filter(status=True).count }}</th>
+                </tr>
+                                <tr>
+                    <th>UnPaid</th>
+                <th>{{ obj.pay.filter(status=False).count }}</th>
+                </tr>
+            </tr> {% endcomment %}
+            <tr>
+                <th>Pay Status:</th>
+                <th>{{ obj.paystatus }}</th>
+            </tr>
+        </thead>
+    </table>
+    <center>
+        <button onclick="window.print();" class="print-button noPrint">
+            <span class="print-icon"></span>
+        </button>
+    </center>
+{% endblock content %}

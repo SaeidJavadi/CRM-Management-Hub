@@ -1,6 +1,6 @@
 from django import forms
 from crm.models import Common60, Common61, Common70, CommonDead, JudiciaryDead, DoingDead, PublicAssistance,\
-    Notification, TableGift
+    Notification, TableGift, TableGiftUser
 
 
 class ObjectModelForm60(forms.ModelForm):
@@ -121,3 +121,15 @@ class ObjectModelFormTabGift(forms.ModelForm):
         super().__init__(*args, **kwargs)
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control'
+            
+            
+class ObjectModelFormTabGiftUser(forms.ModelForm):
+    class Meta:
+        model = TableGiftUser
+        fields = '__all__'
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            if visible.name != "active":
+                visible.field.widget.attrs['class'] = 'form-control'

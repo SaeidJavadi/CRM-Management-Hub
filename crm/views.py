@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from crm.models import Common60, Common61, Common70, CommonDead, JudiciaryDead, DoingDead, PublicAssistance,\
-    Lottery, Notification, WinnerLottery60, TableGift
+    Lottery, Notification, WinnerLottery60, TableGift, TableGiftUser
 from django.contrib.auth.decorators import login_required
 from crm.forms import ObjectModelForm60, ObjectModelForm61, ObjectModelForm70, ObjectModelFormCd, ObjectModelFormJd,\
-    ObjectModelFormDd, ObjectModelFormPa, ObjectModelFormMSG, HodlingLotteryForm, AddtoLotteryForm, ObjectModelFormTabGift
+    ObjectModelFormDd, ObjectModelFormPa, ObjectModelFormMSG, HodlingLotteryForm, AddtoLotteryForm,\
+        ObjectModelFormTabGift, ObjectModelFormTabGiftUser
 from accounts.models import User
 from django.urls import reverse_lazy
 from django.utils import timezone
@@ -781,3 +782,31 @@ class TableGiftDeleteView(DeleteView):
     template_name = 'crm/obj_delete.html'
     success_message = 'Success: Table was deleted.'
     success_url = reverse_lazy('crm:home')
+
+
+class ParticipantsListView(ListView):
+    model = TableGiftUser
+    template_name = 'crm/tbgf_users.html'
+    context_object_name = 'objects'
+    paginate_by = 30
+    
+class ParticipantsDetailView(DetailView):
+    model = TableGiftUser
+    context_object_name = 'obj'
+    template_name = 'crm/tbgf_detail.html'
+
+
+class ParticipantsUpdateView(UpdateView):
+    model = TableGiftUser
+    form_class = ObjectModelFormTabGiftUser
+    template_name = 'crm/obj_update.html'
+    success_message = 'Success: Table was updated.'
+    success_url = reverse_lazy('crm:participants')
+
+
+class ParticipantsDeleteView(DeleteView):
+    model = TableGiftUser
+    context_object_name = 'obj'
+    template_name = 'crm/obj_delete.html'
+    success_message = 'Success: Table was deleted.'
+    success_url = reverse_lazy('crm:participants')

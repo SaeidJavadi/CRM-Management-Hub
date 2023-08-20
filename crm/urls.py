@@ -60,5 +60,8 @@ urlpatterns = [
     path('tabalegift/read/<int:pk>', login_required(views.TableGiftDetailView.as_view()), name='tabalegift_read'),
     path('tabalegift/update/<int:pk>', login_required(views.TableGiftUpdateView.as_view()), name='tabalegift_update'),
     path('tabalegift/delete/<int:pk>', login_required(views.TableGiftDeleteView.as_view()), name='tabalegift_delete'),
-
+    path('participants', login_required(views.ParticipantsListView.as_view()), name='participants'),
+    path('participants/read/<int:pk>', login_required(views.ParticipantsDetailView.as_view()), name='participants_read'),
+    path('participants/update/<int:pk>', login_required(views.ParticipantsUpdateView.as_view()), name='participantst_update'),
+    path('participants/delete/<int:pk>', login_required(views.ParticipantsDeleteView.as_view()), name='participants_delete'),
 ]
