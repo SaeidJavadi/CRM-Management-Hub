@@ -53,7 +53,6 @@
         <table id="objs-table" class="table">
             <thead>
                 <tr>
-                    <th class="text-center" scope="col">Table Name</th>
                     <th class="text-center" scope="col">Month Number</th>
                     <th class="text-center" scope="col">Amount</th>
                     <th class="text-center" scope="col">Monthamount</th>
@@ -68,7 +67,6 @@
                 {% for obj in objects %}
                     <tr>
                         {% comment %} <th class="text-center" scope="row">{{ forloop.counter }}</th> {% endcomment %}
-                        <td class="text-center">{{ obj.tablename.name }}</td>
                         <td class="text-center">{{ obj.monthnumber }}</td>
                         <td class="text-center">{{ obj.amount }}</td>
                         <td class="text-center">{{ obj.monthamount }}</td>
