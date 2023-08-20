@@ -5,7 +5,7 @@ from crm.models import Common60, Common61, Common70, CommonDead, JudiciaryDead, 
 from django.contrib.auth.decorators import login_required
 from crm.forms import ObjectModelForm60, ObjectModelForm61, ObjectModelForm70, ObjectModelFormCd, ObjectModelFormJd,\
     ObjectModelFormDd, ObjectModelFormPa, ObjectModelFormMSG, HodlingLotteryForm, AddtoLotteryForm,\
-        ObjectModelFormTabGift, ObjectModelFormTabGiftUser
+    ObjectModelFormTabGift, ObjectModelFormTabGiftUser
 from accounts.models import User
 from django.urls import reverse_lazy
 from django.utils import timezone
@@ -789,7 +789,22 @@ class ParticipantsListView(ListView):
     template_name = 'crm/tbgf_users.html'
     context_object_name = 'objects'
     paginate_by = 30
-    
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query_search = self.request.GET.get('q')
+        query_filter = self.request.GET.get('f')
+        if query_search:
+            queryset = queryset.filter(
+                Q(user__username__contains=query_search) |
+                Q(tablegift__gifts__contains=query_search)
+            )
+        if query_filter:
+            if query_filter != 'All':
+                queryset = queryset.filter(paystatus=query_filter)
+        return queryset
+
+
 class ParticipantsDetailView(DetailView):
     model = TableGiftUser
     context_object_name = 'obj'
