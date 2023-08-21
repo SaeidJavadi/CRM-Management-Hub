@@ -378,6 +378,7 @@ class TabGiftUsrViewSet(ModelViewSet):
 class TabPayViewSet(ModelViewSet):
     serializer_class = serializers.TablePaySerilizer
     queryset = crmmod.TablePayment.objects.all()
+    filterset_fields = ['tabgiftusr__id','tabgiftusr__user']
     ordering_fields = ['id',]
 
     def get_permissions(self):
