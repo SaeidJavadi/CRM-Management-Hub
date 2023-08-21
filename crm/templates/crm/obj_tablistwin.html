@@ -34,10 +34,13 @@
                         <a class="dropdown-item" href="?f=All">All</a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="?f=True">Paid</a>
+                        <a class="dropdown-item" href="?f=tableu16">Table u16</a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="?f=False">UnPaid</a>
+                        <a class="dropdown-item" href="?f=table2">Home/Car</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="?f=table3">Other Lottery</a>
                     </li>
                 </ul>
             </div>
@@ -53,51 +56,24 @@
         <table id="objs-table" class="table">
             <thead>
                 <tr>
+                    <th class="text-center" scope="col">#</th>
+                    <th class="text-center" scope="col">Title</th>
                     <th class="text-center" scope="col">Table Name</th>
-                    <th class="text-center" scope="col">Table Gift</th>
+                    <th class="text-center" scope="col">Gift Title</th>
                     <th class="text-center" scope="col">User</th>
-                    <th class="text-center" scope="col">Created</th>
-                    <th class="text-center" scope="col">Active</th>
-                    <th class="text-center" scope="col">Count Chances</th>
-                    <th class="text-center" scope="col">Amount</th>
-                    <th class="text-center" scope="col">Count Pay</th>
-                    <th class="text-center" scope="col">Pay Status</th>
-                    <th class="text-center" scope="col"></th>
+                    <th class="text-center" scope="col">Win Date</th>
                 </tr>
             </thead>
             <tbody>
                 {% for obj in objects %}
                     <tr>
                         {% comment %} <th class="text-center" scope="row">{{ forloop.counter }}</th> {% endcomment %}
-                        <td class="text-center">{{ obj.tablegift.tabletype.name }}</td>
-                        <td class="text-center">{{ obj.tablegift.gifts }}</td>
-                        <td class="text-center">{{ obj.user }}</td>
-                        <td class="text-center">{{ obj.created|date:"Y-m-d" }}</td>
-                        <td class="text-center">{{ obj.active }}</td>
-                        <td class="text-center">{{ obj.countchances }}</td>
-                        <td class="text-center">{{ obj.amount }}</td>
-                        <td class="text-center">{{ obj.countpay }}</td>
-                        <td class="text-center">{{ obj.paystatus }}</td>
-                        <td class="text-center">
-                            <!-- Read buttons -->
-                            <a type="button"
-                               class="btn btn-sm btn-success"
-                               href="{% url 'crm:participants_read' obj.id %}">
-                                <span class="ri-eye-line"></span>
-                            </a>
-                            <!-- Update buttons -->
-                            <a type="button"
-                               class="btn btn-sm btn-primary"
-                               href="{% url 'crm:participantst_update' obj.id %}">
-                                <span class="ri-edit-2-line"></span>
-                            </a>
-                            <!-- Delete buttons -->
-                            <a type="button"
-                               class="btn btn-sm btn-danger"
-                               href="{% url 'crm:participants_delete' obj.id %}">
-                                <span class="ri-delete-bin-line"></span>
-                            </a>
-                        </td>
+                        <td class="text-center">{{ forloop.counter }}</td>
+                        <td class="text-center">{{ obj.title }}</td>
+                        <td class="text-center">{{ obj.tabgiftusr.tablegift.tabletype }}</td>
+                        <td class="text-center">{{ obj.tabgiftusr.tablegift.gifts }}</td>
+                        <td class="text-center">{{ obj.tabgiftusr.user.username }}</td>
+                        <td class="text-center">{{ obj.windate|date:"Y-m-d" }}</td>
                     </tr>
                 {% endfor %}
             </tbody>

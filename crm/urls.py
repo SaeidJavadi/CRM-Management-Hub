@@ -64,4 +64,7 @@ urlpatterns = [
     path('participants/read/<int:pk>', login_required(views.ParticipantsDetailView.as_view()), name='participants_read'),
     path('participants/update/<int:pk>', login_required(views.ParticipantsUpdateView.as_view()), name='participantst_update'),
     path('participants/delete/<int:pk>', login_required(views.ParticipantsDeleteView.as_view()), name='participants_delete'),
+    path('holdtablottery/<str:tabname>', views.HoldTabLottery, name='holdtablottery'),
+    path('tabwinners', login_required(views.TableWinnwers.as_view()), name='tabwinners'),
+
 ]

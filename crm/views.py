@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from crm.models import Common60, Common61, Common70, CommonDead, JudiciaryDead, DoingDead, PublicAssistance,\
-    Lottery, Notification, WinnerLottery60, TableGift, TableGiftUser
+    Lottery, Notification, WinnerLottery60, TableGift, TableGiftUser, WinTableLottery
 from django.contrib.auth.decorators import login_required
 from crm.forms import ObjectModelForm60, ObjectModelForm61, ObjectModelForm70, ObjectModelFormCd, ObjectModelFormJd,\
     ObjectModelFormDd, ObjectModelFormPa, ObjectModelFormMSG, HodlingLotteryForm, AddtoLotteryForm,\
-    ObjectModelFormTabGift, ObjectModelFormTabGiftUser
+    ObjectModelFormTabGift, ObjectModelFormTabGiftUser, HodlingLottabForm
 from accounts.models import User
 from django.urls import reverse_lazy
 from django.utils import timezone
@@ -825,3 +825,63 @@ class ParticipantsDeleteView(DeleteView):
     template_name = 'crm/obj_delete.html'
     success_message = 'Success: Table was deleted.'
     success_url = reverse_lazy('crm:participants')
+
+
+@login_required
+def HoldTabLottery(request, tabname):
+    formagree = HodlingLottabForm()
+    if tabname:
+        if request.method == 'POST':
+            form = HodlingLottabForm(request.POST)
+            if form.is_valid():
+                title = form.cleaned_data['title']
+                if tabname == 'table2':
+                    pass
+                else:
+                    usrssubs = TableGiftUser.objects.filter(active=True, paystatus=True)
+                    usrssub = usrssubs.values_list('id')
+                    if usrssub.count() > 0:
+                        list_lot = tuple([i[0] for i in usrssub])
+                        tabwingiftusr = random.sample(list_lot, 1)[0]
+                        userWin = TableGiftUser.objects.get(pk=int(tabwingiftusr))
+                        wintblt = WinTableLottery.objects.create(title=title, tabgiftusr=userWin)
+                        for userac in usrssubs:
+                            userac.active = False
+                            userac.save()
+                        return HttpResponse(userWin.user.username)
+                    else:
+                        return redirect('crm:holdtablottery', tabname=tabname)
+            else:
+                return HttpResponse('Error Form')
+
+        else:
+            userslotall = TableGiftUser.objects.filter(active=True).count()
+            userslotallow = TableGiftUser.objects.filter(active=True, paystatus=True).count()
+            userslotunallow = TableGiftUser.objects.filter(active=True, paystatus=False).count()
+            listlotamar = [userslotall, userslotallow, userslotunallow]
+            return render(request, 'crm/tabs_holdlot.html', {'tabletype': tabname, 'form': formagree, 'lenusr': listlotamar})
+    else:
+        return HttpResponse('404')
+
+
+class TableWinnwers(ListView):
+    model = WinTableLottery
+    context_object_name = 'objects'
+    template_name = 'crm/obj_tablistwin.html'
+    paginate_by = 30
+    ordering = ('-id',)
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query_search = self.request.GET.get('q')
+        query_filter = self.request.GET.get('f')
+        if query_search:
+            queryset = queryset.filter(
+                Q(title__contains=query_search) |
+                Q(tabgiftusr__user__username__contains=query_search) |
+                Q(tabgiftusr__tablegift__gifts__contains=query_search)
+            )
+        if query_filter:
+            if query_filter != 'All':
+                queryset = queryset.filter(tabgiftusr__tablegift__tabletype__name=query_filter)
+        return queryset

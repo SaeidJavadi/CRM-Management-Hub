@@ -310,7 +310,7 @@ class TableGiftUser(models.Model):
 
 class TablePayment(models.Model):
     tabgiftusr = models.ForeignKey(TableGiftUser, on_delete=models.CASCADE,
-                                      verbose_name=_('Table Gift'), related_name=('pay'))
+                                   verbose_name=_('Table Gift User'), related_name=('pay'))
     created = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
     payment = models.FloatField(verbose_name='Payment')
     status = models.BooleanField(verbose_name=_('Status'), default=False)
@@ -324,3 +324,36 @@ class TablePayment(models.Model):
 
     def get_absolute_url(self):
         return reverse('TablePayment_detail', kwargs={'pk': self.pk})
+
+
+class WinTableLottery(models.Model):
+    title = models.CharField(max_length=150, verbose_name=_('Lottery Title'))
+    tabgiftusr = models.ForeignKey(TableGiftUser, verbose_name=_("Table Gift User"),
+                                   on_delete=models.CASCADE, related_name='tabwingift')
+    windate = models.DateTimeField(auto_now_add=True, verbose_name=_('Win Date'))
+
+    class Meta:
+        verbose_name = _("WinTableLottery")
+        verbose_name_plural = _("WinTableLotterys")
+
+    def __str__(self):
+        return f' WINNER -> {self.tabgiftusr.user.username}'
+
+    def get_absolute_url(self):
+        return reverse("WinTableLottery_detail", kwargs={"pk": self.pk})
+
+
+# class CreateLotteryTable(models.Model):
+#     title = models.CharField(max_length=150, verbose_name=_('Lottery Title'))
+#     created = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
+#     wintablot = models.ForeignKey(WinTableLottery, on_delete=models.CASCADE, related_name='crtlottab')
+
+#     class Meta:
+#         verbose_name = _("CreateLotteryTable")
+#         verbose_name_plural = _("CreateLotteryTables")
+
+#     def __str__(self):
+#         return self.title
+
+#     def get_absolute_url(self):
+#         return reverse("CreateLotteryTable_detail", kwargs={"pk": self.pk})

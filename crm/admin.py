@@ -1,6 +1,6 @@
 from django.contrib import admin
 from crm.models import Common60, Common61, Common70, CommonDead, JudiciaryDead, DoingDead, PublicAssistance, Lottery,\
-    Notification, WinnerLottery60, TableType, TableGift, TableGiftUser, TablePayment
+    Notification, WinnerLottery60, TableType, TableGift, TableGiftUser, TablePayment, WinTableLottery
 
 
 @admin.register(Common60)
@@ -99,3 +99,8 @@ class TablePaymentAdmin(admin.ModelAdmin):
     class Meta:
         model = TablePayment
         fields = '__all__'
+
+
+@admin.register(WinTableLottery)
+class WinTableLotteryAdmin(admin.ModelAdmin):
+    list_display = ("windate", "tabgiftusr", "title")

@@ -116,20 +116,26 @@ class ObjectModelFormTabGift(forms.ModelForm):
     class Meta:
         model = TableGift
         fields = '__all__'
-        
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control'
-            
-            
+
+
 class ObjectModelFormTabGiftUser(forms.ModelForm):
     class Meta:
         model = TableGiftUser
         fields = '__all__'
-        
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for visible in self.visible_fields():
             if visible.name != "active":
                 visible.field.widget.attrs['class'] = 'form-control'
+
+
+class HodlingLottabForm(forms.Form):
+    title = forms.CharField(max_length=150, required=True, label="Lottery Title",
+                            widget=forms.TextInput(attrs={'class': 'form-control'}))
+    agree = forms.BooleanField(label="start holding?")
