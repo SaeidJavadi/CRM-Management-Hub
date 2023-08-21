@@ -292,9 +292,9 @@ class TableGiftUser(models.Model):
     created = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
     updated = models.DateTimeField(auto_now=True, verbose_name=_('Updated'))
     active = models.BooleanField(verbose_name=_('Active'), default=True)
-    countchances = models.IntegerField(verbose_name=_('Count of Chances'), default=1)
+    countchances = models.IntegerField(verbose_name=_('Count of Chances'), default=1, validators=[MinValueValidator(1)])
     amount = models.IntegerField(verbose_name=_('Amount'))
-    countpay = models.IntegerField(verbose_name=_('Count Pay'))
+    countpay = models.IntegerField(verbose_name=_('Count Pay'), validators=[MinValueValidator(1)])
     paystatus = models.BooleanField(verbose_name=_('Pay Status'), default=False)
 
     class Meta:
@@ -341,19 +341,3 @@ class WinTableLottery(models.Model):
 
     def get_absolute_url(self):
         return reverse("WinTableLottery_detail", kwargs={"pk": self.pk})
-
-
-# class CreateLotteryTable(models.Model):
-#     title = models.CharField(max_length=150, verbose_name=_('Lottery Title'))
-#     created = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
-#     wintablot = models.ForeignKey(WinTableLottery, on_delete=models.CASCADE, related_name='crtlottab')
-
-#     class Meta:
-#         verbose_name = _("CreateLotteryTable")
-#         verbose_name_plural = _("CreateLotteryTables")
-
-#     def __str__(self):
-#         return self.title
-
-#     def get_absolute_url(self):
-#         return reverse("CreateLotteryTable_detail", kwargs={"pk": self.pk})

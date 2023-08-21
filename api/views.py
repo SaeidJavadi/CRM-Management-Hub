@@ -345,9 +345,9 @@ class TabGiftUsrViewSet(ModelViewSet):
 
     def perform_create(self, serializer):
         try:
-            countpay = self.request.data.get('countpay')
-            pktabgift = self.request.data.get('tablegift')
-            cchances = self.request.data.get('countchances')
+            countpay = int(self.request.data.get('countpay'))
+            pktabgift = int(self.request.data.get('tablegift'))
+            cchances = int(self.request.data.get('countchances'))
             amountpay = crmmod.TableGift.objects.get(id=pktabgift).amount
             if not cchances:
                 cchances = 1
@@ -378,7 +378,7 @@ class TabGiftUsrViewSet(ModelViewSet):
 class TabPayViewSet(ModelViewSet):
     serializer_class = serializers.TablePaySerilizer
     queryset = crmmod.TablePayment.objects.all()
-    filterset_fields = ['tabgiftusr__id','tabgiftusr__user']
+    filterset_fields = ['tabgiftusr__id', 'tabgiftusr__user']
     ordering_fields = ['id',]
 
     def get_permissions(self):
@@ -394,3 +394,24 @@ class TabPayViewSet(ModelViewSet):
             return crmmod.TablePayment.objects.all()
         else:
             return crmmod.TablePayment.objects.filter(tabgiftusr__user__id=user.id)
+
+
+class TabWinnerViewSet(ModelViewSet):
+    serializer_class = serializers.TableWinnerSerilizer
+    queryset = crmmod.WinTableLottery.objects.all()
+    filterset_fields = ['tabgiftusr__id', 'tabgiftusr__user']
+    ordering_fields = ['id',]
+
+    def get_permissions(self):
+        if self.action in ['list', 'retrieve']:
+            permission_classes = (IsOwnerOrReadOnlyTable,)
+        else:
+            permission_classes = (IsSuperUser,)
+        return [permission() for permission in permission_classes]
+
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_superuser or user.is_staff:
+            return crmmod.WinTableLottery.objects.all()
+        else:
+            return crmmod.WinTableLottery.objects.filter(tabgiftusr__user__id=user.id)

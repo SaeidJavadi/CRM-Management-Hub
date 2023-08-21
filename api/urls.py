@@ -17,6 +17,7 @@ router.register('lotteryc60', views.LotteryListView, basename='lotteryapi')
 router.register('tabsgift', views.TableGiftViewSet, basename='lotteryapi')
 router.register('tabgiftusr', views.TabGiftUsrViewSet, basename='tabgiftusr')
 router.register('tabpay', views.TabPayViewSet, basename='tabpay')
+router.register('tabwinner', views.TabWinnerViewSet, basename='tabwin')
 
 urlpatterns = [
     path('', include(router.urls)),

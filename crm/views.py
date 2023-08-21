@@ -283,8 +283,13 @@ def HoldingLottery(request, title):
                 for id in user_winner:
                     cw = Common60.objects.get(id=id)
                     w = WinnerLottery60.objects.create(name=nameform, lottery=lot, common=cw)
-                    send_notification(user_token=cw.usersubmit.fcmtoken,
-                                      title="Lottery Win", body="You have won the lottery")
+                    try:
+                        title = "Lottery Win"
+                        body = f"You have won the lottery {title}"
+                        send_notification(user_token=cw.usersubmit.fcmtoken, title=title, body=body)
+                        Notification.objects.create(user=cw.usersubmit, subject=title, text=body)
+                    except Exception as e:
+                        print('Notif Error', e)
                     if winstatus:
                         cw.lottery = None
                         cw.save()
@@ -835,29 +840,46 @@ def HoldTabLottery(request, tabname):
             form = HodlingLottabForm(request.POST)
             if form.is_valid():
                 title = form.cleaned_data['title']
-                if tabname == 'table2':
-                    pass
+                usrssubs = TableGiftUser.objects.filter(
+                    tablegift__tabletype__name=tabname, active=True, paystatus=True)
+                usrssub = usrssubs.values_list('id')
+                if usrssub.count() > 0:
+                    list_lot = list([i[0] for i in usrssub])
+                    try:
+                        for usr in usrssubs:
+                            if usr.countchances > 1:
+                                for ch in range(1, usr.countchances):
+                                    list_lot.append(usr.id)
+                        print('--------------------------------')
+                        print(list_lot)
+                        print('--------------------------------')
+                    except Exception as e:
+                        print('count Chances Error: ' + str(e))
+                    tabwingiftusr = random.sample(list_lot, 1)[0]
+                    userWin = TableGiftUser.objects.get(pk=int(tabwingiftusr))
+                    wintblt = WinTableLottery.objects.create(title=title, tabgiftusr=userWin)
+                    for userac in usrssubs:
+                        userac.active = False
+                        userac.save()
+                    try:
+                        title = "Lottery Win"
+                        body = f"You have won the lottery {tabname}"
+                        send_notification(user_token=userWin.user.fcmtoken, title=title, body=body)
+                        Notification.objects.create(user=userWin.user, subject=title, text=body)
+                    except Exception as e:
+                        print('Notif Error', e)
+                    return HttpResponse(userWin.user.username)
                 else:
-                    usrssubs = TableGiftUser.objects.filter(active=True, paystatus=True)
-                    usrssub = usrssubs.values_list('id')
-                    if usrssub.count() > 0:
-                        list_lot = tuple([i[0] for i in usrssub])
-                        tabwingiftusr = random.sample(list_lot, 1)[0]
-                        userWin = TableGiftUser.objects.get(pk=int(tabwingiftusr))
-                        wintblt = WinTableLottery.objects.create(title=title, tabgiftusr=userWin)
-                        for userac in usrssubs:
-                            userac.active = False
-                            userac.save()
-                        return HttpResponse(userWin.user.username)
-                    else:
-                        return redirect('crm:holdtablottery', tabname=tabname)
+                    return redirect('crm:holdtablottery', tabname=tabname)
             else:
                 return HttpResponse('Error Form')
 
         else:
-            userslotall = TableGiftUser.objects.filter(active=True).count()
-            userslotallow = TableGiftUser.objects.filter(active=True, paystatus=True).count()
-            userslotunallow = TableGiftUser.objects.filter(active=True, paystatus=False).count()
+            userslotall = TableGiftUser.objects.filter(tablegift__tabletype__name=tabname, active=True).count()
+            userslotallow = TableGiftUser.objects.filter(
+                tablegift__tabletype__name=tabname, active=True, paystatus=True).count()
+            userslotunallow = TableGiftUser.objects.filter(
+                tablegift__tabletype__name=tabname, active=True, paystatus=False).count()
             listlotamar = [userslotall, userslotallow, userslotunallow]
             return render(request, 'crm/tabs_holdlot.html', {'tabletype': tabname, 'form': formagree, 'lenusr': listlotamar})
     else:
