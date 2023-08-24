@@ -143,12 +143,6 @@ class WinnerLottery60Serializer(DynamicFieldsMixin, serializers.ModelSerializer)
         # depth = 1
 
 
-# class TabaleNameSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
-
-#     class Meta:
-#         model = TablePaymententent
-#         fields = ('name', 'footer')
-
 
 class TableGiftSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
     # TablePayment = TabaleNameSerializer()
@@ -164,12 +158,25 @@ class TableGiftUsrSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
         model = TableGiftUser
         # fields = '__all__'
         exclude = ('paystatus', 'amount', 'updated')
+        
+class TbGtSerilizer(DynamicFieldsMixin, serializers.ModelSerializer):
+    class Meta:
+        model = TableGift
+        fields = ('gifts',)   
+           
+class TbGtUsrSerilizer(DynamicFieldsMixin, serializers.ModelSerializer):
+    tablegift = TbGtSerilizer()
+    class Meta:
+        model = TableGiftUser
+        fields = ('tablegift',)
 
 
 class TablePaySerilizer(DynamicFieldsMixin, serializers.ModelSerializer):
+    tabgiftusr = TbGtUsrSerilizer()
     class Meta:
         model = TablePayment
         fields = '__all__'
+        # depth = 2
 
 
 class TableWinnerSerilizer(DynamicFieldsMixin, serializers.ModelSerializer):
