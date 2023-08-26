@@ -5,6 +5,21 @@ from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 
 
+class CommonsAmount(models.Model):
+    name = models.CharField(_("Name"), max_length=150)
+    amount = models.IntegerField(verbose_name=_("Amount"))
+
+    class Meta:
+        verbose_name = _("CommonsAmount")
+        verbose_name_plural = _("CommonsAmounts")
+
+    def __str__(self):
+        return self.name + " - " + str(self.amount)
+
+    def get_absolute_url(self):
+        return reverse("CommonsAmount_detail", kwargs={"pk": self.pk})
+
+
 class Common60(models.Model):   # Eshterak afrad 60 saal va kamtar
     usersubmit = models.ForeignKey(User, on_delete=models.CASCADE,
                                    verbose_name=_('Registrant'), related_name='user_c60')
@@ -19,8 +34,8 @@ class Common60(models.Model):   # Eshterak afrad 60 saal va kamtar
     create = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
     phone = models.CharField(verbose_name=_('Phone Number'), max_length=50)
     phoneagent = models.CharField(verbose_name=_('Phone Number Agent'), max_length=50)
-    amount = models.FloatField(verbose_name=_('Amount'), blank=True, null=True)
-    link = models.TextField(verbose_name=_('Payment Link'), blank=True, null=True)
+    amount = models.ForeignKey(CommonsAmount, verbose_name=_('Amount'), on_delete=models.CASCADE)
+    paystatus = models.BooleanField(verbose_name=_('PayStatus'), default=False)
     status = models.BooleanField(verbose_name=_('Status'), default=False)
 
     class Meta:
@@ -46,8 +61,8 @@ class Common61(models.Model):  # Eshterak afrad az 61 ta 69
     create = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
     phone = models.CharField(verbose_name=_('Phone Number'), max_length=50)
     phoneagent = models.CharField(verbose_name=_('Phone Number Agent'), max_length=50)
-    amount = models.FloatField(verbose_name=_('Amount'), blank=True, null=True)
-    link = models.TextField(verbose_name=_('Payment Link'), blank=True, null=True)
+    amount = models.ForeignKey(CommonsAmount, verbose_name=_('Amount'), on_delete=models.CASCADE)
+    paystatus = models.BooleanField(verbose_name=_('PayStatus'), default=False)
     status = models.BooleanField(verbose_name=_('Status'), default=False)
 
     class Meta:
@@ -73,8 +88,8 @@ class Common70(models.Model):   # Eshterak afrad az 70 salegi va afrad mobtala b
     create = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
     phone = models.CharField(verbose_name=_('Phone Number'), max_length=50)
     phoneagent = models.CharField(verbose_name=_('Phone Number Agent'), max_length=50)
-    amount = models.FloatField(verbose_name=_('Amount'), blank=True, null=True)
-    link = models.TextField(verbose_name=_('Payment Link'), blank=True, null=True)
+    amount = models.ForeignKey(CommonsAmount, verbose_name=_('Amount'), on_delete=models.CASCADE)
+    paystatus = models.BooleanField(verbose_name=_('PayStatus'), default=False)
     status = models.BooleanField(verbose_name=_('Status'), default=False)
 
     class Meta:
@@ -98,8 +113,8 @@ class CommonDead(models.Model):  # Eshterak FotShodegan
     create = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
     phone = models.CharField(verbose_name=_('Phone Number'), max_length=50)
     phoneagent = models.CharField(verbose_name=_('Phone Number Agent'), max_length=50)
-    amount = models.FloatField(verbose_name=_('Amount'), blank=True, null=True)
-    link = models.TextField(verbose_name=_('Payment Link'), blank=True, null=True)
+    amount = models.ForeignKey(CommonsAmount, verbose_name=_('Amount'), on_delete=models.CASCADE)
+    paystatus = models.BooleanField(verbose_name=_('PayStatus'), default=False)
     status = models.BooleanField(verbose_name=_('Status'), default=False)
 
     class Meta:
@@ -123,8 +138,8 @@ class JudiciaryDead(models.Model):  # Goveh Ghazaie Mordegan
     create = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
     phone = models.CharField(verbose_name=_('Phone Number'), max_length=50)
     phoneagent = models.CharField(verbose_name=_('Phone Number Agent'), max_length=50)
-    amount = models.FloatField(verbose_name=_('Amount'), blank=True, null=True)
-    link = models.TextField(verbose_name=_('Payment Link'), blank=True, null=True)
+    amount = models.ForeignKey(CommonsAmount, verbose_name=_('Amount'), on_delete=models.CASCADE)
+    paystatus = models.BooleanField(verbose_name=_('PayStatus'), default=False)
     status = models.BooleanField(verbose_name=_('Status'), default=False)
 
     class Meta:
@@ -142,7 +157,6 @@ class DoingDead(models.Model):  # Anjam Amale Ebadie Marhom
     usersubmit = models.ForeignKey(User, on_delete=models.CASCADE,
                                    verbose_name=_('Registrant'), related_name='user_dd')
     name = models.CharField(max_length=120, verbose_name=_('Deceased name'))
-    amount = models.FloatField(verbose_name=_('Amount'), blank=True, null=True)
     yearprayer = models.IntegerField(verbose_name=_('Years Passed prayer'))
     yearfasting = models.IntegerField(verbose_name=_('Years Passed fasting'))
     pilgrimage = models.CharField(max_length=200, verbose_name=_('Pilgrimage'))
@@ -152,7 +166,8 @@ class DoingDead(models.Model):  # Anjam Amale Ebadie Marhom
     city = models.CharField(verbose_name=_('State/City'), max_length=120)
     deposit = models.FloatField(verbose_name=_('Deposit'))
     create = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
-    link = models.TextField(verbose_name=_('Payment Link'), blank=True, null=True)
+    amount = models.ForeignKey(CommonsAmount, verbose_name=_('Amount'), on_delete=models.CASCADE)
+    paystatus = models.BooleanField(verbose_name=_('PayStatus'), default=False)
     status = models.BooleanField(verbose_name=_('Status'), default=False)
 
     class Meta:
@@ -171,8 +186,8 @@ class PublicAssistance(models.Model):  # komak be khirieh
     name = models.CharField(max_length=150, verbose_name=_('Deceased name'))
     help_name = models.CharField(max_length=120, verbose_name=_('help name'))
     create = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
-    amount = models.FloatField(verbose_name=_('amount'))
-    link = models.TextField(verbose_name=_('Payment Link'), blank=True, null=True)
+    amount = models.ForeignKey(CommonsAmount, verbose_name=_('Amount'), on_delete=models.CASCADE)
+    paystatus = models.BooleanField(verbose_name=_('PayStatus'), default=False)
     status = models.BooleanField(verbose_name=_('Status'), default=False)
 
     class Meta:
