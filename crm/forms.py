@@ -144,7 +144,7 @@ class HodlingLottabForm(forms.Form):
 class AmountsForm(forms.ModelForm):
     class Meta:
         model = CommonsAmount
-        fields = '__all__'
+        fields = ('title', 'amount')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
