@@ -6,7 +6,8 @@ from django.urls import reverse
 
 
 class CommonsAmount(models.Model):
-    name = models.CharField(_("Name"), max_length=150)
+    title = models.CharField(verbose_name=_("Title"), max_length=150)
+    name = models.CharField(verbose_name=_("Name"), max_length=150)
     amount = models.IntegerField(verbose_name=_("Amount"))
 
     class Meta:

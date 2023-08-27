@@ -108,4 +108,4 @@ class WinTableLotteryAdmin(admin.ModelAdmin):
 
 @admin.register(CommonsAmount)
 class CommonsAmountAdmin(admin.ModelAdmin):
-    list_display = ("amount", "name")
+    list_display = ("name", "title", "amount")

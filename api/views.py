@@ -69,6 +69,17 @@ class Common60ViewSet(ModelViewSet):
         'usersubmit__phone',
     ]
 
+    def perform_create(self, serializer):
+        try:
+            lottery = int(self.request.data.get('lottery'))
+            common = serializer.save()
+            print('-'*30)
+            print(lottery)
+            print('-'*30)
+            return common
+        except Exception as e:
+            print(e)
+
     def get_permissions(self):
         if self.action in ['create', ]:
             permission_classes = (IsAuthenticated,)
