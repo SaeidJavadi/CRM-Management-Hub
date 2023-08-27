@@ -1,6 +1,6 @@
 from django import forms
 from crm.models import Common60, Common61, Common70, CommonDead, JudiciaryDead, DoingDead, PublicAssistance,\
-    Notification, TableGift, TableGiftUser
+    Notification, TableGift, TableGiftUser, CommonsAmount
 
 
 class ObjectModelForm60(forms.ModelForm):
@@ -139,3 +139,14 @@ class HodlingLottabForm(forms.Form):
     title = forms.CharField(max_length=150, required=True, label="Lottery Title",
                             widget=forms.TextInput(attrs={'class': 'form-control'}))
     agree = forms.BooleanField(label="start holding?")
+
+
+class AmountsForm(forms.ModelForm):
+    class Meta:
+        model = CommonsAmount
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'

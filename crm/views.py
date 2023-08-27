@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from crm.models import Common60, Common61, Common70, CommonDead, JudiciaryDead, DoingDead, PublicAssistance,\
-    LotteryC60, Notification, WinnerLottery60, TableGift, TableGiftUser, WinTableLottery
+    LotteryC60, Notification, WinnerLottery60, TableGift, TableGiftUser, WinTableLottery, CommonsAmount
 from django.contrib.auth.decorators import login_required
 from crm.forms import ObjectModelForm60, ObjectModelForm61, ObjectModelForm70, ObjectModelFormCd, ObjectModelFormJd,\
     ObjectModelFormDd, ObjectModelFormPa, ObjectModelFormMSG, HodlingLotteryForm, AddtoLotteryForm,\
-    ObjectModelFormTabGift, ObjectModelFormTabGiftUser, HodlingLottabForm
+    ObjectModelFormTabGift, ObjectModelFormTabGiftUser, HodlingLottabForm, AmountsForm
 from accounts.models import User
 from django.urls import reverse_lazy
 from django.utils import timezone
@@ -150,6 +150,22 @@ def overview(request, model):
     })
 
 
+class AmountsList(ListView):        # CommonAmounts
+    model = CommonsAmount
+    context_object_name = 'objects'
+    template_name = 'crm/amount_list.html'
+    paginate_by = 30
+    ordering = ('-createdt',)
+
+
+class AmountsUpdateView(UpdateView):
+    model = CommonsAmount
+    form_class = AmountsForm
+    template_name = 'crm/obj_update.html'
+    success_message = 'Success: Amount was updated.'
+    success_url = reverse_lazy('crm:amount_list')
+
+
 class c60List(ListView):        # Common60
     model = Common60
     context_object_name = 'objects'
@@ -190,7 +206,7 @@ class C60CreateView(CreateView):
     success_url = reverse_lazy('crm:c60_list')
 
 
-class C60EUpdateView(UpdateView):
+class C60UpdateView(UpdateView):
     model = Common60
     form_class = ObjectModelForm60
     template_name = 'crm/obj_update.html'
@@ -365,7 +381,7 @@ class C61CreateView(CreateView):
     success_url = reverse_lazy('crm:c61_list')
 
 
-class C61EUpdateView(UpdateView):
+class C61UpdateView(UpdateView):
     model = Common61
     form_class = ObjectModelForm61
     template_name = 'crm/obj_update.html'
@@ -421,7 +437,7 @@ class C70CreateView(CreateView):
     success_url = reverse_lazy('crm:c70_list')
 
 
-class C70EUpdateView(UpdateView):
+class C70UpdateView(UpdateView):
     model = Common70
     form_class = ObjectModelForm70
     template_name = 'crm/obj_update.html'
