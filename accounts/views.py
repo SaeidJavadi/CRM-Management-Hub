@@ -150,7 +150,7 @@ class UserCreateView(CreateView):
     model = get_user_model()
     form_class = UserCreationForm
     template_name = 'crm/obj_create.html'
-    success_message = 'Success: Subscription was created.'
+    success_message = _('Success: Subscription was created.')
     success_url = reverse_lazy('accounts:user_list')
 
 
