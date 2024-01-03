@@ -118,7 +118,7 @@ def overview(request, model):
         Pakistan = MODEL.objects.filter(contery='Pakistan').count()
         Turkiye = MODEL.objects.filter(contery='Turkiye').count()
 
-    labelspay = ['Successful Payments', 'Unsuccessful Payments']
+    labelspay = [_('Successful Payments'), _('Unsuccessful Payments')]
     datapay = [spay, unspay]
     if model != 'pa':
         labelscontery = ['Iraq', 'Iran', 'Syria', 'Sweden', 'Australia', 'Denmark', 'Lebanon',
@@ -135,7 +135,7 @@ def overview(request, model):
         total = None
 
     return render(request, 'crm/overview.html', {
-        'headerTitle': f'Subscription {TiTle} Overview',
+        'headerTitle': _(f'Subscription {TiTle} Overview'),
         'labelspay': labelspay,
         'datapay': datapay,
         'totalcount': spay+unspay,
