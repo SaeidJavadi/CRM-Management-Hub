@@ -1,7 +1,5 @@
 from django.contrib import admin
-from crm.models import Common60, Common61, Common70, CommonDead, JudiciaryDead, DoingDead, PublicAssistance, LotteryC60,\
-    Notification, WinnerLottery60, TableType, TableGift, TableGiftUser, TablePayment, WinTableLottery, CommonsAmount, Story, \
-    ViewUser, Postimg, Like
+from crm.models import Common60, Common61, Common70, CommonDead, JudiciaryDead, DoingDead, PublicAssistance, LotteryC60, Notification, WinnerLottery60, TableType, TableGift, TableGiftUser, TablePayment, WinTableLottery, CommonsAmount, Story, PostMedia, LikePost, ViewPost, ViewStory
 
 
 @admin.register(Common60)
@@ -116,3 +114,23 @@ class CommonsAmountAdmin(admin.ModelAdmin):
 @admin.register(Story)
 class StoryAdmin(admin.ModelAdmin):
     list_display = ("createdate", "caption", "file")
+
+
+@admin.register(PostMedia)
+class PostMediaAdmin(admin.ModelAdmin):
+    list_display = ("createdate", "caption", "file")
+
+
+@admin.register(LikePost)
+class LikePostAdmin(admin.ModelAdmin):
+    list_display = ("createdate", "postmedia", "user")
+
+
+@admin.register(ViewPost)
+class ViewPostAdmin(admin.ModelAdmin):
+    list_display = ("createdate", "postmedia", "user")
+
+
+@admin.register(ViewStory)
+class ViewStoryAdmin(admin.ModelAdmin):
+    list_display = ("createdate", "story", "user")
