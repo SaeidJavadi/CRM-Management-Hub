@@ -1,5 +1,5 @@
 from django.contrib import admin
-from crm.models import Common60, Common61, Common70, CommonDead, JudiciaryDead, DoingDead, PublicAssistance, LotteryC60, Notification, WinnerLottery60, TableType, TableGift, TableGiftUser, TablePayment, WinTableLottery, CommonsAmount, SocialMedia, LikePost, ViewPost
+from crm.models import Common60, Common61, Common70, CommonDead, JudiciaryDead, DoingDead, PublicAssistance, LotteryC60, Notification, WinnerLottery60, TableType, TableGift, TableGiftUser, TablePayment, WinTableLottery, CommonsAmount, SocialMedia, LikePost, ViewPost, NewsText, CommentPost
 
 
 @admin.register(Common60)
@@ -125,3 +125,12 @@ class LikePostAdmin(admin.ModelAdmin):
 class ViewPostAdmin(admin.ModelAdmin):
     list_display = ("socialmedia", "user", "createdate")
 
+
+@admin.register(NewsText)
+class NewsTextAdmin(admin.ModelAdmin):
+    list_display = ("text", "createdt", "updatedt")
+
+
+@admin.register(CommentPost)
+class CommentPostAdmin(admin.ModelAdmin):
+    list_display = ('user', 'socialmedia')

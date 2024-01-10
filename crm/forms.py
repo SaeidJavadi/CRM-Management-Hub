@@ -1,6 +1,6 @@
 from django import forms
 from crm.models import Common60, Common61, Common70, CommonDead, JudiciaryDead, DoingDead, PublicAssistance, \
-    Notification, TableGift, TableGiftUser, CommonsAmount, SocialMedia
+    Notification, TableGift, TableGiftUser, CommonsAmount, SocialMedia, NewsText
 from django.utils.translation import gettext_lazy as _
 
 
@@ -165,4 +165,16 @@ class PostForm(forms.ModelForm):
         self.fields['file'].required = False
         for visible in self.visible_fields():
             if visible.name != "adv":
+                visible.field.widget.attrs['class'] = 'form-control'
+
+
+class NewsTextForm(forms.ModelForm):
+    class Meta:
+        model = NewsText
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super(NewsTextForm, self).__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            if visible.name != "active":
                 visible.field.widget.attrs['class'] = 'form-control'

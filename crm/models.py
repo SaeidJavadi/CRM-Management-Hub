@@ -371,6 +371,7 @@ class SocialMedia(models.Model):
     file = models.FileField(verbose_name=_('File'))
     caption = models.TextField(verbose_name=_('Caption'), blank=True, null=True)
     createdate = models.DateTimeField(auto_now_add=True, verbose_name=_('Create Date'))
+    updatedt = models.DateTimeField(auto_now=True, verbose_name=_('Updated Time'))
     adv = models.BooleanField(verbose_name=_('Advertising'), default=False)
 
     class Meta:
@@ -416,3 +417,36 @@ class LikePost(models.Model):
 
     def get_absolute_url(self):
         return reverse("Like_detail", kwargs={"pk": self.pk})
+
+
+class CommentPost(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='commentuser')
+    socialmedia = models.ForeignKey('SocialMedia', on_delete=models.CASCADE, related_name='commentpost')
+    text = models.TextField(verbose_name=_('Comment'))
+
+    class Meta:
+        verbose_name = _("Comment Post")
+        verbose_name_plural = _("Comment Posts")
+
+    def __str__(self):
+        return str(self.id)
+
+    def get_absolute_url(self):
+        return reverse("CommentPost_detail", kwargs={"pk": self.pk})
+
+
+class NewsText(models.Model):
+    text = models.TextField(verbose_name=_('News Text'))
+    createdt = models.DateTimeField(auto_now_add=True, verbose_name=_('Created Time'))
+    updatedt = models.DateTimeField(auto_now=True, verbose_name=_('Updated Time'))
+    active = models.BooleanField(verbose_name=_('Active'), default=False)
+
+    class Meta:
+        verbose_name = _("News Text")
+        verbose_name_plural = _("News Texts")
+
+    def __str__(self):
+        return str(self.id)
+
+    def get_absolute_url(self):
+        return reverse("NewsText_detail", kwargs={"pk": self.pk})

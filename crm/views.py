@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from crm.models import Common60, Common61, Common70, CommonDead, JudiciaryDead, DoingDead, PublicAssistance, \
-    LotteryC60, Notification, WinnerLottery60, TableGift, TableGiftUser, WinTableLottery, CommonsAmount, SocialMedia
+    LotteryC60, Notification, WinnerLottery60, TableGift, TableGiftUser, WinTableLottery, CommonsAmount, SocialMedia, NewsText
 from django.contrib.auth.decorators import login_required
 from crm.forms import ObjectModelForm60, ObjectModelForm61, ObjectModelForm70, ObjectModelFormCd, ObjectModelFormJd, \
     ObjectModelFormDd, ObjectModelFormPa, ObjectModelFormMSG, HodlingLotteryForm, AddtoLotteryForm, \
-    ObjectModelFormTabGift, ObjectModelFormTabGiftUser, HodlingLottabForm, AmountsForm, PostForm
+    ObjectModelFormTabGift, ObjectModelFormTabGiftUser, HodlingLottabForm, AmountsForm, PostForm, NewsTextForm
 from accounts.models import User
 from django.urls import reverse_lazy
 from django.utils import timezone
@@ -937,7 +937,7 @@ class PostCreateView(CreateView):           # Social Media
     model = SocialMedia
     form_class = PostForm
     template_name = 'crm/obj_create.html'
-    success_message = _('Success: Post was created.')
+    success_message = _('Success: Post was Created.')
     success_url = reverse_lazy('crm:post_list')
 
 
@@ -962,7 +962,7 @@ class PostList(ListView):
         return queryset
 
 
-class PostUpdate(UpdateView):
+class PostUpdateView(UpdateView):
     model = SocialMedia
     form_class = PostForm
     template_name = 'crm/obj_update.html'
@@ -976,3 +976,35 @@ class PostDeleteView(DeleteView):
     template_name = 'crm/obj_delete.html'
     success_message = _('Success: Post was deleted.')
     success_url = reverse_lazy('crm:post_list')
+
+
+class NewsTextCreateView(CreateView):       # News Text
+    model = NewsText
+    form_class = NewsTextForm
+    template_name = 'crm/obj_create.html'
+    success_message = _('Success: News Text was Created.')
+    success_url = reverse_lazy('crm:news_list')
+
+
+class NewsTextList(ListView):
+    model = NewsText
+    context_object_name = 'objects'
+    template_name = 'crm/news_list.html'
+    paginate_by = 30
+    ordering = ('-createdt',)
+
+
+class NewsTextUpdateView(UpdateView):
+    model = NewsText
+    form_class = NewsTextForm
+    template_name = 'crm/obj_update.html'
+    success_message = _('Success: News Text was Updated.')
+    success_url = reverse_lazy('crm:news_list')
+
+
+class NewsTextDeleteView(DeleteView):
+    model = NewsText
+    context_object_name = 'obj'
+    template_name = 'crm/obj_delete.html'
+    success_message = _('Success: News Text was Deleted.')
+    success_url = reverse_lazy('crm:news_list')
