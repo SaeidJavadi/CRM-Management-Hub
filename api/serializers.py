@@ -198,8 +198,22 @@ class SocialMediaSerilizer(DynamicFieldsMixin, serializers.ModelSerializer):
 
     def get_detail(self, obj):
         try:
+            views = obj.viewpost.get(user__id=self.context['request'].user.id)
+            if views:
+                view_status = True
+        except:
+            view_status = False
+        try:
+            likes = obj.likepost.get(user__id=self.context['request'].user.id)
+            if likes:
+                like_status = True
+        except:
+            like_status = False
+        try:
             return {
+                'viewstatus': view_status,
                 'views': len(obj.viewpost.all()),
+                'likestatus': like_status,
                 'likes': len(obj.likepost.all())
             }
         except:
