@@ -8,73 +8,77 @@
     {% trans "Subscription Doing Dead" %}
 {% endblock title %}
 {% block content %}
-    <table id="objs-table" class="table">
-        <thead>
-            <tr>
-                <th>{% trans "ID" %}:</th>
-                <th>{{ obj.id }}</th>
-            </tr>
-            <tr>
-                <th>{% trans "User Submit" %}:</th>
-                <th>{{ obj.usersubmit }}</th>
-            </tr>
-            <tr>
-                <th>{% trans "Name" %}:</th>
-                <th>{{ obj.name }}</th>
-            </tr>
-            <tr>
-                <th>{% trans "Amount" %}:</th>
-                <th>{{ obj.amount }}</th>
-            </tr>
-            <tr>
-                <th>{% trans "Year Prayer" %}:</th>
-                <th>{{ obj.yearprayer }}</th>
-            </tr>
-            <tr>
-                <th>{% trans "Year Fasting" %}:</th>
-                <th>{{ obj.yearfasting }}</th>
-            </tr>
-            <tr>
-                <th>{% trans "Pilgrimage" %}:</th>
-                <th>{{ obj.pilgrimage }}</th>
-            </tr>
-            <tr>
-                <th>{% trans "Agent" %}:</th>
-                <th>{{ obj.agent }}</th>
-            </tr>
-            <tr>
-                <th>{% trans "Phone" %}:</th>
-                <th>{{ obj.phone }}</th>
-            </tr>
-            <tr>
-                <th>{% trans "Contery" %}:</th>
-                <th>{{ obj.contery }}</th>
-            </tr>
-            <tr>
-                <th>{% trans "State/City" %}:</th>
-                <th>{{ obj.city }}</th>
-            </tr>
-            <tr>
-                <th>{% trans "Deposit" %}:</th>
-                <th>{{ obj.deposit }}</th>
-            </tr>
-            <tr>
-                <th>{% trans "Create Date" %}:</th>
-                <th>{{ obj.create|date:"Y-m-d (H:i)" }}</th>
-            </tr>
-            <tr>
-                <th>{% trans "Link" %}:</th>
-                <th>{{ obj.link }}</th>
-            </tr>
-            <tr>
-                <th>{% trans "Status" %}:</th>
-                <th>{{ obj.status }}</th>
-            </tr>
-        </thead>
-    </table>
+    <div id="print_this">
+        <table id="objs-table" class="table">
+            <thead>
+                <tr>
+                    <th>{% trans "ID" %}:</th>
+                    <th>{{ obj.id }}</th>
+                </tr>
+                <tr>
+                    <th>{% trans "User Submit" %}:</th>
+                    <th>{{ obj.usersubmit }}</th>
+                </tr>
+                <tr>
+                    <th>{% trans "Name" %}:</th>
+                    <th>{{ obj.name }}</th>
+                </tr>
+                <tr>
+                    <th>{% trans "Amount" %}:</th>
+                    <th>{{ obj.amount }}</th>
+                </tr>
+                <tr>
+                    <th>{% trans "Year Prayer" %}:</th>
+                    <th>{{ obj.yearprayer }}</th>
+                </tr>
+                <tr>
+                    <th>{% trans "Year Fasting" %}:</th>
+                    <th>{{ obj.yearfasting }}</th>
+                </tr>
+                <tr>
+                    <th>{% trans "Pilgrimage" %}:</th>
+                    <th>{{ obj.pilgrimage }}</th>
+                </tr>
+                <tr>
+                    <th>{% trans "Agent" %}:</th>
+                    <th>{{ obj.agent }}</th>
+                </tr>
+                <tr>
+                    <th>{% trans "Phone" %}:</th>
+                    <th>{{ obj.phone }}</th>
+                </tr>
+                <tr>
+                    <th>{% trans "Contery" %}:</th>
+                    <th>{{ obj.contery }}</th>
+                </tr>
+                <tr>
+                    <th>{% trans "State/City" %}:</th>
+                    <th>{{ obj.city }}</th>
+                </tr>
+                <tr>
+                    <th>{% trans "Deposit" %}:</th>
+                    <th>{{ obj.deposit }}</th>
+                </tr>
+                <tr>
+                    <th>{% trans "Create Date" %}:</th>
+                    <th>{{ obj.create|date:"Y-m-d (H:i)" }}</th>
+                </tr>
+                <tr>
+                    <th>{% trans "Link" %}:</th>
+                    <th>{{ obj.link }}</th>
+                </tr>
+                <tr>
+                    <th>{% trans "Status" %}:</th>
+                    <th>{{ obj.status }}</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
     <center>
-        <button onclick="window.print();" class="print-button noPrint">
-            <span class="print-icon"></span>
-        </button>
+        <div class="text-center" style="margin-top:20px;">
+            <button class="print-button noPrint"  onclick="printdiv()" target="_blank">
+                <span class="print-icon"></span>
+            </button>
+        </div>
     </center>
 {% endblock content %}

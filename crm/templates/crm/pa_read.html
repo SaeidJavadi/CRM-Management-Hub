@@ -8,45 +8,49 @@
     {% trans "Detail View" %}
 {% endblock title %}
 {% block content %}
-    <table id="objs-table" class="table">
-        <thead>
-            <tr>
-                <th>{% trans "ID" %}:</th>
-                <th>{{ obj.id }}</th>
-            </tr>
-            <tr>
-                <th>{% trans "User Submit" %}:</th>
-                <th>{{ obj.usersubmit }}</th>
-            </tr>
-            <tr>
-                <th>{% trans "Name" %}:</th>
-                <th>{{ obj.name }}</th>
-            </tr>
-            <tr>
-                <th>{% trans "Help Name" %}:</th>
-                <th>{{ obj.help_name }}</th>
-            </tr>
-            <tr>
-                <th>{% trans "Create Time" %}:</th>
-                <th>{{ obj.create|date:"Y-m-d (H:i)" }}</th>
-            </tr>
-            <tr>
-                <th>{% trans "Amount" %}:</th>
-                <th>{{ obj.amount }}</th>
-            </tr>
-            <tr>
-                <th>{% trans "Link" %}:</th>
-                <th>{{ obj.link }}</th>
-            </tr>
-            <tr>
-                <th>{% trans "Status" %}:</th>
-                <th>{{ obj.status }}</th>
-            </tr>
-        </thead>
-    </table>
+    <div id="print_this">
+        <table id="objs-table" class="table">
+            <thead>
+                <tr>
+                    <th>{% trans "ID" %}:</th>
+                    <th>{{ obj.id }}</th>
+                </tr>
+                <tr>
+                    <th>{% trans "User Submit" %}:</th>
+                    <th>{{ obj.usersubmit }}</th>
+                </tr>
+                <tr>
+                    <th>{% trans "Name" %}:</th>
+                    <th>{{ obj.name }}</th>
+                </tr>
+                <tr>
+                    <th>{% trans "Help Name" %}:</th>
+                    <th>{{ obj.help_name }}</th>
+                </tr>
+                <tr>
+                    <th>{% trans "Create Time" %}:</th>
+                    <th>{{ obj.create|date:"Y-m-d (H:i)" }}</th>
+                </tr>
+                <tr>
+                    <th>{% trans "Amount" %}:</th>
+                    <th>{{ obj.amount }}</th>
+                </tr>
+                <tr>
+                    <th>{% trans "Link" %}:</th>
+                    <th>{{ obj.link }}</th>
+                </tr>
+                <tr>
+                    <th>{% trans "Status" %}:</th>
+                    <th>{{ obj.status }}</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
     <center>
-        <button onclick="window.print();" class="print-button noPrint">
-            <span class="print-icon"></span>
-        </button>
+        <div class="text-center" style="margin-top:20px;">
+            <button class="print-button noPrint"  onclick="printdiv()" target="_blank">
+                <span class="print-icon"></span>
+            </button>
+        </div>
     </center>
 {% endblock content %}

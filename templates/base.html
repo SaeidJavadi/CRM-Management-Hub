@@ -85,5 +85,16 @@
         <script src="{% static 'root/js/sidebar_script.js' %}"></script>
         <script src="{% static 'root/js/modal_script.js' %}"></script>
         {# ---- JS Script ---- #}
+        {# Print Script #}
+        <script>
+            function printdiv() {
+                var printContents = document.getElementById('print_this').innerHTML;
+                var originalContents = document.body.innerHTML;
+                document.body.innerHTML = printContents;
+                window.print();
+                document.body.innerHTML = originalContents;
+            }
+        </script>
+        {# Print Script #}
     </body>
 </html>
