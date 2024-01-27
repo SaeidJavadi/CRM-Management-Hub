@@ -5,7 +5,7 @@ const modal = document.querySelector("#modal");
 // Open the modal when the button is clicked
 openBtn.addEventListener("click", () => {
   modal.showModal();
-  modal.
+  // modal.
 });
 
 // Close the modal when the close button is clicked
