@@ -183,7 +183,7 @@ REST_FRAMEWORK = {
     # ]
 }
 
-REST_AUTH = {
+REST_AUTH_SERIALIZERS = {
     "REGISTER_SERIALIZER": "api.serializers.UserSerializerReg",
     'USER_DETAILS_SERIALIZER': "api.serializers.UserSerializer"
 }
