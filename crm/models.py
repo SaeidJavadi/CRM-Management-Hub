@@ -207,8 +207,8 @@ class PublicAssistance(models.Model):  # komak be khirieh
 
 class LotteryC60(models.Model):
     lottery_field = (
-        ('quran', _('Quran memorization lottery')),
-        ('ziarat', _('Visiting religious places'))
+        (_('quran'), _('Quran memorization lottery')),
+        (_('ziarat'), _('Visiting religious places'))
     )
     title = models.CharField(max_length=200, verbose_name=_('Lottery'), choices=lottery_field, blank=True, null=True)
 

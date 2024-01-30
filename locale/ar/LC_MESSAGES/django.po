@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-27 20:31+0330\n"
+"POT-Creation-Date: 2024-01-30 08:27+0000\n"
 "PO-Revision-Date: 2024-01-27 11:46-0800\n"
 "Last-Translator: Server <root@localhost>\n"
 "Language-Team: English <social.solidarity2023@gmail.com>\n"
@@ -13,270 +13,270 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.2\n"
 
-#: .\base\settings.py:137
+#: base/settings.py:137
 msgid "Arabic"
 msgstr "عربي"
 
-#: .\base\settings.py:138
+#: base/settings.py:138
 msgid "English"
 msgstr "إنجليزي"
 
-#: .\base\urls.py:37 .\base\urls.py:38
+#: base/urls.py:37 base/urls.py:38
 msgid "Control Panel"
 msgstr "لوحة التحكم"
 
-#: .\base\urls.py:39
+#: base/urls.py:39
 msgid "Wellcome to Control Panel"
 msgstr "مرحبا بكم في لوحة التحكم"
 
-#: .\templates\base.html:11
+#: templates/base.html:11
 msgid "Admin Panel"
 msgstr "لوحة الادارة"
 
-#: .\templates\base.html:43
+#: templates/base.html:43
 msgid "Close"
 msgstr "يغلق"
 
-#: .\templates\partials\sidebar.html:15
+#: templates/partials/sidebar.html:15
 msgid "Social solidarity"
 msgstr "تكافل اجتماعي"
 
-#: .\templates\partials\sidebar.html:38
+#: templates/partials/sidebar.html:38
 msgid "GENERAL"
 msgstr "عام"
 
-#: .\templates\partials\sidebar.html:47
+#: templates/partials/sidebar.html:47
 msgid "Dashboard"
 msgstr "لوحة القيادة"
 
-#: .\templates\partials\sidebar.html:57
+#: templates/partials/sidebar.html:57
 msgid "Menu-1 show menu"
 msgstr "القائمة-1 عرض القائمة"
 
-#: .\templates\partials\sidebar.html:62
+#: templates/partials/sidebar.html:62
 msgid "Menu-2"
 msgstr "القائمة-2"
 
-#: .\templates\partials\sidebar.html:67
+#: templates/partials/sidebar.html:67
 msgid "Menu-3"
 msgstr "القائمة-3"
 
-#: .\templates\partials\sidebar.html:73
+#: templates/partials/sidebar.html:73
 msgid "Menu-3_1"
 msgstr "القائمة-3_1"
 
-#: .\templates\partials\sidebar.html:78
+#: templates/partials/sidebar.html:78
 msgid "Menu-3_2"
 msgstr "القائمة-3_2"
 
-#: .\templates\partials\sidebar.html:83
+#: templates/partials/sidebar.html:83
 msgid "Menu-3_3"
 msgstr "القائمة-3_3"
 
-#: .\templates\partials\sidebar.html:89
+#: templates/partials/sidebar.html:89
 msgid "Menu3_3_1"
 msgstr "القائمة3_3_1"
 
-#: .\templates\partials\sidebar.html:94
+#: templates/partials/sidebar.html:94
 msgid "Menu3_3_2"
 msgstr "القائمة3_3_2"
 
-#: .\templates\partials\sidebar.html:99
+#: templates/partials/sidebar.html:99
 msgid "Menu3_3_3"
 msgstr "القائمة3_3_3"
 
-#: .\templates\partials\sidebar.html:107
+#: templates/partials/sidebar.html:107
 msgid "You made it"
 msgstr "لقد فعلتها"
 
-#: .\templates\partials\sidebar.html:129
+#: templates/partials/sidebar.html:129
 msgid "Subscriptions"
 msgstr "الاشتراكات"
 
-#: .\templates\partials\sidebar.html:135
+#: templates/partials/sidebar.html:135
 msgid "Commons Amount"
 msgstr "مبلغ العموم"
 
-#: .\templates\partials\sidebar.html:140
+#: templates/partials/sidebar.html:140
 msgid "Subscription 0 to 60"
 msgstr "الاشتراك من 0 إلى 60"
 
-#: .\templates\partials\sidebar.html:146 .\templates\partials\sidebar.html:237
-#: .\templates\partials\sidebar.html:261 .\templates\partials\sidebar.html:285
-#: .\templates\partials\sidebar.html:309 .\templates\partials\sidebar.html:333
-#: .\templates\partials\sidebar.html:357 .\templates\partials\sidebar.html:545
+#: templates/partials/sidebar.html:146 templates/partials/sidebar.html:237
+#: templates/partials/sidebar.html:261 templates/partials/sidebar.html:285
+#: templates/partials/sidebar.html:309 templates/partials/sidebar.html:333
+#: templates/partials/sidebar.html:357 templates/partials/sidebar.html:545
 msgid "Overview"
 msgstr "ملخص"
 
-#: .\templates\partials\sidebar.html:151 .\templates\partials\sidebar.html:173
-#: .\templates\partials\sidebar.html:202 .\templates\partials\sidebar.html:242
-#: .\templates\partials\sidebar.html:266 .\templates\partials\sidebar.html:290
-#: .\templates\partials\sidebar.html:314 .\templates\partials\sidebar.html:338
-#: .\templates\partials\sidebar.html:362 .\templates\partials\sidebar.html:399
-#: .\templates\partials\sidebar.html:418 .\templates\partials\sidebar.html:437
+#: templates/partials/sidebar.html:151 templates/partials/sidebar.html:173
+#: templates/partials/sidebar.html:202 templates/partials/sidebar.html:242
+#: templates/partials/sidebar.html:266 templates/partials/sidebar.html:290
+#: templates/partials/sidebar.html:314 templates/partials/sidebar.html:338
+#: templates/partials/sidebar.html:362 templates/partials/sidebar.html:399
+#: templates/partials/sidebar.html:418 templates/partials/sidebar.html:437
 msgid "List"
 msgstr "قائمة"
 
-#: .\templates\partials\sidebar.html:156 .\templates\partials\sidebar.html:247
-#: .\templates\partials\sidebar.html:271 .\templates\partials\sidebar.html:295
-#: .\templates\partials\sidebar.html:319 .\templates\partials\sidebar.html:343
-#: .\templates\partials\sidebar.html:367
+#: templates/partials/sidebar.html:156 templates/partials/sidebar.html:247
+#: templates/partials/sidebar.html:271 templates/partials/sidebar.html:295
+#: templates/partials/sidebar.html:319 templates/partials/sidebar.html:343
+#: templates/partials/sidebar.html:367
 msgid "Create"
 msgstr "يخلق"
 
-#: .\templates\partials\sidebar.html:161
+#: templates/partials/sidebar.html:161
 msgid "Lottery"
 msgstr "اليانصيب"
 
-#: .\templates\partials\sidebar.html:167
+#: templates/partials/sidebar.html:167
 msgid "Lottery Quran"
 msgstr "قرآن اليانصيب"
 
-#: .\templates\partials\sidebar.html:178 .\templates\partials\sidebar.html:207
+#: templates/partials/sidebar.html:178 templates/partials/sidebar.html:207
 msgid "Add To Lottery"
 msgstr "أضف إلى اليانصيب"
 
-#: .\templates\partials\sidebar.html:183 .\templates\partials\sidebar.html:212
+#: templates/partials/sidebar.html:183 templates/partials/sidebar.html:212
 msgid "Holding a lottery"
 msgstr "عقد اليانصيب"
 
-#: .\templates\partials\sidebar.html:188 .\templates\partials\sidebar.html:217
+#: templates/partials/sidebar.html:188 templates/partials/sidebar.html:217
 msgid "Draws done"
 msgstr "تم السحب"
 
-#: .\templates\partials\sidebar.html:196
+#: templates/partials/sidebar.html:196
 msgid "Lottery Ziarat"
 msgstr "زيارات اليانصيب"
 
-#: .\templates\partials\sidebar.html:231
+#: templates/partials/sidebar.html:231
 msgid "Subscription 61 to 69"
 msgstr "الاشتراك من 61 إلى 69"
 
-#: .\templates\partials\sidebar.html:255
+#: templates/partials/sidebar.html:255
 msgid "Subscription 70 and above"
 msgstr "الاشتراك 70 وما فوق"
 
-#: .\templates\partials\sidebar.html:279
+#: templates/partials/sidebar.html:279
 msgid "Subscription Dead"
 msgstr "الاشتراك ميت"
 
-#: .\templates\partials\sidebar.html:303
+#: templates/partials/sidebar.html:303
 msgid "Subscription Judiciary of the Dead"
 msgstr "اشتراك قضاء الموتى"
 
-#: .\templates\partials\sidebar.html:327
+#: templates/partials/sidebar.html:327
 msgid "Performing acts of worship"
 msgstr "أداء العبادات"
 
-#: .\templates\partials\sidebar.html:351
+#: templates/partials/sidebar.html:351
 msgid "Public assistance"
 msgstr "مساعدة عامة"
 
-#: .\templates\partials\sidebar.html:382
+#: templates/partials/sidebar.html:382
 msgid "Table Gifts"
 msgstr "هدايا الطاولة"
 
-#: .\templates\partials\sidebar.html:388
+#: templates/partials/sidebar.html:388
 msgid "Create Lottery"
 msgstr "إنشاء اليانصيب"
 
-#: .\templates\partials\sidebar.html:393
+#: templates/partials/sidebar.html:393
 msgid "Table u16"
 msgstr "الجدول ش16"
 
-#: .\templates\partials\sidebar.html:404 .\templates\partials\sidebar.html:423
-#: .\templates\partials\sidebar.html:442
+#: templates/partials/sidebar.html:404 templates/partials/sidebar.html:423
+#: templates/partials/sidebar.html:442
 msgid "Holding Lottery"
 msgstr "عقد اليانصيب"
 
-#: .\templates\partials\sidebar.html:412
+#: templates/partials/sidebar.html:412
 msgid "Table 2"
 msgstr "الجدول 2"
 
-#: .\templates\partials\sidebar.html:431
+#: templates/partials/sidebar.html:431
 msgid "Table 3"
 msgstr "الجدول 3"
 
-#: .\templates\partials\sidebar.html:450
+#: templates/partials/sidebar.html:450
 msgid "Participants"
 msgstr "مشاركون"
 
-#: .\templates\partials\sidebar.html:456
+#: templates/partials/sidebar.html:456
 msgid "Participants Winners"
 msgstr "الفائزون المشاركون"
 
-#: .\templates\partials\sidebar.html:468
+#: templates/partials/sidebar.html:468
 msgid "Notification messages"
 msgstr "رسائل الإخطار"
 
-#: .\templates\partials\sidebar.html:474
+#: templates/partials/sidebar.html:474
 msgid "Notifications Sent"
 msgstr "الإخطارات المرسلة"
 
-#: .\templates\partials\sidebar.html:479
+#: templates/partials/sidebar.html:479
 msgid "Send New Notification"
 msgstr "إرسال إشعار جديد"
 
-#: .\templates\partials\sidebar.html:491
+#: templates/partials/sidebar.html:491
 msgid "Social Media"
 msgstr "وسائل التواصل الاجتماعي"
 
-#: .\templates\partials\sidebar.html:497
+#: templates/partials/sidebar.html:497
 msgid "Send Media"
 msgstr "إرسال الوسائط"
 
-#: .\templates\partials\sidebar.html:502
+#: templates/partials/sidebar.html:502
 msgid "Create News Text"
 msgstr "إنشاء نص الأخبار"
 
-#: .\templates\partials\sidebar.html:507
+#: templates/partials/sidebar.html:507
 msgid "News Texts"
 msgstr "نصوص الأخبار"
 
-#: .\templates\partials\sidebar.html:512
+#: templates/partials/sidebar.html:512
 msgid "Stories"
 msgstr "قصص"
 
-#: .\templates\partials\sidebar.html:517
+#: templates/partials/sidebar.html:517
 msgid "Posts"
 msgstr "دعامات"
 
-#: .\templates\partials\sidebar.html:522
+#: templates/partials/sidebar.html:522
 msgid "Advertising"
 msgstr "دعاية"
 
-#: .\templates\partials\sidebar.html:527
+#: templates/partials/sidebar.html:527
 msgid "Comments"
 msgstr "تعليقات"
 
-#: .\templates\partials\sidebar.html:539
+#: templates/partials/sidebar.html:539
 msgid "User Manager"
 msgstr "مدير المستخدم"
 
-#: .\templates\partials\sidebar.html:550
+#: templates/partials/sidebar.html:550
 msgid "User list"
 msgstr "قائمة المستخدم"
 
-#: .\templates\partials\sidebar.html:555
+#: templates/partials/sidebar.html:555
 msgid "Create User"
 msgstr "إنشاء مستخدم"
 
-#: .\templates\partials\sidebar.html:563
+#: templates/partials/sidebar.html:563
 msgid "Account Setting"
 msgstr "إعدادات الحساب"
 
-#: .\templates\partials\sidebar.html:570
+#: templates/partials/sidebar.html:570
 msgid "Profile"
 msgstr "حساب تعريفي"
 
-#: .\templates\partials\sidebar.html:582
+#: templates/partials/sidebar.html:582
 msgid "Change Password"
 msgstr "تغيير كلمة المرور"
 
-#: .\templates\partials\sidebar.html:590
+#: templates/partials/sidebar.html:590
 msgid "LogOut"
 msgstr "تسجيل خروج"
 
-#: .\templates\rest_framework\api.html:4
+#: templates/rest_framework/api.html:4
 msgid "CRM API Test"
 msgstr "اختبار واجهة برمجة تطبيقات CRM"
