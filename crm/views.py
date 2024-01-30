@@ -20,7 +20,7 @@ from django.utils.translation import gettext_lazy as _
 
 @login_required
 def home(request):
-    return render(request, 'crm/home.html')
+    return render(request, 'crm/dashboard.html')
 
 
 def assetlinks(request):

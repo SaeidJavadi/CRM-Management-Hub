@@ -36,9 +36,8 @@
             <span>{% trans "GENERAL" %}</span>
           </li>
           {# Dashboard #}
-          <!--
           <li class="menu-item sub-menu">
-            <a href="#">
+            <a href="{% url 'crm:home' %}">
               <span class="menu-icon">
                 <i class="ri-dashboard-fill"></i>
               </span>
@@ -48,75 +47,8 @@
               </span>
             </a>
             <div class="sub-menu-list">
-              <ul>
-                <li class="menu-item">
-                  <a href="{% url 'crm:home' %}">
-                    <span class="menu-title">{% trans "Menu-1 show menu" %}</span>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="#">
-                    <span class="menu-title">{% trans "Menu-2" %}</span>
-                  </a>
-                </li>
-                <li class="menu-item sub-menu">
-                  <a href="#">
-                    <span class="menu-title">{% trans "Menu-3" %}</span>
-                  </a>
-                  <div class="sub-menu-list">
-                    <ul>
-                      <li class="menu-item">
-                        <a href="#">
-                          <span class="menu-title">{% trans "Menu-3_1" %}</span>
-                        </a>
-                      </li>
-                      <li class="menu-item">
-                        <a href="#">
-                          <span class="menu-title">{% trans "Menu-3_2" %}</span>
-                        </a>
-                      </li>
-                      <li class="menu-item sub-menu">
-                        <a href="#">
-                          <span class="menu-title">{% trans "Menu-3_3" %}</span>
-                        </a>
-                        <div class="sub-menu-list">
-                          <ul>
-                            <li class="menu-item">
-                              <a href="#">
-                                <span class="menu-title">{% trans "Menu3_3_1" %}</span>
-                              </a>
-                            </li>
-                            <li class="menu-item">
-                              <a href="#">
-                                <span class="menu-title">{% trans "Menu3_3_2" %}</span>
-                              </a>
-                            </li>
-                            <li class="menu-item sub-menu">
-                              <a href="#">
-                                <span class="menu-title">{% trans "Menu3_3_3" %}</span>
-                                <span class="menu-suffix">&#x1F914;</span>
-                              </a>
-                              <div class="sub-menu-list">
-                                <ul>
-                                  <li class="menu-item">
-                                    <a href="#">
-                                      <span class="menu-prefix">&#127881;</span>
-                                      <span class="menu-title">{% trans "You made it" %}</span>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </li>
-                          </ul>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-              </ul>
             </div>
           </li>
-          -->
           {# Subscriptions #}
           <li class="menu-item sub-menu">
             <a href="#">
