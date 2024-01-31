@@ -4,49 +4,53 @@
     <link rel="stylesheet" href="{% static 'crm/css/printstyle.css' %}">
 {% endblock head %}
 {% block content %}
-    <table id="objs-table" class="table">
-        <thead>
-            <tr>
-                <th>ID:</th>
-                <th>{{ obj.id }}</th>
-            </tr>
-            <tr>
-                <th>Username:</th>
-                <th>{{ obj.username }}</th>
-            </tr>
-            <tr>
-                <th>Phone:</th>
-                <th>{{ obj.phone }}</th>
-            </tr>
-            <tr>
-                <th>Email:</th>
-                <th>{{ obj.email }}</th>
-            </tr>
-            <tr>
-                <th>Register Date:</th>
-                <th>{{ obj.regdate|date:"Y-m-d (H:i)" }}</th>
-            </tr>
-            <tr>
-                <th>Updated:</th>
-                <th>{{ obj.updated|date:"Y-m-d (H:i)" }}</th>
-            </tr>
-            <tr>
-                <th>Active:</th>
-                <th>{{ obj.is_active }}</th>
-            </tr>
-            <tr>
-                <th>Staff:</th>
-                <th>{{ obj.is_staff }}</th>
-            </tr>
-            <tr>
-                <th>Superuser:</th>
-                <th>{{ obj.is_superuser }}</th>
-            </tr>
-        </thead>
-    </table>
+    <div id="print_this">
+        <table id="objs-table" class="table">
+            <thead>
+                <tr>
+                    <th>ID:</th>
+                    <th>{{ obj.id }}</th>
+                </tr>
+                <tr>
+                    <th>Username:</th>
+                    <th>{{ obj.username }}</th>
+                </tr>
+                <tr>
+                    <th>Phone:</th>
+                    <th>{{ obj.phone }}</th>
+                </tr>
+                <tr>
+                    <th>Email:</th>
+                    <th>{{ obj.email }}</th>
+                </tr>
+                <tr>
+                    <th>Register Date:</th>
+                    <th>{{ obj.regdate|date:"Y-m-d (H:i)" }}</th>
+                </tr>
+                <tr>
+                    <th>Updated:</th>
+                    <th>{{ obj.updated|date:"Y-m-d (H:i)" }}</th>
+                </tr>
+                <tr>
+                    <th>Active:</th>
+                    <th>{{ obj.is_active }}</th>
+                </tr>
+                <tr>
+                    <th>Staff:</th>
+                    <th>{{ obj.is_staff }}</th>
+                </tr>
+                <tr>
+                    <th>Superuser:</th>
+                    <th>{{ obj.is_superuser }}</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
     <center>
-        <button onclick="window.print();" class="print-button noPrint">
-            <span class="print-icon"></span>
-        </button>
+        <div class="text-center" style="margin-top:20px;">
+            <button class="print-button noPrint"  onclick="printdiv()" target="_blank">
+                <span class="print-icon"></span>
+            </button>
+        </div>
     </center>
 {% endblock content %}
