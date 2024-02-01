@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-30 08:27+0000\n"
+"POT-Creation-Date: 2024-02-01 07:01+0000\n"
 "PO-Revision-Date: 2024-01-27 11:55-0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -161,7 +161,7 @@ msgstr "حالة الدفع"
 msgid "Status"
 msgstr "حالة"
 
-#: crm/models.py:45
+#: crm/models.py:45 crm/views.py:42
 msgid "Common60"
 msgstr "مشترك60"
 
@@ -195,7 +195,7 @@ msgstr "مشترك70s"
 msgid "Deceased name"
 msgstr "اسم متوفي"
 
-#: crm/models.py:124
+#: crm/models.py:124 crm/views.py:42
 msgid "CommonDead"
 msgstr "الميت المشترك"
 
@@ -203,7 +203,7 @@ msgstr "الميت المشترك"
 msgid "CommonDeads"
 msgstr "الوفيات الشائعة"
 
-#: crm/models.py:149
+#: crm/models.py:149 crm/views.py:42
 msgid "JudiciaryDead"
 msgstr "القضاء ميت"
 
@@ -232,7 +232,7 @@ msgstr "عامل"
 msgid "Deposit"
 msgstr "إيداع"
 
-#: crm/models.py:177
+#: crm/models.py:177 crm/views.py:42
 msgid "DoingDead"
 msgstr "القيام بالموتى"
 
@@ -245,12 +245,10 @@ msgid "help name"
 msgstr "اسم المساعدة"
 
 #: crm/models.py:193
-#, fuzzy
-#| msgid "Amount"
 msgid "User Amount"
-msgstr "كمية"
+msgstr "مبلغ المستخدم"
 
-#: crm/models.py:198
+#: crm/models.py:198 crm/views.py:42
 msgid "PublicAssistance"
 msgstr "مساعدة عامة"
 
@@ -259,7 +257,7 @@ msgid "PublicAssistances"
 msgstr "المساعدة العامة"
 
 #: crm/models.py:210
-msgid "qunra"
+msgid "quran"
 msgstr "قرآن"
 
 #: crm/models.py:210
@@ -672,6 +670,34 @@ msgstr "عرض ليز"
 msgid "Unactive"
 msgstr "غير نشط"
 
+#: crm/templates/crm/dashboard.html:5
+msgid "Customer relationship management"
+msgstr "إدارة علاقات العملاء"
+
+#: crm/templates/crm/dashboard.html:19
+msgid "Total Users"
+msgstr "إجمالي المستخدمين"
+
+#: crm/templates/crm/dashboard.html:22
+msgid "Today's Register"
+msgstr "سجل اليوم"
+
+#: crm/templates/crm/dashboard.html:29
+msgid "Total Comments"
+msgstr "إجمالي التعليقات"
+
+#: crm/templates/crm/dashboard.html:32
+msgid "Today's comments"
+msgstr "تعليقات اليوم"
+
+#: crm/templates/crm/dashboard.html:39
+msgid "Total Likes"
+msgstr "إجمالي الإعجابات"
+
+#: crm/templates/crm/dashboard.html:42
+msgid "Today's Likes"
+msgstr "إعجابات اليوم"
+
 #: crm/templates/crm/dd_list.html:9 crm/templates/crm/dd_read.html:8
 msgid "Subscription Doing Dead"
 msgstr "الاشتراك به ميت"
@@ -687,14 +713,6 @@ msgstr "صيام السنة"
 #: crm/templates/crm/dd_read.html:35
 msgid "Year Fasting"
 msgstr "صيام السنة"
-
-#: crm/templates/crm/home.html:5
-msgid "Customer relationship management"
-msgstr "إدارة علاقات العملاء"
-
-#: crm/templates/crm/home.html:10
-msgid "Wellcome To Administrator Customer relationship management"
-msgstr "مرحبا بكم في مدير إدارة علاقات العملاء"
 
 #: crm/templates/crm/lottery_draws.html:4
 msgid "Lottery Draws"
@@ -833,11 +851,11 @@ msgstr "ملخص"
 msgid "Total"
 msgstr "المجموع"
 
-#: crm/templates/crm/overview.html:43 crm/views.py:121
+#: crm/templates/crm/overview.html:43 crm/views.py:142
 msgid "Successful Payments"
 msgstr "المدفوعات الناجحة"
 
-#: crm/templates/crm/overview.html:47 crm/views.py:121
+#: crm/templates/crm/overview.html:47 crm/views.py:142
 msgid "Unsuccessful Payments"
 msgstr "دفعات غير ناجحة"
 
@@ -949,75 +967,85 @@ msgstr "تقسيط"
 msgid "Gifts Users"
 msgstr "مستخدمي الهدايا"
 
-#: crm/views.py:138
-#, fuzzy, python-brace-format
+#: crm/views.py:42
+msgid " Common61"
+msgstr "مشترك61"
+
+#: crm/views.py:42
+msgid " Common70"
+msgstr "مشترك70"
+
+#: crm/views.py:159
 #| msgid "Subscription Doing Dead"
 msgid "Subscription {TiTle} Overview"
 msgstr "الاشتراك به ميت"
 
-#: crm/views.py:163
+#: crm/views.py:184
 msgid "Success: Amount was updated."
 msgstr "النجاح: تم تحديث المبلغ."
 
-#: crm/views.py:203 crm/views.py:383 crm/views.py:439 crm/views.py:495
-#: crm/views.py:551 crm/views.py:607 crm/views.py:659
+#: crm/views.py:224 crm/views.py:404 crm/views.py:460 crm/views.py:516
+#: crm/views.py:572 crm/views.py:628 crm/views.py:680
 msgid "Success: Subscription was created."
 msgstr "النجاح: تم إنشاء الاشتراك."
 
-#: crm/views.py:218 crm/views.py:399 crm/views.py:455 crm/views.py:511
-#: crm/views.py:567 crm/views.py:623 crm/views.py:675
+#: crm/views.py:239 crm/views.py:420 crm/views.py:476 crm/views.py:532
+#: crm/views.py:588 crm/views.py:644 crm/views.py:696
 msgid "Success: Subscription was deleted."
 msgstr "نجاح: تم حذف الاشتراك."
 
-#: crm/views.py:391 crm/views.py:447 crm/views.py:503 crm/views.py:559
-#: crm/views.py:615 crm/views.py:667
+#: crm/views.py:412 crm/views.py:468 crm/views.py:524 crm/views.py:580
+#: crm/views.py:636 crm/views.py:688
 msgid "Success: Subscription was updated."
 msgstr "النجاح: تم تحديث الاشتراك."
 
-#: crm/views.py:710 crm/views.py:751
+#: crm/views.py:731 crm/views.py:772
 msgid "Success: Messege Send."
 msgstr "النجاح: إرسال رسالة."
 
-#: crm/views.py:735
+#: crm/views.py:756
 msgid "Success: Message was updated."
 msgstr "النجاح: تم تحديث الرسالة."
 
-#: crm/views.py:743
+#: crm/views.py:764
 msgid "Success: Message was deleted."
 msgstr "نجاح: تم حذف الرسالة."
 
-#: crm/views.py:788
+#: crm/views.py:809
 msgid "Success: Created."
 msgstr "النجاح : خلق ."
 
-#: crm/views.py:802 crm/views.py:845
+#: crm/views.py:823 crm/views.py:866
 msgid "Success: Table was updated."
 msgstr "النجاح: تم تحديث الجدول."
 
-#: crm/views.py:810 crm/views.py:853
+#: crm/views.py:831 crm/views.py:874
 msgid "Success: Table was deleted."
 msgstr "نجاح: تم حذف الجدول."
 
-#: crm/views.py:940
+#: crm/views.py:961
 msgid "Success: Post was Created."
 msgstr "النجاح: تم إنشاء المشاركة."
 
-#: crm/views.py:969
+#: crm/views.py:990
 msgid "Success: Post was updated."
 msgstr "النجاح: تم تحديث المشاركة."
 
-#: crm/views.py:977
+#: crm/views.py:998
 msgid "Success: Post was deleted."
 msgstr "نجاح: تم حذف المشاركة."
 
-#: crm/views.py:985
+#: crm/views.py:1006
 msgid "Success: News Text was Created."
 msgstr "النجاح: تم إنشاء نص الأخبار."
 
-#: crm/views.py:1014 crm/views.py:1057
+#: crm/views.py:1035 crm/views.py:1078
 msgid "Success: News Text was Updated."
 msgstr "النجاح: تم تحديث نص الأخبار."
 
-#: crm/views.py:1022 crm/views.py:1065
+#: crm/views.py:1043 crm/views.py:1086
 msgid "Success: News Text was Deleted."
 msgstr "نجاح: تم حذف نص الأخبار."
+
+#~ msgid "Wellcome To Administrator Customer relationship management"
+#~ msgstr "مرحبا بكم في مدير إدارة علاقات العملاء"

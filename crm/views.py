@@ -39,7 +39,7 @@ def home(request):
                    'commenttoday': commenttoday,
                    'likes': likes,
                    'liketoday': liketoday,
-                   'commonslable': ['Common60', ' Common61', ' Common70', 'CommonDead', 'JudiciaryDead', 'DoingDead', 'PublicAssistance'],
+                   'commonslable': [_('Common60'), _(' Common61'), _(' Common70'), _('CommonDead'), _('JudiciaryDead'), _('DoingDead'), _('PublicAssistance')],
                    'commonsdata': [c60, c61, c70, cd, jd, dd, pa]
                    })
 
