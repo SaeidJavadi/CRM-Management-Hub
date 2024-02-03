@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-01 06:02+0000\n"
-"PO-Revision-Date: 2024-01-27 11:46-0800\n"
+"PO-Revision-Date: 2024-02-03 07:50-0800\n"
 "Last-Translator: Server <root@localhost>\n"
 "Language-Team: English <social.solidarity2023@gmail.com>\n"
 "Language: en\n"
@@ -39,7 +39,7 @@ msgstr "يغلق"
 
 #: templates/partials/sidebar.html:15
 msgid "Social solidarity"
-msgstr "تكافل اجتماعي"
+msgstr "التكافل اجتماعي"
 
 #: templates/partials/sidebar.html:38
 msgid "GENERAL"
@@ -55,7 +55,7 @@ msgstr "الاشتراكات"
 
 #: templates/partials/sidebar.html:67
 msgid "Commons Amount"
-msgstr "مبلغ العموم"
+msgstr "عدد المشترکین"
 
 #: templates/partials/sidebar.html:72
 msgid "Subscription 0 to 60"
@@ -66,7 +66,7 @@ msgstr "الاشتراك من 0 إلى 60"
 #: templates/partials/sidebar.html:241 templates/partials/sidebar.html:265
 #: templates/partials/sidebar.html:289 templates/partials/sidebar.html:477
 msgid "Overview"
-msgstr "ملخص"
+msgstr "نسبة المشارکة"
 
 #: templates/partials/sidebar.html:83 templates/partials/sidebar.html:105
 #: templates/partials/sidebar.html:134 templates/partials/sidebar.html:174
@@ -82,23 +82,23 @@ msgstr "قائمة"
 #: templates/partials/sidebar.html:251 templates/partials/sidebar.html:275
 #: templates/partials/sidebar.html:299
 msgid "Create"
-msgstr "يخلق"
+msgstr "اضافة مشترک"
 
 #: templates/partials/sidebar.html:93
 msgid "Lottery"
-msgstr "اليانصيب"
+msgstr "القرعة"
 
 #: templates/partials/sidebar.html:99
 msgid "Lottery Quran"
-msgstr "قرآن اليانصيب"
+msgstr "قرآن القرعة"
 
 #: templates/partials/sidebar.html:110 templates/partials/sidebar.html:139
 msgid "Add To Lottery"
-msgstr "أضف إلى اليانصيب"
+msgstr "أضف إلى القرعة"
 
 #: templates/partials/sidebar.html:115 templates/partials/sidebar.html:144
 msgid "Holding a lottery"
-msgstr "عقد اليانصيب"
+msgstr "عقد القرعة"
 
 #: templates/partials/sidebar.html:120 templates/partials/sidebar.html:149
 msgid "Draws done"
@@ -106,7 +106,7 @@ msgstr "تم السحب"
 
 #: templates/partials/sidebar.html:128
 msgid "Lottery Ziarat"
-msgstr "زيارات اليانصيب"
+msgstr "زيارات القرعة"
 
 #: templates/partials/sidebar.html:163
 msgid "Subscription 61 to 69"
@@ -134,11 +134,11 @@ msgstr "مساعدة عامة"
 
 #: templates/partials/sidebar.html:314
 msgid "Table Gifts"
-msgstr "هدايا الطاولة"
+msgstr "نوع القرعة"
 
 #: templates/partials/sidebar.html:320
 msgid "Create Lottery"
-msgstr "إنشاء اليانصيب"
+msgstr "إنشاء القرعة"
 
 #: templates/partials/sidebar.html:325
 msgid "Table u16"
@@ -147,7 +147,7 @@ msgstr "الجدول ش16"
 #: templates/partials/sidebar.html:336 templates/partials/sidebar.html:355
 #: templates/partials/sidebar.html:374
 msgid "Holding Lottery"
-msgstr "عقد اليانصيب"
+msgstr "عقد القرعة"
 
 #: templates/partials/sidebar.html:344
 msgid "Table 2"
@@ -199,11 +199,11 @@ msgstr "قصص"
 
 #: templates/partials/sidebar.html:449
 msgid "Posts"
-msgstr "دعامات"
+msgstr "اعلانات"
 
 #: templates/partials/sidebar.html:454
 msgid "Advertising"
-msgstr "دعاية"
+msgstr "الاعلان"
 
 #: templates/partials/sidebar.html:459
 msgid "Comments"
@@ -241,32 +241,3 @@ msgstr "تسجيل خروج"
 msgid "CRM API Test"
 msgstr "اختبار واجهة برمجة تطبيقات CRM"
 
-#~ msgid "Menu-1 show menu"
-#~ msgstr "القائمة-1 عرض القائمة"
-
-#~ msgid "Menu-2"
-#~ msgstr "القائمة-2"
-
-#~ msgid "Menu-3"
-#~ msgstr "القائمة-3"
-
-#~ msgid "Menu-3_1"
-#~ msgstr "القائمة-3_1"
-
-#~ msgid "Menu-3_2"
-#~ msgstr "القائمة-3_2"
-
-#~ msgid "Menu-3_3"
-#~ msgstr "القائمة-3_3"
-
-#~ msgid "Menu3_3_1"
-#~ msgstr "القائمة3_3_1"
-
-#~ msgid "Menu3_3_2"
-#~ msgstr "القائمة3_3_2"
-
-#~ msgid "Menu3_3_3"
-#~ msgstr "القائمة3_3_3"
-
-#~ msgid "You made it"
-#~ msgstr "لقد فعلتها"

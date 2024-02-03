@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-01 07:01+0000\n"
-"PO-Revision-Date: 2024-01-27 11:55-0800\n"
+"POT-Creation-Date: 2024-02-03 05:16+0000\n"
+"PO-Revision-Date: 2024-02-03 08:40-0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ar\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: crm/forms.py:104 crm/forms.py:141 crm/models.py:351
 msgid "Lottery Title"
-msgstr "عنوان اليانصيب"
+msgstr "نوع القرعة"
 
 #: crm/forms.py:106
 msgid "Count Winner"
@@ -33,11 +33,11 @@ msgstr "حالة الفائزين"
 
 #: crm/forms.py:109 crm/forms.py:143
 msgid "start holding?"
-msgstr "البدء في عقد؟"
+msgstr "البدء في القرعة؟"
 
 #: crm/forms.py:113
 msgid "Add to Lottery Count"
-msgstr "أضف إلى عدد اليانصيب"
+msgstr "أضف إلى عدد القرعة"
 
 #: crm/forms.py:114
 msgid "agree ?"
@@ -63,10 +63,10 @@ msgstr "اسم"
 #: crm/templates/crm/cdjd_read.html:59 crm/templates/crm/dd_list.html:64
 #: crm/templates/crm/dd_read.html:27 crm/templates/crm/obj_tablist.html:62
 #: crm/templates/crm/pa_list.html:66 crm/templates/crm/pa_read.html:35
-#: crm/templates/crm/tabs_detail.html:22 crm/templates/crm/tbgf_detail.html:38
+#: crm/templates/crm/tabs_detail.html:22 crm/templates/crm/tbgf_detail.html:39
 #: crm/templates/crm/tbgf_users.html:67
 msgid "Amount"
-msgstr "كمية"
+msgstr "القیمة"
 
 #: crm/models.py:12 crm/models.py:431 crm/models.py:447
 msgid "Created Time"
@@ -79,7 +79,7 @@ msgstr "الوقت المحدث"
 
 #: crm/models.py:16
 msgid "CommonsAmount"
-msgstr "مبلغ العموم"
+msgstr "عدد المشترکین"
 
 #: crm/models.py:17
 msgid "CommonsAmounts"
@@ -92,11 +92,11 @@ msgstr "المسجل"
 
 #: crm/models.py:30
 msgid "lottery"
-msgstr "اليانصيب"
+msgstr "القرعة"
 
 #: crm/models.py:31 crm/models.py:58 crm/models.py:85
 msgid "Quadruple common name"
-msgstr "الاسم الشائع رباعي"
+msgstr "الاسم رباعي"
 
 #: crm/models.py:32 crm/models.py:59 crm/models.py:86
 #: crm/templates/crm/cdjd_read.html:27
@@ -113,7 +113,7 @@ msgstr "رقم هوية"
 #: crm/models.py:34 crm/models.py:61 crm/models.py:88
 #: crm/templates/crm/obj_read.html:35
 msgid "sickness"
-msgstr "مرض"
+msgstr "المرض"
 
 #: crm/models.py:35 crm/models.py:62 crm/models.py:89 crm/models.py:114
 #: crm/models.py:139 crm/models.py:168 crm/templates/crm/cdjd_list.html:63
@@ -132,7 +132,7 @@ msgstr "ولاية/مدينة"
 
 #: crm/models.py:37 crm/models.py:64 crm/models.py:91 crm/models.py:116
 #: crm/models.py:141 crm/models.py:171 crm/models.py:191 crm/models.py:313
-#: crm/models.py:335 crm/templates/crm/tbgf_detail.html:22
+#: crm/models.py:335 crm/templates/crm/tbgf_detail.html:23
 #: crm/templates/crm/tbgf_users.html:64
 msgid "Created"
 msgstr "مخلوق"
@@ -145,7 +145,7 @@ msgstr "رقم التليفون"
 #: crm/models.py:39 crm/models.py:66 crm/models.py:93 crm/models.py:118
 #: crm/models.py:143
 msgid "Phone Number Agent"
-msgstr "وكيل رقم الهاتف"
+msgstr "رقم هاتف الوکیل"
 
 #: crm/models.py:41 crm/models.py:68
 msgid "PayStatus"
@@ -178,7 +178,7 @@ msgid "Common61s"
 msgstr "مشترك61s"
 
 #: crm/models.py:95 crm/models.py:120 crm/models.py:145 crm/models.py:173
-#: crm/models.py:194 crm/models.py:319 crm/templates/crm/tbgf_detail.html:53
+#: crm/models.py:194 crm/models.py:319 crm/templates/crm/tbgf_detail.html:54
 #: crm/templates/crm/tbgf_users.html:69
 msgid "Pay Status"
 msgstr "حالة الدفع"
@@ -274,15 +274,15 @@ msgstr "زيارة الأماكن الدينية"
 
 #: crm/models.py:213
 msgid "Lottery"
-msgstr "اليانصيب"
+msgstr "القرعة"
 
 #: crm/models.py:216
 msgid "LotteryC60"
-msgstr "اليانصيبC60"
+msgstr "القرعةC60"
 
 #: crm/models.py:217
 msgid "LotteryC60s"
-msgstr "اليانصيبC60s"
+msgstr "القرعةC60s"
 
 #: crm/models.py:230
 msgid "Add Time"
@@ -290,15 +290,15 @@ msgstr "إضافة وقت"
 
 #: crm/models.py:233
 msgid "WinnerLottery60"
-msgstr "الفائز اليانصيب60"
+msgstr "الفائز القرعة60"
 
 #: crm/models.py:234
 msgid "WinnerLottery60s"
-msgstr "الفائز في اليانصيب60s"
+msgstr "الفائز في القرعة60s"
 
 #: crm/models.py:245 crm/models.py:312 crm/templates/crm/comment_list.html:60
 #: crm/templates/crm/obj_tablistwin.html:68
-#: crm/templates/crm/tbgf_detail.html:18 crm/templates/crm/tbgf_users.html:63
+#: crm/templates/crm/tbgf_detail.html:19 crm/templates/crm/tbgf_users.html:63
 msgid "User"
 msgstr "مستخدم"
 
@@ -350,7 +350,7 @@ msgstr "إشعارات"
 
 #: crm/models.py:266 crm/models.py:281
 msgid "Table Type"
-msgstr "نوع الجدول"
+msgstr "نوع القرعة"
 
 #: crm/models.py:267
 msgid "Footer"
@@ -358,16 +358,16 @@ msgstr "تذييل"
 
 #: crm/models.py:270
 msgid "TableType"
-msgstr "نوع الجدول"
+msgstr "نوع القرعة"
 
 #: crm/models.py:271
 msgid "TableTypes"
-msgstr "أنواع الجداول"
+msgstr "نواع الجداول"
 
 #: crm/models.py:283 crm/templates/crm/obj_tablist.html:61
 #: crm/templates/crm/tabs_detail.html:18
 msgid "Month Number"
-msgstr "رقم الشهر"
+msgstr "عدد الشهری"
 
 #: crm/models.py:285 crm/templates/crm/tabs_detail.html:26
 msgid "Month Amount"
@@ -375,11 +375,11 @@ msgstr "مبلغ الشهر"
 
 #: crm/models.py:286
 msgid "subtraction"
-msgstr "الطرح"
+msgstr "استقطاع"
 
 #: crm/models.py:287
 msgid "Friendships and affections"
-msgstr "الصداقات والمودة"
+msgstr "الصدقات و معونات"
 
 #: crm/models.py:288
 msgid "Annual number"
@@ -391,15 +391,15 @@ msgstr "القيمة السنوية"
 
 #: crm/models.py:290 crm/templates/crm/tabs_detail.html:46
 msgid "Total Subtraction"
-msgstr "الطرح الكلي"
+msgstr "مجموع استقطاع"
 
 #: crm/models.py:291 crm/templates/crm/tabs_detail.html:50
 msgid "Total Friendships"
-msgstr "مجموع الصداقات"
+msgstr "مجموع الصدقات"
 
 #: crm/models.py:292 crm/templates/crm/obj_tablist.html:66
 msgid "Title Gifts"
-msgstr "هدايا العنوان"
+msgstr "هدايا التکافل"
 
 #: crm/models.py:293 crm/templates/crm/tabs_detail.html:58
 msgid "Month Sequence"
@@ -416,24 +416,24 @@ msgstr "ملحوظات"
 
 #: crm/models.py:299
 msgid "TableGift"
-msgstr "هدية الطاولة"
+msgstr "نوع القرعة"
 
 #: crm/models.py:300
 msgid "TableGifts"
-msgstr "هدايا الطاولة"
+msgstr "نوع القرعة"
 
 #: crm/models.py:310
 msgid "Gift Tables"
 msgstr "طاولات الهدايا"
 
-#: crm/models.py:314 crm/templates/crm/tbgf_detail.html:26
+#: crm/models.py:314 crm/templates/crm/tbgf_detail.html:27
 msgid "Updated"
 msgstr "محدث"
 
 #: crm/models.py:315 crm/models.py:379 crm/models.py:430 crm/models.py:449
 #: crm/templates/crm/comment_list.html:41
 #: crm/templates/crm/comment_list.html:64 crm/templates/crm/news_list.html:38
-#: crm/templates/crm/news_list.html:60 crm/templates/crm/tbgf_detail.html:30
+#: crm/templates/crm/news_list.html:60 crm/templates/crm/tbgf_detail.html:31
 #: crm/templates/crm/tbgf_users.html:65
 msgid "Active"
 msgstr "نشيط"
@@ -442,7 +442,7 @@ msgstr "نشيط"
 msgid "Count of Chances"
 msgstr "عدد الفرص"
 
-#: crm/models.py:318 crm/templates/crm/tbgf_detail.html:42
+#: crm/models.py:318 crm/templates/crm/tbgf_detail.html:43
 #: crm/templates/crm/tbgf_users.html:68
 msgid "Count Pay"
 msgstr "عد الدفع"
@@ -477,11 +477,11 @@ msgstr "تاريخ الفوز"
 
 #: crm/models.py:357
 msgid "WinTableLottery"
-msgstr "فوز يانصيب الطاولة"
+msgstr "فوز القرعة الطاولة"
 
 #: crm/models.py:358
 msgid "WinTableLotterys"
-msgstr "فوز يانصيب الطاولة"
+msgstr "فوز القرعة الطاولة"
 
 #: crm/models.py:369
 msgid "Post"
@@ -585,7 +585,7 @@ msgstr "الاشتراك ميت"
 #: crm/templates/crm/obj_tablistwin.html:35 crm/templates/crm/pa_list.html:35
 #: crm/templates/crm/tbgf_users.html:35
 msgid "Filter By"
-msgstr "مصنف بواسطة"
+msgstr "مشترک او غیر مشترک"
 
 #: crm/templates/crm/cdjd_list.html:37 crm/templates/crm/comment_list.html:38
 #: crm/templates/crm/dd_list.html:38 crm/templates/crm/msg_list.html:37
@@ -597,14 +597,14 @@ msgstr "الجميع"
 
 #: crm/templates/crm/cdjd_list.html:40 crm/templates/crm/dd_list.html:41
 #: crm/templates/crm/msg_list.html:40 crm/templates/crm/obj_list.html:41
-#: crm/templates/crm/pa_list.html:41 crm/templates/crm/tbgf_detail.html:48
+#: crm/templates/crm/pa_list.html:41 crm/templates/crm/tbgf_detail.html:49
 #: crm/templates/crm/tbgf_users.html:41
 msgid "Paid"
 msgstr "مدفوع"
 
 #: crm/templates/crm/cdjd_list.html:43 crm/templates/crm/dd_list.html:44
 #: crm/templates/crm/msg_list.html:43 crm/templates/crm/obj_list.html:44
-#: crm/templates/crm/pa_list.html:44 crm/templates/crm/tbgf_detail.html:49
+#: crm/templates/crm/pa_list.html:44 crm/templates/crm/tbgf_detail.html:50
 #: crm/templates/crm/tbgf_users.html:44
 msgid "UnPaid"
 msgstr "غير مدفوعة الأجر"
@@ -716,7 +716,7 @@ msgstr "صيام السنة"
 
 #: crm/templates/crm/lottery_draws.html:4
 msgid "Lottery Draws"
-msgstr "سحب اليانصيب"
+msgstr "سحب القرعة"
 
 #: crm/templates/crm/lottery_draws.html:10
 msgid "List of drawn draws"
@@ -724,7 +724,7 @@ msgstr "قائمة الرسومات"
 
 #: crm/templates/crm/lottery_drawsdetail.html:5
 msgid "Lottery Draws Detail"
-msgstr "تفاصيل سحب اليانصيب"
+msgstr "تفاصيل سحب القرعة"
 
 #: crm/templates/crm/msg_detail.html:8
 msgid "Message Detail"
@@ -780,7 +780,7 @@ msgstr "دولة"
 
 #: crm/templates/crm/obj_read.html:47
 msgid "create"
-msgstr "يخلق"
+msgstr "اضافة مشترک"
 
 #: crm/templates/crm/obj_read.html:51
 msgid "phone"
@@ -792,7 +792,7 @@ msgstr "وكيل الهاتف"
 
 #: crm/templates/crm/obj_read.html:59
 msgid "amount"
-msgstr "كمية"
+msgstr "القیمة"
 
 #: crm/templates/crm/obj_read.html:63
 msgid "link"
@@ -800,7 +800,7 @@ msgstr "وصلة"
 
 #: crm/templates/crm/obj_tablist.html:9
 msgid "Table Lottery List"
-msgstr "قائمة يانصيب الجدول"
+msgstr "قائمة القرعة الجدول"
 
 #: crm/templates/crm/obj_tablist.html:63
 msgid "Monthamount"
@@ -808,15 +808,15 @@ msgstr "مبلغ الشهر"
 
 #: crm/templates/crm/obj_tablist.html:64 crm/templates/crm/tabs_detail.html:30
 msgid "Subtraction"
-msgstr "الطرح"
+msgstr "استقطاع"
 
 #: crm/templates/crm/obj_tablist.html:65 crm/templates/crm/tabs_detail.html:34
 msgid "Friendships"
-msgstr "الصداقات"
+msgstr "الصدقات"
 
 #: crm/templates/crm/obj_tablistwin.html:9
 msgid "Lottery Win List"
-msgstr "قائمة الفوز باليانصيب"
+msgstr "قائمة الفوز بالقرعة"
 
 #: crm/templates/crm/obj_tablistwin.html:41
 msgid "Table u16"
@@ -828,7 +828,7 @@ msgstr "المنزل/السيارة"
 
 #: crm/templates/crm/obj_tablistwin.html:47
 msgid "Other Lottery"
-msgstr "اليانصيب الأخرى"
+msgstr "القرعة الأخرى"
 
 #: crm/templates/crm/obj_tablistwin.html:66
 #: crm/templates/crm/tabs_detail.html:14 crm/templates/crm/tbgf_users.html:61
@@ -845,7 +845,7 @@ msgstr "تحديث النموذج"
 
 #: crm/templates/crm/overview.html:7
 msgid "Overview"
-msgstr "ملخص"
+msgstr "نسبة المشارکة"
 
 #: crm/templates/crm/overview.html:39
 msgid "Total"
@@ -889,7 +889,7 @@ msgstr "التسمية التوضيحية"
 
 #: crm/templates/crm/post_list.html:66
 msgid "Create"
-msgstr "يخلق"
+msgstr "اضافة مشترک"
 
 #: crm/templates/crm/post_list.html:67
 msgid "Update"
@@ -909,7 +909,7 @@ msgstr "نشيط"
 
 #: crm/templates/crm/tabs_detail.html:8
 msgid "Lottery Detail"
-msgstr "تفاصيل اليانصيب"
+msgstr "تفاصيل القرعة"
 
 #: crm/templates/crm/tabs_detail.html:38
 msgid "Number Annual"
@@ -925,11 +925,11 @@ msgstr "الهدايا"
 
 #: crm/templates/crm/tabs_holdlot.html:4
 msgid "Holding Lottery"
-msgstr "عقد اليانصيب"
+msgstr "عقد القرعة"
 
 #: crm/templates/crm/tabs_holdlot.html:11
 msgid "Holding a lottery for table"
-msgstr "عقد اليانصيب على الطاولة"
+msgstr "عقد القرعة على الطاولة"
 
 #: crm/templates/crm/tabs_holdlot.html:22
 msgid "Number of subscribers"
@@ -951,15 +951,15 @@ msgstr "تحتجز"
 msgid "Gift Detail"
 msgstr "تفاصيل الهدية"
 
-#: crm/templates/crm/tbgf_detail.html:14 crm/templates/crm/tbgf_users.html:62
+#: crm/templates/crm/tbgf_detail.html:15 crm/templates/crm/tbgf_users.html:62
 msgid "Table Gift"
-msgstr "هدية الطاولة"
+msgstr "نوع القرعة"
 
-#: crm/templates/crm/tbgf_detail.html:34 crm/templates/crm/tbgf_users.html:66
+#: crm/templates/crm/tbgf_detail.html:35 crm/templates/crm/tbgf_users.html:66
 msgid "Count Chances"
 msgstr "عد الفرص"
 
-#: crm/templates/crm/tbgf_detail.html:47
+#: crm/templates/crm/tbgf_detail.html:48
 msgid "Installment"
 msgstr "تقسيط"
 
@@ -976,9 +976,8 @@ msgid " Common70"
 msgstr "مشترك70"
 
 #: crm/views.py:159
-#| msgid "Subscription Doing Dead"
 msgid "Subscription {TiTle} Overview"
-msgstr "الاشتراك به ميت"
+msgstr "الاشتراك نسبة المشارکة"
 
 #: crm/views.py:184
 msgid "Success: Amount was updated."
