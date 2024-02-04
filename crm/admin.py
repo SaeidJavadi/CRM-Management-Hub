@@ -133,4 +133,4 @@ class NewsTextAdmin(admin.ModelAdmin):
 
 @admin.register(CommentPost)
 class CommentPostAdmin(admin.ModelAdmin):
-    list_display = ('user', 'socialmedia', 'active', 'text')
+    list_display = ('user', 'socialmedia', 'createdt', 'active', 'text')

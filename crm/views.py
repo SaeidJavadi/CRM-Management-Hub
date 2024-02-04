@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from crm.models import Common60, Common61, Common70, CommonDead, JudiciaryDead, DoingDead, PublicAssistance, \
-    LotteryC60, Notification, WinnerLottery60, TableGift, TableGiftUser, WinTableLottery, CommonsAmount, SocialMedia, NewsText, CommentPost,LikePost
+    LotteryC60, Notification, WinnerLottery60, TableGift, TableGiftUser, WinTableLottery, CommonsAmount, SocialMedia, NewsText, CommentPost, LikePost
 from django.contrib.auth.decorators import login_required
 from crm.forms import ObjectModelForm60, ObjectModelForm61, ObjectModelForm70, ObjectModelFormCd, ObjectModelFormJd, \
     ObjectModelFormDd, ObjectModelFormPa, ObjectModelFormMSG, HodlingLotteryForm, AddtoLotteryForm, \
@@ -29,9 +29,9 @@ def home(request):
     dd = DoingDead.objects.filter().count()
     pa = PublicAssistance.objects.filter().count()
     comments = CommentPost.objects.filter().count()
-    commenttoday = CommentPost.objects.filter(createdt=date.today()).count()
+    commenttoday = CommentPost.objects.filter(createdt__date=date.today()).count()
     likes = LikePost.objects.filter().count()
-    liketoday = LikePost.objects.filter(createdate=date.today()).count()
+    liketoday = LikePost.objects.filter(createdate__date=date.today()).count()
     return render(request, 'crm/dashboard.html',
                   {'users': get_user_model().objects.all().count,
                    'todayuser': get_user_model().objects.filter(regdate__date=date.today()).count(),

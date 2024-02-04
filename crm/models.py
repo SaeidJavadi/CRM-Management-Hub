@@ -426,7 +426,7 @@ class LikePost(models.Model):
 class CommentPost(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='commentuser')
     socialmedia = models.ForeignKey('SocialMedia', on_delete=models.CASCADE, related_name='commentpost')
-    text = models.TextField(verbose_name=_('Comment'))
+    text = models.TextField(verbose_name=_('Comment'), blank=False)
     active = models.BooleanField(verbose_name=_('Active'), default=True)
     createdt = models.DateTimeField(auto_now_add=True, verbose_name=_('Created Time'))
     updatedt = models.DateTimeField(auto_now=True, verbose_name=_('Updated Time'))
