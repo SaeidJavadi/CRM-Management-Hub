@@ -647,7 +647,7 @@ class CommentPostViewSet(ModelViewSet):
             post_id = int(self.request.data.get('socialmedia'))
             sm = crmmod.SocialMedia.objects.get(id=post_id)
             ser = serializer.save(user=self.request.user, socialmedia=sm)
-            p = crmmod.CommentPost.objects.create(user=self.request.user, socialmedia=sm)
+            # p = crmmod.CommentPost.objects.create(user=self.request.user, socialmedia=sm)
             return ser
         except Exception as e:
             print('Error:', e)
