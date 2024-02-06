@@ -34,26 +34,25 @@ log_format NgingxLogs escape=json
         '}';
 
 
-    access_log  /home/admin/crm-ar/zTMP/logs/nginxLog.log NgingxLogs;
-
+    access_log  /home/admin/crmproj/zTMP/logs/nginxLog.log NgingxLogs;
 
 
 server {
     listen 80;
-    server_name irvpn.shop www.irvpn.shop;
+    server_name 193.187.174.212;
 
     location = /favicon.ico { access_log off; log_not_found off; }
     location /static/ {
-        root /home/admin/crm-ar/staticfiles/;
+        root /home/admin/crmproj/staticfiles/;
     }
+
     location /media {
         autoindex on;
-        alias /home/admin/crm-ar/media/;
+        alias /home/admin/crmproj/media/;
     }
 
     location / {
         include proxy_params;
-        proxy_pass http://unix:/home/admin/crm-ar/crm-ar.sock;
+        proxy_pass http://unix:/run/gunicorn.sock;
     }
-
 }
