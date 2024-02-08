@@ -5,6 +5,7 @@ from django.urls import path, include, re_path
 from django.utils.translation import gettext_lazy as _
 from dj_rest_auth.views import PasswordResetConfirmView
 from django.conf.urls.i18n import i18n_patterns
+from decouple import config
 # from rest_framework import permissions
 
 
@@ -18,13 +19,13 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns(
-    path('admin/', admin.site.urls),
+    path('administrator/programmer/', admin.site.urls),
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('', include('crm.urls', namespace='crm')),
 )
 
 
-if settings.DEBUG == True:
+if config('DEBUG', default=True, cast=bool) == True:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

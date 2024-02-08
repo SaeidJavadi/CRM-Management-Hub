@@ -113,6 +113,17 @@ DATABASES = {
     }
 }
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': config('REDIS_URL'),
+        'KEY_PREFIX': 'crm',
+        'TIMEOUT': 60 * 30,  # in seconds: 60 * 30 (30 minutes)
+    }
+}
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
