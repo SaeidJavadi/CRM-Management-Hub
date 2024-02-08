@@ -321,13 +321,11 @@ def HoldingLottery(request, title):
                 user_winner = random.sample(list_lot, winner_count)
                 for id in user_winner:
                     cw = Common60.objects.get(id=id)
-                    w = WinnerLottery60.objects.create(
-                        name=nameform, lottery=lot, common=cw)
+                    w = WinnerLottery60.objects.create(name=nameform, lottery=lot, common=cw)
                     try:
                         title = "Lottery Win"
                         body = f"You have won the lottery {title}"
-                        send_notification(
-                            user_token=cw.usersubmit.fcmtoken, title=title, body=body)
+                        send_notification(user_token=cw.usersubmit.fcmtoken, title=title, body=body)
                         Notification.objects.create(
                             user=cw.usersubmit, subject=title, text=body)
                     except Exception as e:

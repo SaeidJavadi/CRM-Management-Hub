@@ -14,6 +14,8 @@ class ObjectModelForm60(forms.ModelForm):
         for visible in self.visible_fields():
             if visible.name != "status" and visible.name != "paystatus":
                 visible.field.widget.attrs['class'] = 'form-control'
+            if visible.name == "paystatus":
+                visible.field.widget.attrs['disabled'] = 'disabled'
 
 
 class ObjectModelForm61(forms.ModelForm):
@@ -26,6 +28,8 @@ class ObjectModelForm61(forms.ModelForm):
         for visible in self.visible_fields():
             if visible.name != "status" and visible.name != "paystatus":
                 visible.field.widget.attrs['class'] = 'form-control'
+            if visible.name == "paystatus":
+                visible.field.widget.attrs['disabled'] = 'disabled'
 
 
 class ObjectModelForm70(forms.ModelForm):
@@ -38,6 +42,8 @@ class ObjectModelForm70(forms.ModelForm):
         for visible in self.visible_fields():
             if visible.name != "status" and visible.name != "paystatus":
                 visible.field.widget.attrs['class'] = 'form-control'
+            if visible.name == "paystatus":
+                visible.field.widget.attrs['disabled'] = 'disabled'
 
 
 class ObjectModelFormCd(forms.ModelForm):
@@ -50,6 +56,8 @@ class ObjectModelFormCd(forms.ModelForm):
         for visible in self.visible_fields():
             if visible.name != "status" and visible.name != "paystatus":
                 visible.field.widget.attrs['class'] = 'form-control'
+            if visible.name == "paystatus":
+                visible.field.widget.attrs['disabled'] = 'disabled'
 
 
 class ObjectModelFormJd(forms.ModelForm):
@@ -62,6 +70,8 @@ class ObjectModelFormJd(forms.ModelForm):
         for visible in self.visible_fields():
             if visible.name != "status" and visible.name != "paystatus":
                 visible.field.widget.attrs['class'] = 'form-control'
+            if visible.name == "paystatus":
+                visible.field.widget.attrs['disabled'] = 'disabled'
 
 
 class ObjectModelFormDd(forms.ModelForm):
@@ -74,6 +84,8 @@ class ObjectModelFormDd(forms.ModelForm):
         for visible in self.visible_fields():
             if visible.name != "status" and visible.name != "paystatus":
                 visible.field.widget.attrs['class'] = 'form-control'
+            if visible.name == "paystatus":
+                visible.field.widget.attrs['disabled'] = 'disabled'
 
 
 class ObjectModelFormPa(forms.ModelForm):
@@ -86,6 +98,8 @@ class ObjectModelFormPa(forms.ModelForm):
         for visible in self.visible_fields():
             if visible.name != "status" and visible.name != "paystatus":
                 visible.field.widget.attrs['class'] = 'form-control'
+            if visible.name == "paystatus":
+                visible.field.widget.attrs['disabled'] = 'disabled'
 
 
 class ObjectModelFormMSG(forms.ModelForm):

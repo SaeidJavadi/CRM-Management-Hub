@@ -207,17 +207,18 @@ class PublicAssistance(models.Model):  # komak be khirieh
 
 class LotteryC60(models.Model):
     lottery_field = (
-        (_('quran'), _('Quran memorization lottery')),
-        (_('ziarat'), _('Visiting religious places'))
+        ('quran', _('Quran memorization lottery')),
+        ('ziarat', _('Visiting religious places'))
     )
-    title = models.CharField(max_length=200, verbose_name=_('Lottery'), choices=lottery_field, blank=True, null=True)
+    title = models.CharField(max_length=200, verbose_name=_('Lottery'), choices=lottery_field)
+    name = models.CharField(max_length=30, verbose_name=_('Lottery Name'))
 
     class Meta:
         verbose_name = _('LotteryC60')
         verbose_name_plural = _('LotteryC60s')
 
     def __str__(self):
-        return self.title
+        return self.name
 
     def get_absolute_url(self):
         return reverse('LotteryC60_detail', kwargs={'pk': self.pk})
