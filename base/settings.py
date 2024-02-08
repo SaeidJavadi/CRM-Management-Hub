@@ -95,34 +95,35 @@ WSGI_APPLICATION = 'base.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config('DB_NAME'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT', cast=int),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
+if config('DEBUG', default=True, cast=bool):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
-
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-        'LOCATION': config('REDIS_URL'),
-        'KEY_PREFIX': 'crm',
-        'TIMEOUT': 60 * 30,  # in seconds: 60 * 30 (30 minutes)
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': config('DB_NAME'),
+            'HOST': config('DB_HOST'),
+            'PORT': config('DB_PORT', cast=int),
+            'USER': config('DB_USER'),
+            'PASSWORD': config('DB_PASSWORD'),
+        }
     }
-}
 
-SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+if not config('DEBUG', default=True, cast=bool):
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+            'LOCATION': config('REDIS_URL'),
+            'KEY_PREFIX': 'crm',
+            'TIMEOUT': 60 * 30,  # in seconds: 60 * 30 (30 minutes)
+        }
+    }
+    SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -222,42 +223,44 @@ DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
 FIREBASE_GOOGLE_APPLICATION_CREDENTIALS = "static/root/assert/social-solidarity-bb4ac-firebase-adminsdk-imhzd-48ba474d40.json"
 
 # SSL
-SECURE_SSL_REDIRECT = True
-# cookies will only be sent via HTTPS connections
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+if not config('DEBUG', default=True, cast=bool):
+    SECURE_SSL_REDIRECT = True
+    # cookies will only be sent via HTTPS connections
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
 
 # Logging
-ADMINS = [('Saeid', 's.a.e.i.d@live.com'), ('Saeid', 'reg@hi2.in')]
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'json': {
-            'class': 'pythonjsonlogger.jsonlogger.JsonFormatter',
-            'format': '%(asctime)s %(levelname)s %(message)s %(module)s'
-        }
-    },
-    'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': BASE_DIR / 'zTMP/logs/djangodebug.log',
-            'formatter': 'json',
-            'backupCount': 15,       # how many backup file to keep, 15 days
-            'maxBytes': 10*1024*1024,     # 10*1024*1024 bytes (10MB)
+if not config('DEBUG', default=True, cast=bool):
+    ADMINS = [('Saeid', 's.a.e.i.d@live.com'), ('Saeid', 'reg@hi2.in')]
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'formatters': {
+            'json': {
+                'class': 'pythonjsonlogger.jsonlogger.JsonFormatter',
+                'format': '%(asctime)s %(levelname)s %(message)s %(module)s'
+            }
         },
-        'mail_admins': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler',
-            'formatter': 'json',
-        }
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['file', 'mail_admins'],
-            'level': 'DEBUG',
-            'propagate': True,
+        'handlers': {
+            'file': {
+                'level': 'DEBUG',
+                'class': 'logging.handlers.RotatingFileHandler',
+                'filename': BASE_DIR / 'zTMP/logs/djangodebug.log',
+                'formatter': 'json',
+                'backupCount': 15,       # how many backup file to keep, 15 days
+                'maxBytes': 10*1024*1024,     # 10*1024*1024 bytes (10MB)
+            },
+            'mail_admins': {
+                'level': 'ERROR',
+                'class': 'django.utils.log.AdminEmailHandler',
+                'formatter': 'json',
+            }
         },
+        'loggers': {
+            'django': {
+                'handlers': ['file', 'mail_admins'],
+                'level': 'DEBUG',
+                'propagate': True,
+            },
+        }
     }
-}
