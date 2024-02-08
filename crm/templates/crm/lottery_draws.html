@@ -13,14 +13,35 @@
     </div>
     <div class="row">
         <div class="col-1"></div>
-        <div class="col-10 d-flex justify-content-center mt-4 mb-3">
-            <div class="list-group">
-                {% for draw in draws %}
-                    <a href="detail/{{ draw.0 }}"
-                       class="list-group-item list-group-item-action mb-2"><b>{{ draw.0 }}</b> - {{ draw.1|date:"Y/m/d" }}</a>
-                {% endfor %}
+        <div class="list-group col-10 d-flex justify-content-center mt-3 mb-3">
+            <table id="objs-table" class="table">
+                <thead>
+                    <tr>
+                        <th class="text-center" scope="col">{% trans "Lottery Name" %}</th>
+                        <th class="text-center" scope="col">{% trans "Lottery Date" %}</th>
+                        <th class="text-center" scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for draw in draws %}
+                        <tr>
+                            <td class="text-center">
+                                <a href="detail/{{ draw.0 }}"
+                                   class="list-group-item list-group-item-action mb-2"><b>{{ draw.0 }}</b></a>
+                            </td>
+                            <td class="text-center">
+                                <span class="list-group-item list-group-item-action mb-2">{{ draw.1|date:"Y/m/d" }}</span>
+                            </td>
+                            <td class="text-center">
+                                <a type="button"
+                                   class="btn btn-sm btn-danger"
+                                   href="{% url 'crm:c60_drawdelete' draw.0 %}">
+                                    <span class="ri-delete-bin-line"></span>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </div>
+                <div class="col-1"></div>
             </div>
-        </div>
-        <div class="col-1"></div>
-    </div>
-{% endblock content %}
+        {% endblock content %}

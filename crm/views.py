@@ -345,10 +345,17 @@ def DrawsLottery(request, title):
     if title == "quran" or title == "ziarat":
         lot = LotteryC60.objects.get(title=title)
         winner_list = WinnerLottery60.objects.all().values_list(
-            'name', 'windate').filter(lottery=lot).distinct()
+            'name', 'windate__date').filter(lottery=lot).distinct()
         return render(request, 'crm/lottery_draws.html', {'draws': winner_list})
     else:
         return HttpResponse("404")
+
+
+@login_required()
+def DrawsDeleteLottery(request, name):
+    drawname = WinnerLottery60.objects.get(name=name).lottery.title
+    lotterywins = WinnerLottery60.objects.filter(name=name).delete()
+    return redirect('crm:c60_draws', title=str(drawname))
 
 
 @login_required()

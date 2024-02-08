@@ -19,6 +19,7 @@ urlpatterns = [
     path('c60/lottery/holding/<str:title>', views.HoldingLottery, name='c60_holdinglottery'),
     path('c60/lottery/draws/<str:title>', views.DrawsLottery, name='c60_draws'),
     path('c60/lottery/draws/detail/<str:name>', views.DrawsDetailLottery, name='c60_drawdetail'),
+    path('c60/lottery/draws/delete/<str:name>', views.DrawsDeleteLottery, name='c60_drawdelete'),
     path('c61/', login_required(views.c61List.as_view()), name='c61_list'),
     path('c61/create/', login_required(views.C61CreateView.as_view()), name='c61_create'),
     path('c61/read/<int:pk>', login_required(views.C61ReadView.as_view()), name='c61_read'),
