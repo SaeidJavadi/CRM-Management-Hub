@@ -231,7 +231,7 @@ if not config('DEBUG', default=True, cast=bool):
 
 # Logging
 if not config('DEBUG', default=True, cast=bool):
-    ADMINS = [('Saeid', 's.a.e.i.d@live.com'), ('Saeid', 'reg@hi2.in')]
+    ADMINS = [('Saeid Javadi', 'hiding@hi2.in'), ('Saeid Javadi', 'yek1@yahoo.com')]
     LOGGING = {
         'version': 1,
         'disable_existing_loggers': False,
