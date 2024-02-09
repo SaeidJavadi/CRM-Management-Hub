@@ -39,3 +39,6 @@ if config('DEBUG', default=True, cast=bool) == True:
 admin.site.site_header = _('Control Panel')
 admin.site.site_title = _('Control Panel')
 admin.site.index_title = _('Wellcome to Control Panel')
+
+handler404 = 'crm.views.handler404'
+handler500 = 'crm.views.handler500'
