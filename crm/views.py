@@ -1090,3 +1090,11 @@ class CommentDeleteView(DeleteView):
     template_name = 'crm/obj_delete.html'
     success_message = _('Success: News Text was Deleted.')
     success_url = reverse_lazy('crm:comment_list')
+
+
+def handler404(request, *args, **argv):
+    return render(request, 'crm/404.html')
+
+
+def handler500(request, *args, **argv):
+    return render(request, 'crm/500.html')

@@ -5,6 +5,25 @@ from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 
 
+countries = (
+    ('Iraq', _('Iraq')),
+    ('Iran', _('Iran')),
+    ('Syria', _('Syria')),
+    ('Sweden', _('Sweden')),
+    ('Australia', _('Australia')),
+    ('Denmark', _('Denmark')),
+    ('Lebanon', _('Lebanon')),
+    ('Saudi', _('Saudi')),
+    ('Bahrain', _('Bahrain')),
+    ('Kuwait', _('Kuwait')),
+    ('Emirates', _('Emirates')),
+    ('America', _('America')),
+    ('India', _('India')),
+    ('Pakistan', _('Pakistan')),
+    ('Turkey', _('Turkey'))
+)
+
+
 class CommonsAmount(models.Model):
     title = models.CharField(verbose_name=_("Title"), max_length=150)
     name = models.CharField(verbose_name=_("Name"), max_length=150)
@@ -32,7 +51,7 @@ class Common60(models.Model):   # Eshterak afrad 60 saal va kamtar
     age = models.DateField(verbose_name=_('Age'))
     idcode = models.IntegerField(verbose_name=_('Id Code'))
     sickness = models.CharField(verbose_name=_('sickness'), max_length=120, null=True, blank=True)
-    contery = models.CharField(verbose_name=_('Contery'), max_length=120)
+    contery = models.CharField(verbose_name=_('Contery'), max_length=120, choices=countries)
     city = models.CharField(verbose_name=_('State/City'), max_length=120)
     create = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
     phone = models.CharField(verbose_name=_('Phone Number'), max_length=50)
@@ -59,7 +78,7 @@ class Common61(models.Model):  # Eshterak afrad az 61 ta 69
     age = models.DateField(verbose_name=_('Age'))
     idcode = models.IntegerField(verbose_name=_('Id Code'))
     sickness = models.CharField(verbose_name=_('sickness'), max_length=120, null=True, blank=True)
-    contery = models.CharField(verbose_name=_('Contery'), max_length=120)
+    contery = models.CharField(verbose_name=_('Contery'), max_length=120, choices=countries)
     city = models.CharField(verbose_name=_('State/City'), max_length=120)
     create = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
     phone = models.CharField(verbose_name=_('Phone Number'), max_length=50)
@@ -86,7 +105,7 @@ class Common70(models.Model):   # Eshterak afrad az 70 salegi va afrad mobtala b
     age = models.DateField(verbose_name=_('Age'))
     idcode = models.IntegerField(verbose_name=_('Id Code'))
     sickness = models.CharField(verbose_name=_('sickness'), max_length=120, null=True, blank=True)
-    contery = models.CharField(verbose_name=_('Contery'), max_length=120)
+    contery = models.CharField(verbose_name=_('Contery'), max_length=120, choices=countries)
     city = models.CharField(verbose_name=_('State/City'), max_length=120)
     create = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
     phone = models.CharField(verbose_name=_('Phone Number'), max_length=50)
@@ -111,7 +130,7 @@ class CommonDead(models.Model):  # Eshterak FotShodegan
                                    verbose_name=_('Registrant'), related_name='user_cd')
     name = models.CharField(max_length=120, verbose_name=_('Deceased name'))
     idcode = models.IntegerField(verbose_name=_('Id Code'))
-    contery = models.CharField(verbose_name=_('Contery'), max_length=120)
+    contery = models.CharField(verbose_name=_('Contery'), max_length=120, choices=countries)
     city = models.CharField(verbose_name=_('State/City'), max_length=120)
     create = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
     phone = models.CharField(verbose_name=_('Phone Number'), max_length=50)
@@ -136,7 +155,7 @@ class JudiciaryDead(models.Model):  # Goveh Ghazaie Mordegan
                                    verbose_name=_('Registrant'), related_name='user_jd')
     name = models.CharField(max_length=120, verbose_name=_('Deceased name'))
     idcode = models.IntegerField(verbose_name=_('Id Code'))
-    contery = models.CharField(verbose_name=_('Contery'), max_length=120)
+    contery = models.CharField(verbose_name=_('Contery'), max_length=120, choices=countries)
     city = models.CharField(verbose_name=_('State/City'), max_length=120)
     create = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
     phone = models.CharField(verbose_name=_('Phone Number'), max_length=50)
@@ -165,7 +184,7 @@ class DoingDead(models.Model):  # Anjam Amale Ebadie Marhom
     pilgrimage = models.CharField(max_length=200, verbose_name=_('Pilgrimage'))
     agent = models.CharField(max_length=200, verbose_name=_('Agent'))
     phone = models.CharField(verbose_name=_('Phone Number'), max_length=50)
-    contery = models.CharField(verbose_name=_('Contery'), max_length=120)
+    contery = models.CharField(verbose_name=_('Contery'), max_length=120, choices=countries)
     city = models.CharField(verbose_name=_('State/City'), max_length=120)
     deposit = models.FloatField(verbose_name=_('Deposit'))
     create = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
