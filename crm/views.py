@@ -165,6 +165,10 @@ def overview(request, model):
     })
 
 
+def privacyPolicy(request):
+    return render(request, 'crm/privacy_policy.html',{})
+
+
 class AmountsList(ListView):        # CommonAmounts
     model = CommonsAmount
     context_object_name = 'objects'
