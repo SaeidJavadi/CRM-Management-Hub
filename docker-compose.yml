@@ -35,3 +35,9 @@ services:
     # PostgreSQL:
     # ~$          docker exec -it docker_db bash
     # bash-5.1#   psql -U `POSTGRES_USER` -d `POSTGRES_DB`
+
+    # Backup DB:
+    # ~$          docker exec -it docker_db backup
+
+    # Restore DB:
+    # ~$          docker exec -it docker_db restore `fileName`
