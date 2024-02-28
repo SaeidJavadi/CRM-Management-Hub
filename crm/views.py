@@ -166,7 +166,7 @@ def overview(request, model):
 
 
 def privacyPolicy(request):
-    return render(request, 'crm/privacy_policy.html',{})
+    return render(request, 'crm/privacy_policy.html', {})
 
 
 class AmountsList(ListView):        # CommonAmounts
@@ -203,6 +203,7 @@ class c60List(ListView):        # Common60
                 Q(phone__contains=query_search) |
                 Q(usersubmit__username__contains=query_search) |
                 Q(contery__contains=query_search) |
+                Q(phoneagent__contains=query_search) |
                 Q(city__contains=query_search)
             )
         if query_filter:
@@ -388,6 +389,7 @@ class c61List(ListView):        # Common61
                 Q(phone__contains=query_search) |
                 Q(usersubmit__username__contains=query_search) |
                 Q(contery__contains=query_search) |
+                Q(phoneagent__contains=query_search) |
                 Q(city__contains=query_search)
             )
         if query_filter:
@@ -444,6 +446,7 @@ class c70List(ListView):        # Common61
                 Q(phone__contains=query_search) |
                 Q(usersubmit__username__contains=query_search) |
                 Q(contery__contains=query_search) |
+                Q(phoneagent__contains=query_search) |
                 Q(city__contains=query_search)
             )
         if query_filter:
@@ -500,6 +503,7 @@ class CdList(ListView):        # CommonDead
                 Q(phone__contains=query_search) |
                 Q(usersubmit__username__contains=query_search) |
                 Q(contery__contains=query_search) |
+                Q(phoneagent__contains=query_search) |
                 Q(city__contains=query_search)
             )
         if query_filter:
@@ -556,6 +560,7 @@ class JdList(ListView):        # JudiciaryDead
                 Q(phone__contains=query_search) |
                 Q(contery__contains=query_search) |
                 Q(city__contains=query_search) |
+                Q(phoneagent__contains=query_search) |
                 Q(usersubmit__username__contains=query_search)
             )
         if query_filter:
