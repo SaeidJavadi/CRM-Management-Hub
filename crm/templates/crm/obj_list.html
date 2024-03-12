@@ -95,11 +95,13 @@
                                 <span class="ri-edit-2-line"></span>
                             </a>
                             <!-- Delete buttons -->
-                            <a type="button"
-                               class="btn btn-sm btn-danger"
-                               href="{% if objctname == "Common60" %} {% url 'crm:c60_delete' obj.id %} {% elif objctname == "Common61" %} {% url 'crm:c61_delete' obj.id %} {% elif objctname == "Common70" %} {% url 'crm:c70_delete' obj.id %} {% endif %}">
-                                <span class="ri-delete-bin-line"></span>
-                            </a>
+                            {% if user.is_superuser %}
+                                <a type="button"
+                                   class="btn btn-sm btn-danger"
+                                   href="{% if objctname == "Common60" %} {% url 'crm:c60_delete' obj.id %} {% elif objctname == "Common61" %} {% url 'crm:c61_delete' obj.id %} {% elif objctname == "Common70" %} {% url 'crm:c70_delete' obj.id %} {% endif %}">
+                                    <span class="ri-delete-bin-line"></span>
+                                </a>
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}

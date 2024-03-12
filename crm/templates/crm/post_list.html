@@ -104,11 +104,13 @@
                                 <span class="ri-edit-2-line"></span>
                             </a>
                             <!-- Delete buttons -->
+                            {% if user.is_superuser %}
                             <a type="button"
                                class="btn btn-sm btn-danger"
                                href="{% url 'crm:post_delete' obj.id %}">
                                 <span class="ri-delete-bin-line"></span>
                             </a>
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}

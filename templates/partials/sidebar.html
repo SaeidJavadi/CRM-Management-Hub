@@ -46,8 +46,7 @@
                 {% comment %} <span class="badge primary">Hot</span> {% endcomment %}
               </span>
             </a>
-            <div class="sub-menu-list">
-            </div>
+            <div class="sub-menu-list"></div>
           </li>
           {# Subscriptions #}
           <li class="menu-item sub-menu">
@@ -59,11 +58,13 @@
             </a>
             <div class="sub-menu-list">
               <ul>
-                <li class="menu-item">
-                  <a href="{% url 'crm:amount_list' %}">
-                    <span class="menu-title">{% trans "Commons Amount" %}</span>
-                  </a>
-                </li>
+                {% if user.is_superuser %}
+                  <li class="menu-item">
+                    <a href="{% url 'crm:amount_list' %}">
+                      <span class="menu-title">{% trans "Commons Amount" %}</span>
+                    </a>
+                  </li>
+                {% endif %}
                 <li class="menu-item sub-menu">
                   <a href="#">
                     <span class="menu-title">{% trans "Subscription 0 to 60" %}</span>
@@ -85,73 +86,75 @@
                           <span class="menu-title">{% trans "Create" %}</span>
                         </a>
                       </li>
-                      <li class="menu-item sub-menu">
-                        <a href="#">
-                          <span class="menu-title">{% trans "Lottery" %}</span>
-                        </a>
-                        <div class="sub-menu-list">
-                          <ul>
-                            <li class="menu-item sub-menu">
-                              <a href="#">
-                                <span class="menu-title">{% trans "Lottery Quran" %}</span>
-                              </a>
-                              <div class="sub-menu-list">
-                                <ul>
-                                  <li class="menu-item">
-                                    <a href="{% url 'crm:c60_lottery' title='quran' %}">
-                                      <span class="menu-title">{% trans "List" %}</span>
-                                    </a>
-                                  </li>
-                                  <li class="menu-item">
-                                    <a href="{% url 'crm:c60_addtolottery' title='quran' %}">
-                                      <span class="menu-title">{% trans "Add To Lottery" %}</span>
-                                    </a>
-                                  </li>
-                                  <li class="menu-item">
-                                    <a href="{% url 'crm:c60_holdinglottery' title='quran' %}">
-                                      <span class="menu-title">{% trans "Holding a lottery" %}</span>
-                                    </a>
-                                  </li>
-                                  <li class="menu-item">
-                                    <a href="{% url 'crm:c60_draws' title='quran' %}">
-                                      <span class="menu-title">{% trans "Draws done" %}</span>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </li>
-                            <li class="menu-item sub-menu">
-                              <a href="#">
-                                <span class="menu-title">{% trans "Lottery Ziarat" %}</span>
-                              </a>
-                              <div class="sub-menu-list">
-                                <ul>
-                                  <li class="menu-item">
-                                    <a href="{% url 'crm:c60_lottery' title='ziarat' %}">
-                                      <span class="menu-title">{% trans "List" %}</span>
-                                    </a>
-                                  </li>
-                                  <li class="menu-item">
-                                    <a href="{% url 'crm:c60_addtolottery' title='ziarat' %}">
-                                      <span class="menu-title">{% trans "Add To Lottery" %}</span>
-                                    </a>
-                                  </li>
-                                  <li class="menu-item">
-                                    <a href="{% url 'crm:c60_holdinglottery' title='ziarat' %}">
-                                      <span class="menu-title">{% trans "Holding a lottery" %}</span>
-                                    </a>
-                                  </li>
-                                  <li class="menu-item">
-                                    <a href="{% url 'crm:c60_draws' title='ziarat' %}">
-                                      <span class="menu-title">{% trans "Draws done" %}</span>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </li>
-                          </ul>
-                        </div>
-                      </li>
+                      {% if user.is_superuser %}
+                        <li class="menu-item sub-menu">
+                          <a href="#">
+                            <span class="menu-title">{% trans "Lottery" %}</span>
+                          </a>
+                          <div class="sub-menu-list">
+                            <ul>
+                              <li class="menu-item sub-menu">
+                                <a href="#">
+                                  <span class="menu-title">{% trans "Lottery Quran" %}</span>
+                                </a>
+                                <div class="sub-menu-list">
+                                  <ul>
+                                    <li class="menu-item">
+                                      <a href="{% url 'crm:c60_lottery' title='quran' %}">
+                                        <span class="menu-title">{% trans "List" %}</span>
+                                      </a>
+                                    </li>
+                                    <li class="menu-item">
+                                      <a href="{% url 'crm:c60_addtolottery' title='quran' %}">
+                                        <span class="menu-title">{% trans "Add To Lottery" %}</span>
+                                      </a>
+                                    </li>
+                                    <li class="menu-item">
+                                      <a href="{% url 'crm:c60_holdinglottery' title='quran' %}">
+                                        <span class="menu-title">{% trans "Holding a lottery" %}</span>
+                                      </a>
+                                    </li>
+                                    <li class="menu-item">
+                                      <a href="{% url 'crm:c60_draws' title='quran' %}">
+                                        <span class="menu-title">{% trans "Draws done" %}</span>
+                                      </a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </li>
+                              <li class="menu-item sub-menu">
+                                <a href="#">
+                                  <span class="menu-title">{% trans "Lottery Ziarat" %}</span>
+                                </a>
+                                <div class="sub-menu-list">
+                                  <ul>
+                                    <li class="menu-item">
+                                      <a href="{% url 'crm:c60_lottery' title='ziarat' %}">
+                                        <span class="menu-title">{% trans "List" %}</span>
+                                      </a>
+                                    </li>
+                                    <li class="menu-item">
+                                      <a href="{% url 'crm:c60_addtolottery' title='ziarat' %}">
+                                        <span class="menu-title">{% trans "Add To Lottery" %}</span>
+                                      </a>
+                                    </li>
+                                    <li class="menu-item">
+                                      <a href="{% url 'crm:c60_holdinglottery' title='ziarat' %}">
+                                        <span class="menu-title">{% trans "Holding a lottery" %}</span>
+                                      </a>
+                                    </li>
+                                    <li class="menu-item">
+                                      <a href="{% url 'crm:c60_draws' title='ziarat' %}">
+                                        <span class="menu-title">{% trans "Draws done" %}</span>
+                                      </a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      {% endif %}
                     </ul>
                   </div>
                 </li>
@@ -303,91 +306,101 @@
             </div>
           </li>
           {# Table Gifts #}
-          <li class="menu-item sub-menu">
-            <a href="#">
-              <span class="menu-icon">
-                <i class="ri-archive-drawer-fill"></i>
-              </span>
-              <span class="menu-title">{% trans "Table Gifts" %}</span>
-            </a>
-            <div class="sub-menu-list">
-              <ul>
+            <li class="menu-item sub-menu">
+              <a href="#">
+                <span class="menu-icon">
+                  <i class="ri-archive-drawer-fill"></i>
+                </span>
+                <span class="menu-title">{% trans "Table Gifts" %}</span>
+              </a>
+              <div class="sub-menu-list">
+                <ul>
+                  {% if user.is_superuser %}
+                  <li class="menu-item">
+                    <a href="{% url 'crm:tabalegift_create' %}">
+                      <span class="menu-title">{% trans "Create Lottery" %}</span>
+                    </a>
+                  </li>
+                   {% endif %}
+                  <li class="menu-item sub-menu">
+                    <a href="#">
+                      <span class="menu-title">{% trans "Table u16" %}</span>
+                    </a>
+                    <div class="sub-menu-list">
+                      <ul>
+                        <li class="menu-item">
+                          <a href="{% url 'crm:tabgift' tabname='tableu16' %}">
+                            <span class="menu-title">{% trans "List" %}</span>
+                          </a>
+                        </li>
+                        {% if user.is_superuser %}
+                        <li class="menu-item">
+                          <a href="{% url 'crm:holdtablottery' tabname='tableu16' %}">
+                            <span class="menu-title">{% trans "Holding Lottery" %}</span>
+                          </a>
+                        </li>
+                        {% endif %}
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="menu-item sub-menu">
+                    <a href="#">
+                      <span class="menu-title">{% trans "Table 2" %}</span>
+                    </a>
+                    <div class="sub-menu-list">
+                      <ul>
+                        <li class="menu-item">
+                          <a href="{% url 'crm:tabgift' tabname='table2' %}">
+                            <span class="menu-title">{% trans "List" %}</span>
+                          </a>
+                        </li>
+                        {% if user.is_superuser %}
+                        <li class="menu-item">
+                          <a href="{% url 'crm:holdtablottery' tabname='table2' %}">
+                            <span class="menu-title">{% trans "Holding Lottery" %}</span>
+                          </a>
+                        </li>
+                        {% endif %}
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="menu-item sub-menu">
+                    <a href="#">
+                      <span class="menu-title">{% trans "Table 3" %}</span>
+                    </a>
+                    <div class="sub-menu-list">
+                      <ul>
+                        <li class="menu-item">
+                          <a href="{% url 'crm:tabgift' tabname='table3' %}">
+                            <span class="menu-title">{% trans "List" %}</span>
+                          </a>
+                        </li>
+                        {% if user.is_superuser %}
+                        <li class="menu-item">
+                          <a href="{% url 'crm:holdtablottery' tabname='table3' %}">
+                            <span class="menu-title">{% trans "Holding Lottery" %}</span>
+                          </a>
+                        </li>
+                        {% endif %}
+                      </ul>
+                    </div>
+                    {% if user.is_superuser %}
+                  </li>
+                  <li class="menu-item">
+                    <a href="{% url 'crm:participants' %}">
+                      <span class="menu-title">{% trans "Participants" %}</span>
+                    </a>
+                  </li>
+                  {% endif %}
+                </li>
                 <li class="menu-item">
-                  <a href="{% url 'crm:tabalegift_create' %}">
-                    <span class="menu-title">{% trans "Create Lottery" %}</span>
+                  <a href="{% url 'crm:tabwinners' %}">
+                    <span class="menu-title">{% trans "Participants Winners" %}</span>
                   </a>
                 </li>
-                <li class="menu-item sub-menu">
-                  <a href="#">
-                    <span class="menu-title">{% trans "Table u16" %}</span>
-                  </a>
-                  <div class="sub-menu-list">
-                    <ul>
-                      <li class="menu-item">
-                        <a href="{% url 'crm:tabgift' tabname='tableu16' %}">
-                          <span class="menu-title">{% trans "List" %}</span>
-                        </a>
-                      </li>
-                      <li class="menu-item">
-                        <a href="{% url 'crm:holdtablottery' tabname='tableu16' %}">
-                          <span class="menu-title">{% trans "Holding Lottery" %}</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="menu-item sub-menu">
-                  <a href="#">
-                    <span class="menu-title">{% trans "Table 2" %}</span>
-                  </a>
-                  <div class="sub-menu-list">
-                    <ul>
-                      <li class="menu-item">
-                        <a href="{% url 'crm:tabgift' tabname='table2' %}">
-                          <span class="menu-title">{% trans "List" %}</span>
-                        </a>
-                      </li>
-                      <li class="menu-item">
-                        <a href="{% url 'crm:holdtablottery' tabname='table2' %}">
-                          <span class="menu-title">{% trans "Holding Lottery" %}</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="menu-item sub-menu">
-                  <a href="#">
-                    <span class="menu-title">{% trans "Table 3" %}</span>
-                  </a>
-                  <div class="sub-menu-list">
-                    <ul>
-                      <li class="menu-item">
-                        <a href="{% url 'crm:tabgift' tabname='table3' %}">
-                          <span class="menu-title">{% trans "List" %}</span>
-                        </a>
-                      </li>
-                      <li class="menu-item">
-                        <a href="{% url 'crm:holdtablottery' tabname='table3' %}">
-                          <span class="menu-title">{% trans "Holding Lottery" %}</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="menu-item">
-                  <a href="{% url 'crm:participants' %}">
-                    <span class="menu-title">{% trans "Participants" %}</span>
-                  </a>
-                </li>
-              </li>
-              <li class="menu-item">
-                <a href="{% url 'crm:tabwinners' %}">
-                  <span class="menu-title">{% trans "Participants Winners" %}</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </li>
+              </ul>
+            </div>
+          </li>
         {# Notifications #}
         <li class="menu-item sub-menu">
           <a href="#">
@@ -431,7 +444,7 @@
                   <span class="menu-title">{% trans "Create News Text" %}</span>
                 </a>
               </li>
-                <li class="menu-item">
+              <li class="menu-item">
                 <a href="{% url 'crm:news_list' %}">
                   <span class="menu-title">{% trans "News Texts" %}</span>
                 </a>
@@ -460,48 +473,52 @@
           </div>
         </li>
         {# User Manager #}
-        <li class="menu-item sub-menu">
-          <a href="#">
-            <span class="menu-icon">
-              <i class="ri-account-pin-circle-fill"></i>
-            </span>
-            <span class="menu-title">{% trans "User Manager" %}</span>
-          </a>
-          <div class="sub-menu-list">
-            <ul>
-              <li class="menu-item">
-                <a href="{% url 'accounts:users_overview' %}">
-                  <span class="menu-title">{% trans "Overview" %}</span>
-                </a>
-              </li>
-              <li class="menu-item">
-                <a href="{% url 'accounts:user_list' %}">
-                  <span class="menu-title">{% trans "User list" %}</span>
-                </a>
-              </li>
-              <li class="menu-item">
-                <a href="{% url 'accounts:user_create' %}">
-                  <span class="menu-title">{% trans "Create User" %}</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </li>
+        {% if user.is_superuser %}
+          <li class="menu-item sub-menu">
+            <a href="#">
+              <span class="menu-icon">
+                <i class="ri-account-pin-circle-fill"></i>
+              </span>
+              <span class="menu-title">{% trans "User Manager" %}</span>
+            </a>
+            <div class="sub-menu-list">
+              <ul>
+                <li class="menu-item">
+                  <a href="{% url 'accounts:users_overview' %}">
+                    <span class="menu-title">{% trans "Overview" %}</span>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="{% url 'accounts:user_list' %}">
+                    <span class="menu-title">{% trans "User list" %}</span>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="{% url 'accounts:user_create' %}">
+                    <span class="menu-title">{% trans "Create User" %}</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        {% endif %}
         {# Account Setting #}
-        <li class="menu-header" style="padding-top: 20px">
-          <span>{% trans "Account Setting" %}</span>
-        </li>
-        <li class="menu-item">
-          <a href="{% url 'accounts:profile' %}">
-            <span class="menu-icon">
-              <i class="ri-user-fill"></i>
-            </span>
-            <span class="menu-title">{% trans "Profile" %}</span>
-            <span class="menu-suffix">
-              {% comment %} <span class="badge secondary">Beta</span> {% endcomment %}
-            </span>
-          </a>
-        </li>
+        {% if user.is_superuser %}
+          <li class="menu-header" style="padding-top: 20px">
+            <span>{% trans "Account Setting" %}</span>
+          </li>
+          <li class="menu-item">
+            <a href="{% url 'accounts:profile' %}">
+              <span class="menu-icon">
+                <i class="ri-user-fill"></i>
+              </span>
+              <span class="menu-title">{% trans "Profile" %}</span>
+              <span class="menu-suffix">
+                {% comment %} <span class="badge secondary">Beta</span> {% endcomment %}
+              </span>
+            </a>
+          </li>
+        {% endif %}
         <li class="menu-item">
           <a href="{% url 'accounts:profilepass' %}">
             <span class="menu-icon">
