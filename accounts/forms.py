@@ -41,6 +41,9 @@ class UserChangeForm(forms.ModelForm):
         model = get_user_model()
         fields = ('username', 'phone', 'email', 'fcmtoken', 'is_active', 'is_staff', 'is_superuser')
 
+        # add User Permission setting to custom form
+        # fields = ('username', 'phone', 'email', 'fcmtoken', 'is_active', 'is_staff', 'is_superuser', 'user_permissions')
+
     def __init__(self, *args, **kwargs):
         super(UserChangeForm, self).__init__(*args, **kwargs)
         for visible in self.visible_fields():
