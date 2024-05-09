@@ -53,7 +53,7 @@ class UserViewSet(ModelViewSet):
     def destroy(self, request, *args, **kwargs):    # Delete Account
         userInstanse = self.get_object()
         userInstanse.delete()
-        return Response({"message": "User account has been successfully deleted."}, 200)
+        return Response({"message": "User account has been successfully deleted"}, 200)
 
 
 class RevokeToken(APIView):
