@@ -71,8 +71,8 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware'
 ]
 
-if DEBUG:
-    MIDDLEWARE.add('allauth.account.middleware.AccountMiddleware')
+if not config('DEBUG', default=True, cast=bool):
+    MIDDLEWARE.append('allauth.account.middleware.AccountMiddleware')
 
 ROOT_URLCONF = 'base.urls'
 
