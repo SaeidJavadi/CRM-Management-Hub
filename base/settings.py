@@ -68,9 +68,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
-    'allauth.account.middleware.AccountMiddleware'
+    'django.middleware.locale.LocaleMiddleware'
 ]
+
+if DEBUG:
+    MIDDLEWARE.add('allauth.account.middleware.AccountMiddleware')
 
 ROOT_URLCONF = 'base.urls'
 
@@ -225,11 +227,11 @@ FIREBASE_GOOGLE_APPLICATION_CREDENTIALS = BASE_DIR / \
     "static/root/assert/social-solidarity-bb4ac-firebase-adminsdk-imhzd-48ba474d40.json"
 
 # SSL
-if not config('DEBUG', default=True, cast=bool):
-    SECURE_SSL_REDIRECT = True
-    # cookies will only be sent via HTTPS connections
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
+#if not config('DEBUG', default=True, cast=bool):
+#    SECURE_SSL_REDIRECT = True
+#    # cookies will only be sent via HTTPS connections
+#    SESSION_COOKIE_SECURE = True
+#    CSRF_COOKIE_SECURE = True
 
 # Logging
 if not config('DEBUG', default=True, cast=bool):
