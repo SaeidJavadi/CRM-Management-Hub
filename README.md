@@ -1,6 +1,8 @@
 # CoreNexus CRM 🚀
 **A Comprehensive Subscription, User Management, and Notification System.**
 
+https://github.com/user-attachments/assets/7d4aa911-addc-45b3-95b8-f7a85eaf64bc
+
 CoreNexus CRM is a powerful, production-ready CRM system designed to manage subscriptions, user interactions, and organizational communications. It features a robust web-based administration panel for operators and a full-featured REST API that seamlessly connects to Android and iOS mobile applications.
 
 ---
@@ -12,7 +14,7 @@ This project serves as the central hub for organizations to manage their members
 
 ### 👥 Advanced Subscription Management
 * **Categorized Memberships:** Automated handling of different subscription tiers based on age and conditions (Common60, Common61, Common70).
-* **Deceased Services Management:** Dedicated modules for managing religious services and legal requirements for deceased members (`CommonDead`, `JudiciaryDead`, `DoingDead`).
+* **Deceased Services Management:** Dedicated modules for managing religious services and legal requirements for deceased members (`CommonDead`, `JudiciaryDead`, `DoingDead`, ...).
 * **Public Assistance:** Integrated tools for tracking charitable donations and help names.
 
 ### 🎰 Lottery & Reward System
